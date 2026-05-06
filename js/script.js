@@ -83,12 +83,12 @@
   if (hojeEl || diasEl) {
     var cardapioDia = {
       0: null,
-      1: { nome: 'Segunda-Feira',  prato: 'Panqueca',              acompanhamentos: ['Arroz', 'Salada'],                                                                         img: 'dia_segunda.jpg' },
-      2: { nome: 'Terça-Feira',    prato: 'Costelinha no Barbecue', acompanhamentos: ['Arroz', 'Salada', 'Batata Frita'],                                                         img: 'dia_terca.jpg'  },
-      3: { nome: 'Quarta-Feira',   prato: 'Dia Italiano',           acompanhamentos: ['Rondelli', 'Espaguete', 'Nhoque', 'Frango', 'Tulipa', 'Risoto', 'Polenta Frita', 'Salada'], img: 'dia_quarta.jpg' },
-      4: { nome: 'Quinta-Feira',   prato: 'Parmegiana ⭐',          acompanhamentos: ['Arroz ou Macarrão', 'Batata Frita', 'Salada'],                                             img: 'dia_quinta.jpg' },
-      5: { nome: 'Sexta-Feira',    prato: 'Picanha na Chapa',       acompanhamentos: ['Arroz', 'Farofa', 'Legumes', 'Maionese', 'Polenta Frita'],                                 img: 'dia_sexta.jpg'  },
-      6: { nome: 'Sábado',         prato: 'Pasteis',                acompanhamentos: [],                                                                                          img: 'dia_sabado.jpg' }
+      1: { nome: 'Segunda-Feira',  prato: 'Panqueca',              acompanhamentos: ['Arroz', 'Salada'],                                                                         img: 'imagens/dia_segunda.jpg' },
+      2: { nome: 'Terça-Feira',    prato: 'Costelinha no Barbecue', acompanhamentos: ['Arroz', 'Salada', 'Batata Frita'],                                                         img: 'imagens/dia_terca.jpg'  },
+      3: { nome: 'Quarta-Feira',   prato: 'Dia Italiano',           acompanhamentos: ['Rondelli', 'Espaguete', 'Nhoque', 'Frango', 'Tulipa', 'Risoto', 'Polenta Frita', 'Salada'], img: 'imagens/dia_quarta.jpg' },
+      4: { nome: 'Quinta-Feira',   prato: 'Parmegiana ⭐',          acompanhamentos: ['Arroz ou Macarrão', 'Batata Frita', 'Salada'],                                             img: 'imagens/dia_quinta.jpg' },
+      5: { nome: 'Sexta-Feira',    prato: 'Picanha na Chapa',       acompanhamentos: ['Arroz', 'Farofa', 'Legumes', 'Maionese', 'Polenta Frita'],                                 img: 'imagens/dia_sexta.jpg'  },
+      6: { nome: 'Sábado',         prato: 'Pasteis',                acompanhamentos: [],                                                                                          img: 'imagens/dia_sabado.jpg' }
     };
 
     var hoje = new Date().getDay();
