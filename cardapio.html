@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Cardápio do jantar do Ana Bella — alcatras na chapa, massas caseiras, parmegiana das quintas e muito mais."/>
+  <meta name="theme-color" content="#7a1f2e"/>
+  <meta property="og:title" content="Cardápio | Ana Bella Restaurante"/>
+  <meta property="og:description" content="Cardápio do jantar do Ana Bella — alcatras na chapa, massas caseiras, parmegiana das quintas e muito mais. Nossa família servindo a sua família."/>
+  <meta property="og:image" content="og-image.jpg"/>
+  <title>Cardápio | Ana Bella Restaurante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ACCORDION */
+    .accordion{border-top:1px solid var(--beige)}
+    .accordion-item{border-bottom:1px solid var(--beige)}
+    .accordion-header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;cursor:pointer;font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--brown-dk);background:none;border:none;width:100%;text-align:left;gap:1rem;-webkit-tap-highlight-color:transparent}
+    .accordion-header:hover{color:var(--wine)}
+    .accordion-arrow{transition:transform .3s ease;font-size:.9rem;flex-shrink:0;color:var(--wine)}
+    .accordion-item.open .accordion-arrow{transform:rotate(180deg)}
+    .accordion-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+    .accordion-item.open .accordion-body{max-height:9999px}
+    .accordion-content{padding:1rem 0 2.5rem}
+
+    /* HOJE CARD */
+    .hoje-card{background:linear-gradient(135deg,var(--charcoal) 0%,#2e0e06 100%);border-radius:var(--radius-xl);padding:clamp(2rem,5vw,3rem);color:#fff;position:relative;overflow:hidden;margin-bottom:2.5rem}
+    .hoje-card::before{content:'';position:absolute;bottom:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(122,31,46,.4) 0%,transparent 70%);pointer-events:none}
+    .hoje-card-inner{position:relative;z-index:1}
+    .hoje-badge{display:inline-block;background:var(--wine);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .9rem;border-radius:999px;margin-bottom:1rem}
+    .hoje-prato{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.2}
+    .hoje-acompanhamentos{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+    .hoje-acompanhamentos li{background:rgba(255,255,255,.12);border-radius:999px;padding:.3rem .9rem;font-size:.85rem;color:rgba(255,255,255,.9)}
+    .hoje-img{width:100%;max-height:280px;object-fit:cover;border-radius:var(--radius-lg);margin-top:1.5rem}
+    .hoje-nota{font-size:.78rem;color:rgba(255,255,255,.45);margin-top:1.25rem}
+    .fechado-card{background:var(--cream);border:1px solid var(--beige);border-radius:var(--radius-xl);padding:3rem 2rem;text-align:center;margin-bottom:2.5rem}
+    .fechado-card h3{color:var(--brown-dk);margin-bottom:.5rem}
+
+    /* DIAS GRID */
+    .dias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(185px,100%),1fr));gap:1rem;margin-bottom:2rem}
+    .dia-card{background:#fff;border:1px solid var(--beige);border-radius:var(--radius-lg);padding:1.25rem;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans)}
+    .dia-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px var(--shadow);border-color:var(--brown-lt)}
+    .dia-card.dia-hoje{border-color:var(--wine);box-shadow:0 0 0 2px var(--wine)}
+    .dia-card.dia-fechado{opacity:.45;pointer-events:none}
+    .dia-nome{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);margin-bottom:.4rem}
+    .dia-prato-nome{font-family:var(--font-display);font-size:1rem;color:var(--brown-dk);margin-bottom:.3rem}
+    .dia-acomp{font-size:.8rem;color:var(--text-lt);line-height:1.5;margin:0}
+
+    /* CHEF IDEA */
+    .chef-idea{background:linear-gradient(135deg,var(--wine) 0%,#3d0e18 100%);border-radius:var(--radius-xl);padding:clamp(1.75rem,4vw,2.5rem);color:#fff;margin-bottom:2.5rem;display:flex;gap:1.5rem;align-items:flex-start}
+    .chef-idea-icon{font-size:2.5rem;flex-shrink:0;line-height:1}
+    .chef-idea-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brown-lt);margin-bottom:.35rem;display:block}
+    .chef-idea h3{color:#fff;margin-bottom:.5rem;font-size:1.2rem}
+    .chef-idea blockquote{font-family:var(--font-display);font-style:italic;font-size:clamp(.95rem,2.5vw,1.1rem);color:rgba(255,255,255,.92);margin:0 0 .5rem;padding:0;border:none}
+    .chef-idea p{color:rgba(255,255,255,.62);font-size:.88rem;margin:0}
+
+    /* DESTAQUE CARD (Alcatra / Fettuccine) */
+    .destaque-card{background:var(--cream);border:2px solid var(--wine);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.75rem}
+    .destaque-card-inner{display:grid;grid-template-columns:1fr auto}
+    .destaque-card-body{padding:clamp(1.5rem,4vw,2.25rem)}
+    .destaque-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--wine);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .85rem;border-radius:999px;margin-bottom:1rem}
+    .destaque-card h3{color:var(--wine);margin-bottom:1rem;font-size:1.25rem}
+    .destaque-card-img{width:220px;object-fit:cover;display:block;max-width:35vw}
+    @media(max-width:600px){.destaque-card-inner{grid-template-columns:1fr}.destaque-card-img{width:100%;max-width:100%;height:200px}}
+    .destaque-card--secondary{background:#fff;border:1px solid var(--brown-lt)}
+    .destaque-card--secondary .destaque-badge{background:var(--brown-lt);color:var(--charcoal)}
+    .destaque-card--secondary h3{color:var(--brown-dk)}
+
+    /* MENU LIST */
+    .menu-list{list-style:none;display:flex;flex-direction:column}
+    .menu-list-item{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--beige)}
+    .menu-list-item:last-child{border-bottom:none}
+    .menu-list-nome{font-weight:600;color:var(--brown-dk);font-size:.93rem;line-height:1.4}
+    .menu-list-desc{font-size:.82rem;color:var(--text-lt);margin-top:.12rem}
+    .menu-list-molhos{font-size:.78rem;color:var(--text-lt);margin-top:.2rem;font-style:italic}
+    .menu-list-preco{font-weight:700;color:var(--wine);white-space:nowrap;font-size:.93rem;flex-shrink:0}
+    .adicional-box{background:var(--beige);border-radius:var(--radius);padding:.75rem 1rem;font-size:.84rem;color:var(--text-lt);margin-top:1rem}
+    .menu-nota{font-size:.78rem;color:var(--text-lt);margin-top:1.25rem;font-style:italic;padding-top:1rem;border-top:1px solid var(--beige)}
+    .secao-header{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);padding-bottom:.5rem;border-bottom:2px solid var(--beige);margin:1.75rem 0 1.25rem;font-family:var(--font-body)}
+    .secao-header:first-child{margin-top:0}
+
+    /* SALADA */
+    .salada-card{background:var(--cream);border:1px solid var(--beige);border-radius:var(--radius-xl);padding:clamp(1.5rem,4vw,2.5rem);margin:2.5rem 0}
+    .salada-card-titulo{display:flex;align-items:center;gap:.6rem;color:var(--brown-dk);margin-bottom:1.25rem;font-family:var(--font-display);font-size:1.3rem}
+    .chips-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 1.5rem}
+    .chip{background:#fff;border:1px solid var(--beige);border-radius:999px;padding:.3rem .85rem;font-size:.82rem;color:var(--text-lt)}
+
+    /* BEBIDAS */
+    .bebidas-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    @media(max-width:480px){.bebidas-grid{grid-template-columns:1fr}}
+
+    /* VINHOS */
+    .vinho-grupo{margin-bottom:2.25rem}
+    .vinho-grupo-titulo{font-family:var(--font-display);font-size:1.05rem;color:var(--brown-dk);margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid var(--beige);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .vinho-preco-unico{display:inline-block;background:var(--wine);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:.2rem .65rem;border-radius:999px}
+    .vinhos-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+    .vinho-tag{background:var(--cream);border:1px solid var(--beige);border-radius:var(--radius);padding:.35rem .85rem;font-size:.84rem;color:var(--text-lt)}
+
+    /* KIDS */
+    .kids-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(190px,100%),1fr));gap:1rem;margin:1rem 0}
+    .kids-card{background:#fff;border:1px solid var(--beige);border-radius:var(--radius-lg);padding:1.15rem}
+    .kids-card h4{font-family:var(--font-display);font-size:.95rem;color:var(--brown-dk);margin-bottom:.35rem}
+    .kids-preco{font-weight:700;color:var(--wine);font-size:.9rem;display:block;margin-bottom:.3rem}
+    .kids-desc{font-size:.82rem;color:var(--text-lt);margin:0}
+
+    /* NOTA GERAL */
+    .nota-geral{text-align:center;font-size:.84rem;color:var(--text-lt);margin-top:2rem;padding:1rem 1.5rem;background:var(--cream);border-radius:var(--radius-lg)}
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="header">
+    <div class="header-inner container">
+      <a href="index.html" class="brand"><img src="logo_anabella_cor.png" alt="Ana Bella Restaurante"></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html"    class="nav-link">Home</a>
+        <a href="almoco.html"   class="nav-link">Almoço</a>
+        <a href="cardapio.html" class="nav-link active">Cardápio</a>
+        <a href="historia.html" class="nav-link">História</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" class="nav-action" target="_blank" rel="noopener">Como chegar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" aria-label="Cardápio Ana Bella"
+      style="min-height:60vh;background-image:linear-gradient(150deg,rgba(27,18,13,.72) 0%,rgba(86,21,37,.58) 100%),url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=80');">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="eyebrow">Jantar · Segunda a Sábado · 18:00 – 21:45</p>
+        <h1>Cardápio Ana Bella</h1>
+        <p class="hero-slogan">Nossa família servindo a sua família</p>
+        <p class="hero-copy">Pratos preparados pela chef Juliana com cuidado para tornar cada jantar um momento especial.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="cardapio-tabs">
+          <button class="tab-btn active" data-tab="dia">📅 Cardápio do Dia</button>
+          <button class="tab-btn" data-tab="restaurante">🍽️ Cardápio do Restaurante</button>
+        </div>
+
+        <!-- ===== ABA: CARDÁPIO DO DIA ===== -->
+        <div class="tab-panel active" id="dia">
+          <div id="hoje-card"></div>
+          <div id="dias-grid" class="dias-grid"></div>
+        </div>
+
+        <!-- ===== ABA: CARDÁPIO DO RESTAURANTE ===== -->
+        <div class="tab-panel" id="restaurante">
+
+          <!-- Chef idea -->
+          <div class="chef-idea">
+            <div class="chef-idea-icon">👨‍🍳</div>
+            <div>
+              <span class="chef-idea-label">Ideia do Chef</span>
+              <h3>A combinação perfeita</h3>
+              <blockquote>"Uma porção de Alcatra na Chapa + uma Massa = serve 2 pessoas com muito sabor"</blockquote>
+              <p>Peça ao Alceu!</p>
+            </div>
+          </div>
+
+          <div style="text-align:center;margin:-1rem 0 2rem">
+            <a href="https://www.instagram.com/anabellarestaurante" target="_blank" rel="noopener" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;flex-shrink:0"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg>
+              Ver pratos no Instagram
+            </a>
+          </div>
+
+          <!-- Accordion Grupo 1 -->
+          <div class="accordion">
+
+            <!-- PORÇÕES -->
+            <div class="accordion-item">
+              <button class="accordion-header">🥩 Porções <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+
+                  <!-- Alcatras destaque -->
+                  <div class="destaque-card">
+                    <div class="destaque-card-inner">
+                      <div class="destaque-card-body">
+                        <span class="destaque-badge">🏆 Especialidade da Casa</span>
+                        <h3>Alcatra na Chapa</h3>
+                        <ul class="menu-list">
+                          <li class="menu-list-item">
+                            <div><p class="menu-list-nome">Alcatra c/ Queijo Mussarela (300g)</p><p class="menu-list-desc">Acompanha pão</p></div>
+                            <span class="menu-list-preco">R$ 43,90</span>
+                          </li>
+                          <li class="menu-list-item">
+                            <div><p class="menu-list-nome">Alcatra Ana Bella Acebolada (300g)</p><p class="menu-list-desc">Acompanha pão</p></div>
+                            <span class="menu-list-preco">R$ 43,90</span>
+                          </li>
+                          <li class="menu-list-item">
+                            <div><p class="menu-list-nome">Alcatra Ana Bella (300g)</p><p class="menu-list-desc">Acompanha fritas</p></div>
+                            <span class="menu-list-preco">R$ 45,90</span>
+                          </li>
+                          <li class="menu-list-item">
+                            <div><p class="menu-list-nome">Alcatra Ana Bella (300g)</p><p class="menu-list-desc">Acompanha aipim ou polenta</p></div>
+                            <span class="menu-list-preco">R$ 45,90</span>
+                          </li>
+                          <li class="menu-list-item">
+                            <div><p class="menu-list-nome">Alcatra Ana Bella (300g)</p><p class="menu-list-desc">Acompanha Onions</p></div>
+                            <span class="menu-list-preco">R$ 45,90</span>
+                          </li>
+                          <li class="menu-list-item">
+                            <div><p class="menu-list-nome">Alcatra Ana Bella (300g)</p><p class="menu-list-desc">Acompanha Batata Rústica</p></div>
+                            <span class="menu-list-preco">R$ 45,90</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <img src="foto_alcatra.jpg" alt="Alcatra na Chapa" class="destaque-card-img"
+                           onerror="this.outerHTML='<div style=\'width:220px;max-width:35vw;background:linear-gradient(135deg,#f5ede4,#eedfd0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#8a4a2a\'><span style=\'font-size:3rem\'>🥩</span><span style=\'font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6\'>foto em breve</span></div>'">
+                    </div>
+                  </div>
+
+                  <!-- Frango/Tulipa destaque secundário -->
+                  <div class="destaque-card destaque-card--secondary">
+                    <div class="destaque-card-body">
+                      <span class="destaque-badge">🍗 Frango &amp; Tulipa</span>
+                      <ul class="menu-list">
+                        <li class="menu-list-item">
+                          <div><p class="menu-list-nome">Frango a Passarinho (600g) tulipa c/ queijo</p></div>
+                          <span class="menu-list-preco">R$ 48,90</span>
+                        </li>
+                        <li class="menu-list-item">
+                          <div><p class="menu-list-nome">Frango a Passarinho (tulipa) + Polenta c/ queijo</p></div>
+                          <span class="menu-list-preco">R$ 42,90</span>
+                        </li>
+                        <li class="menu-list-item">
+                          <div><p class="menu-list-nome">Frango e Aipim</p></div>
+                          <span class="menu-list-preco">R$ 40,90</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Demais porções -->
+                  <p class="secao-header">Demais Porções</p>
+                  <ul class="menu-list">
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Aipim (500g) c/ bacon e salcinha</p></div><span class="menu-list-preco">R$ 28,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Arroz (400g)</p></div><span class="menu-list-preco">R$ 12,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Carinha de Batata</p></div><span class="menu-list-preco">R$ 21,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Frios</p><p class="menu-list-desc">Krakovia, Queijo Mussarela, Azeitonas, Ovo de Codorna</p></div><span class="menu-list-preco">R$ 36,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Fritas (500g)</p></div><span class="menu-list-preco">R$ 34,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Fritas (500g) c/ bacon e cheddar</p></div><span class="menu-list-preco">R$ 41,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Fritas Pequena (250g)</p></div><span class="menu-list-preco">R$ 21,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Onions c/ mostarda</p></div><span class="menu-list-preco">R$ 21,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Polenta (500g) c/ queijo</p></div><span class="menu-list-preco">R$ 22,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Pururuca — Meia Porção</p></div><span class="menu-list-preco">R$ 15,00</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Pururuca — Porção Inteira</p></div><span class="menu-list-preco">R$ 25,00</span></li>
+                  </ul>
+
+                  <div class="adicional-box">➕ Adicionar qualquer item: <strong>R$ 12,50</strong></div>
+                  <p class="menu-nota">Pode conter Glúten e Lactose · Pratos feitos na hora · 18:00 às 21:45</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- MASSAS -->
+            <div class="accordion-item">
+              <button class="accordion-header">🍝 Massas <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+
+                  <!-- Fettuccine destaque -->
+                  <div class="destaque-card">
+                    <div class="destaque-card-inner">
+                      <div class="destaque-card-body">
+                        <span class="destaque-badge">⭐ Destaque da Casa</span>
+                        <h3>Fettuccine</h3>
+                        <ul class="menu-list">
+                          <li class="menu-list-item">
+                            <div>
+                              <p class="menu-list-nome">Fettuccine (Porção Individual)</p>
+                              <p class="menu-list-molhos">Molhos: Sugo · Bolonhesa · 4 Queijos · Bechamel · Manteiga · Bechamel c/ Bacon</p>
+                            </div>
+                            <span class="menu-list-preco">R$ 32,90</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <img src="foto_fettuccine.jpg" alt="Fettuccine ao Sugo" class="destaque-card-img"
+                           onerror="this.outerHTML='<div style=\'width:220px;max-width:35vw;background:linear-gradient(135deg,#f8f2e4,#f0e6ce);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#8a6a2a\'><span style=\'font-size:3rem\'>🍝</span><span style=\'font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6\'>foto em breve</span></div>'">
+                    </div>
+                  </div>
+
+                  <!-- Demais massas -->
+                  <p class="secao-header">Outras Massas — Porção Individual</p>
+                  <ul class="menu-list">
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Espaguete</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel · Manteiga · Bechamel c/ Bacon</p></div>
+                      <span class="menu-list-preco">R$ 31,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Penne</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel · Manteiga · Bechamel c/ Bacon</p></div>
+                      <span class="menu-list-preco">R$ 32,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Pirogue (6 unid.)</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel · Manteiga · Bechamel c/ Bacon</p></div>
+                      <span class="menu-list-preco">R$ 31,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Nhoque</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel · Manteiga · Bechamel c/ Bacon</p></div>
+                      <span class="menu-list-preco">R$ 32,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Rondeli (Queijo ou Queijo e Presunto)</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel</p></div>
+                      <span class="menu-list-preco">R$ 39,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Lasanha (Queijo ou Queijo e Presunto)</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel</p></div>
+                      <span class="menu-list-preco">R$ 41,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Conchiglione (Queijo)</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel</p></div>
+                      <span class="menu-list-preco">R$ 37,90</span>
+                    </li>
+                  </ul>
+
+                  <p class="menu-nota">Ingredientes Selecionados e Frescos · Massa Tipo Caseira<br>Tempo de preparo: 45 min. em média · Pode conter Glúten e Lactose</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRATOS ESPECIAIS -->
+            <div class="accordion-item">
+              <button class="accordion-header">🍽️ Pratos Especiais <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+                  <ul class="menu-list">
+                    <li class="menu-list-item">
+                      <div>
+                        <p class="menu-list-nome">Ana Bella Alcatra</p>
+                        <p class="menu-list-desc">Alcatra Picada 150g, Arroz Branco e fritas. Acompanha Salada: Tomate, Cenoura Ralada e Milho.</p>
+                      </div>
+                      <span class="menu-list-preco">R$ 30,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div>
+                        <p class="menu-list-nome">Ana Bella Frango</p>
+                        <p class="menu-list-desc">Frango Picado 150g, Arroz Branco e fritas. Acompanha Salada: Tomate, Cenoura Ralada e Milho.</p>
+                      </div>
+                      <span class="menu-list-preco">R$ 30,00</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div>
+                        <p class="menu-list-nome">Ana Bella Frango Aromatizado</p>
+                        <p class="menu-list-desc">Frango Picado 150g, aromatizado na manteiga/champignon. Acompanha Salada: Tomate, Cenoura Ralada e Milho / Arroz Branco / Batata Rústica.</p>
+                      </div>
+                      <span class="menu-list-preco">R$ 34,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div>
+                        <p class="menu-list-nome">Ana Bella A Moda da Casa</p>
+                        <p class="menu-list-desc">Alcatra picada acebolada 150g, arroz branco, batata rústica. Acompanha Salada do dia.</p>
+                      </div>
+                      <span class="menu-list-preco">R$ 38,90</span>
+                    </li>
+                  </ul>
+                  <div class="adicional-box">Adicionais: Ovo — <strong>R$ 4,00</strong> · Feijão — <strong>R$ 5,00</strong></div>
+                  <p class="menu-nota">Pratos feitos na hora · Pode conter Glúten e Lactose</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /accordion grupo 1 -->
+
+          <!-- Accordion Grupo 2 -->
+          <div class="accordion">
+
+            <!-- MONTE SUA SALADA -->
+            <div class="accordion-item">
+              <button class="accordion-header">🥗 Monte sua Salada <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+
+                  <!-- Espaço reservado para foto -->
+                  <div class="destaque-card" style="margin-bottom:1.75rem">
+                    <div class="destaque-card-inner" style="grid-template-columns:1fr">
+                      <div class="destaque-card-body" style="padding:0">
+                        <img src="foto_salada.jpg" alt="Monte sua Salada" class="destaque-card-img"
+                             style="width:100%;max-width:100%;height:220px;object-fit:cover;border-radius:var(--radius-xl)"
+                             onerror="this.outerHTML='<div style=\'width:100%;height:220px;background:linear-gradient(135deg,#edf5ec,#d4ebda);border-radius:var(--radius-xl);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#4a7a50\'><span style=\'font-size:3rem\'>🥗</span><span style=\'font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6\'>foto em breve</span></div>'">
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="menu-list" style="margin-bottom:1rem">
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Porção Individual · até 5 ingredientes</p></div>
+                      <span class="menu-list-preco">R$ 26,90</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Item extra adicional</p></div>
+                      <span class="menu-list-preco">R$ 5,50</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Adicional proteína: Alcatra 150g</p></div>
+                      <span class="menu-list-preco">R$ 15,00</span>
+                    </li>
+                    <li class="menu-list-item">
+                      <div><p class="menu-list-nome">Adicional proteína: Frango 150g</p></div>
+                      <span class="menu-list-preco">R$ 15,00</span>
+                    </li>
+                  </ul>
+                  <p style="font-size:.82rem;font-weight:700;color:var(--brown-dk);margin-bottom:.5rem">Ingredientes disponíveis:</p>
+                  <div class="chips-grid">
+                    <span class="chip">Alface Crespa</span>
+                    <span class="chip">Alface Americana</span>
+                    <span class="chip">Rúcula</span>
+                    <span class="chip">Tomate</span>
+                    <span class="chip">Cenoura Ralada</span>
+                    <span class="chip">Ovos Cozidos</span>
+                    <span class="chip">Ovos de Codorna</span>
+                    <span class="chip">Champignon</span>
+                    <span class="chip">Ervilha</span>
+                    <span class="chip">Milho</span>
+                    <span class="chip">Tomate Seco</span>
+                    <span class="chip">Queijo Parmesão</span>
+                    <span class="chip">Queijo Mussarela</span>
+                    <span class="chip">Queijo Provolone</span>
+                    <span class="chip">Cebola</span>
+                    <span class="chip">Palmito Picado</span>
+                    <span class="chip">Croutons</span>
+                  </div>
+                  <p class="menu-nota">Pratos feitos na hora · Pode conter Glúten e Lactose</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- KIDS -->
+            <div class="accordion-item">
+              <button class="accordion-header">👶 Ana Bella Kids <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+
+                  <p class="secao-header">Pratos</p>
+                  <div class="kids-grid">
+                    <div class="kids-card">
+                      <h4>Prato Xuxu</h4>
+                      <span class="kids-preco">R$ 21,90</span>
+                      <p class="kids-desc">Salada de tomate e milho, arroz, carinha de batata. Carne: Frango ou Alcatra picadinha (100g).</p>
+                    </div>
+                  </div>
+
+                  <p class="secao-header">Massinha</p>
+                  <ul class="menu-list">
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Espaguete</p><p class="menu-list-molhos">Sugo · Bolonha · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 22,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Nhoque</p><p class="menu-list-molhos">Sugo · Bolonha · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 22,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Fettutine</p><p class="menu-list-molhos">Sugo · Bolonha · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 23,90</span></li>
+                  </ul>
+                  <p style="font-size:.8rem;color:var(--text-lt);font-style:italic;margin-top:.5rem">Todas as massas são frescas, feitas com produtos selecionados.</p>
+
+                  <p class="secao-header">Porção Kids</p>
+                  <ul class="menu-list">
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Batata</p></div><span class="menu-list-preco">R$ 11,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Tulipa</p></div><span class="menu-list-preco">R$ 16,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Polenta</p></div><span class="menu-list-preco">R$ 11,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Carinha de batata</p></div><span class="menu-list-preco">R$ 12,90</span></li>
+                  </ul>
+
+                  <p class="menu-nota">Pratos feitos na hora · Pode conter Glúten e Lactose · 18:00 às 21:45</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- BEBIDAS -->
+            <div class="accordion-item">
+              <button class="accordion-header">🥤 Bebidas <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">💧 Água &amp; Sucos</p>
+                    <ul class="menu-list">
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Água</p></div><span class="menu-list-preco">R$ 8,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Água Sabores</p></div><span class="menu-list-preco">R$ 9,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Sucos Del Valle</p></div><span class="menu-list-preco">R$ 8,50</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Suco Integral Uva 300ml</p></div><span class="menu-list-preco">R$ 12,90</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Suco Laranja (copo)</p></div><span class="menu-list-preco">R$ 10,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Suco Laranja (jarra)</p></div><span class="menu-list-preco">R$ 22,00</span></li>
+                    </ul>
+                  </div>
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">🥤 Refrigerantes &amp; Chás</p>
+                    <ul class="menu-list">
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Refri 290ml (Coca)</p></div><span class="menu-list-preco">R$ 7,50</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Refri Lata</p></div><span class="menu-list-preco">R$ 8,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Refri 600ml (Coca)</p></div><span class="menu-list-preco">R$ 12,90</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Refri 600ml (Sabores)</p></div><span class="menu-list-preco">R$ 12,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Schweppes Citrus</p></div><span class="menu-list-preco">R$ 8,50</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Chás Mate</p></div><span class="menu-list-preco">R$ 8,00</span></li>
+                    </ul>
+                  </div>
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">🍺 Cervejas &amp; Chopp</p>
+                    <ul class="menu-list">
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Cerveja Preta (lata)</p></div><span class="menu-list-preco">R$ 12,50</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Chopp 300ml</p></div><span class="menu-list-preco">R$ 9,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Chopp 500ml</p></div><span class="menu-list-preco">R$ 11,50</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Torre Chopp 2,5L</p></div><span class="menu-list-preco">R$ 60,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Copo Stanley 600ml</p></div><span class="menu-list-preco">R$ 13,50</span></li>
+                    </ul>
+                  </div>
+                  <p class="menu-nota">Pode conter Glúten e Lactose · 18:00 às 21:45</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARTA DE VINHOS -->
+            <div class="accordion-item">
+              <button class="accordion-header">🍷 Carta de Vinhos <span class="accordion-arrow">▾</span></button>
+              <div class="accordion-body">
+                <div class="accordion-content">
+
+                  <!-- Nacionais -->
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">🇧🇷 Vinhos Nacionais <span class="vinho-preco-unico">R$ 50,00 a garrafa</span></p>
+                    <div class="vinhos-tags">
+                      <span class="vinho-tag">Almadén Cabernet Sauvignon</span>
+                      <span class="vinho-tag">Almadén Merlot</span>
+                      <span class="vinho-tag">Miolo Seleção Tinto</span>
+                      <span class="vinho-tag">Cabernet Sauvignon</span>
+                      <span class="vinho-tag">Anônimo</span>
+                      <span class="vinho-tag">Tanat</span>
+                      <span class="vinho-tag">Merlot</span>
+                      <span class="vinho-tag">Syrah</span>
+                      <span class="vinho-tag">Carménère</span>
+                      <span class="vinho-tag">Teroldego</span>
+                      <span class="vinho-tag">Malbec</span>
+                      <span class="vinho-tag">Cabernet Franc</span>
+                      <span class="vinho-tag">Chardonnay</span>
+                      <span class="vinho-tag">Espumante Brut</span>
+                      <span class="vinho-tag">Espumante Moscatel</span>
+                    </div>
+                    <p style="font-size:.78rem;color:var(--text-lt);margin-top:.5rem;font-style:italic">Todos 750ml</p>
+                  </div>
+
+                  <!-- Chilenos -->
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">🇨🇱 Vinhos Chilenos <span class="vinho-preco-unico">R$ 60,00 a garrafa</span></p>
+                    <ul class="menu-list">
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Santa Carolina Reservado Cabernet Sauvignon 750ml</p></div><span class="menu-list-preco">R$ 60,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Concha Y Toro Reservado Cabernet Sauvignon 750ml</p></div><span class="menu-list-preco">R$ 60,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Santa Carolina Reservado Merlot 750ml</p></div><span class="menu-list-preco">R$ 60,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Santa Helena Reservado Cabernet Sauvignon 750ml</p></div><span class="menu-list-preco">R$ 60,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Concha Y Toro Reservado Merlot 750ml</p></div><span class="menu-list-preco">R$ 60,00</span></li>
+                    </ul>
+                  </div>
+
+                  <!-- Argentinos -->
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">🇦🇷 Vinhos Argentinos</p>
+                    <ul class="menu-list">
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Benjamin Malbec 750ml</p></div><span class="menu-list-preco">R$ 85,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Cordero con Piel de Lobo Malbec 750ml</p></div><span class="menu-list-preco">R$ 85,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Trapiche Malbec 750ml</p></div><span class="menu-list-preco">R$ 85,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Catena Zapata 2024 Malbec 750ml</p></div><span class="menu-list-preco">R$ 125,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Catena Zapata 2023 Malbec 750ml</p></div><span class="menu-list-preco">R$ 150,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Sapo de Outro Pozo Malbec 750ml</p></div><span class="menu-list-preco">R$ 150,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Pispi Blend de Tintas Malbec 750ml</p></div><span class="menu-list-preco">R$ 150,00</span></li>
+                    </ul>
+                  </div>
+
+                  <!-- Vinho da Casa -->
+                  <div class="vinho-grupo">
+                    <p class="vinho-grupo-titulo">🍶 Vinho da Casa — Granja de Vale</p>
+                    <ul class="menu-list">
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Garrafa</p></div><span class="menu-list-preco">R$ 30,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Jarra</p></div><span class="menu-list-preco">R$ 26,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Vinho Fino Nacional (taça)</p></div><span class="menu-list-preco">R$ 20,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Vinho Colonial (taça)</p></div><span class="menu-list-preco">R$ 15,00</span></li>
+                      <li class="menu-list-item"><div><p class="menu-list-nome">Quentão</p></div><span class="menu-list-preco">R$ 12,00</span></li>
+                    </ul>
+                  </div>
+
+                  <p class="menu-nota">Temos diversas marcas em exposição! · Traga seu vinho — Valor Rolha R$ 20,00 · 18:00 às 21:45</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /accordion grupo 2 -->
+
+        </div><!-- /tab restaurante -->
+
+        <!-- CTA VISITA -->
+        <div class="visit-cta" style="margin-top:3.5rem">
+          <div class="visit-cta-inner">
+            <h3>Venha nos visitar!</h3>
+            <span class="visit-slogan">Nossa família servindo a sua família</span>
+            <p>Nada substitui o prazer de sentar à mesa, ser bem recebido pelo Alceu e saborear os pratos da chef Juliana.</p>
+            <div class="visit-cta-info">
+              <div class="visit-cta-info-item">
+                <div class="vi-icon">📍</div>
+                <span class="vi-label">Endereço</span>
+                <span class="vi-value">Rua Prof. Dario Veloso, 686<br>Vila Izabel · Curitiba</span>
+              </div>
+              <div class="visit-cta-info-item">
+                <div class="vi-icon">🕐</div>
+                <span class="vi-label">Horários</span>
+                <span class="vi-value">Seg–Sáb: 11:30–14:00<br>Jantar: 18:00–21:45</span>
+              </div>
+              <div class="visit-cta-info-item">
+                <div class="vi-icon">📞</div>
+                <span class="vi-label">Telefone</span>
+                <span class="vi-value">(41) 3018-2200</span>
+              </div>
+            </div>
+            <div class="visit-cta-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="btn btn-primary">📍 Como chegar</a>
+              <a href="tel:+554130182200" class="btn btn-ghost">📞 Ligue agora</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="nota-geral">ℹ️ A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <h3>Contato</h3>
+        <p>Rua Professor Dario Veloso, 686<br>Curitiba – Paraná · CEP 80320-050</p>
+        <p><strong>Telefone:</strong><br>(41) 3018-2200</p>
+        <p><strong>Horários:</strong><br>Segunda a sábado<br>11:30 – 14:00 | 18:00 – 21:45</p>
+      </div>
+      <div class="footer-logo">
+        <img src="logotipo_anabella.png" alt="Ana Bella Restaurante">
+        <p class="footer-slogan">Nossa família servindo a sua família</p>
+        <p class="footer-tagline">Tradição e sabor desde 2011</p>
+      </div>
+      <div class="footer-social">
+        <h3>Siga o Ana Bella</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/AnaBellaRestaurante" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5V12H17l-.5 3h-2.7v7A10 10 0 0 0 22 12"/></svg> Facebook
+          </a>
+          <a href="https://www.instagram.com/anabellarestaurante" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg> Instagram
+          </a>
+          <a href="https://www.tiktok.com/@anabellarestaurante" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2h3a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.7V16a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3V2z"/></svg> TikTok
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Ana Bella · Todos os direitos reservados.</p></div>
+  </footer>
+
+  <button id="scrollTopBtn" aria-label="Voltar ao topo">↑</button>
+  <script src="js/script.js"></script>
+</body>
+</html>

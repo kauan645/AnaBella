@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Buffet de almoço do Ana Bella — nossa família servindo a sua família com comida caseira todos os dias e buffet especial aos sábados."/>
+  <meta name="theme-color" content="#7a1f2e"/>
+  <title>Almoço | Ana Bella Restaurante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="header-inner container">
+      <a href="index.html" class="brand"><img src="logo_anabella_cor.png" alt="Ana Bella Restaurante"></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html"    class="nav-link">Home</a>
+        <a href="almoco.html"   class="nav-link active">Almoço</a>
+        <a href="cardapio.html" class="nav-link">Cardápio</a>
+        <a href="historia.html" class="nav-link">História</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" class="nav-action" target="_blank" rel="noopener">Como chegar</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-label="Almoço Ana Bella"
+      style="min-height:65vh;background-image:linear-gradient(150deg,rgba(27,18,13,.65) 0%,rgba(86,21,37,.55) 100%),url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=80');">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="eyebrow">Almoço · Segunda a Sábado · 11:30 – 14:00</p>
+        <h1>Buffet com sabor de casa</h1>
+        <p class="hero-slogan">Nossa família servindo a sua família</p>
+        <p class="hero-copy">Todo dia um almoço fresquinho, variado e preparado com o carinho que só o Ana Bella oferece.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="btn btn-primary">Como chegar</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>O que você encontra no buffet</h2>
+          <p>Variedade de pratos renovados diariamente, com ingredientes frescos e aquele tempero que lembra comida de mãe.</p>
+        </div>
+        <div class="buffet-grid">
+
+          <div class="buffet-card">
+            <img src="buffet_arroz.jpg" alt="Arroz e feijão" class="buffet-card-img"
+                 onerror="this.style.display='none'">
+            <div class="buffet-icon">🍚</div>
+            <h3>Arroz e feijão</h3>
+            <p>Arroz branco, integral e risoto — feijão todo dia, feito com cuidado desde cedo.</p>
+          </div>
+
+          <div class="buffet-card">
+            <img src="buffet_carnes.jpg" alt="Carnes variadas" class="buffet-card-img"
+                 onerror="this.style.display='none'">
+            <div class="buffet-icon">🥩</div>
+            <h3>Carnes variadas</h3>
+            <p>Todo dia tem peixe, frango, suína e bovina — sempre frescos e bem temperados.</p>
+          </div>
+
+          <div class="buffet-card">
+            <img src="buffet_saladas.jpg" alt="Saladas frescas" class="buffet-card-img"
+                 onerror="this.style.display='none'">
+            <div class="buffet-icon">🥗</div>
+            <h3>Saladas frescas</h3>
+            <p>Variedade de saladas leves e coloridas para compor seu prato.</p>
+          </div>
+
+          <div class="buffet-card">
+            <img src="buffet_quentes.jpg" alt="Pratos quentes" class="buffet-card-img"
+                 onerror="this.style.display='none'">
+            <div class="buffet-icon">🥘</div>
+            <h3>Pratos quentes</h3>
+            <p>Acompanhamentos e guarnições caseiros que complementam cada refeição.</p>
+          </div>
+
+          <div class="buffet-card">
+            <img src="buffet_receitas.jpg" alt="Receitas da casa" class="buffet-card-img"
+                 onerror="this.style.display='none'">
+            <div class="buffet-icon">🍲</div>
+            <h3>Receitas da casa</h3>
+            <p>Pratos típicos e receitas exclusivas que só o Ana Bella tem.</p>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin:1.75rem 0 .5rem">
+          <a href="https://www.instagram.com/anabellarestaurante" target="_blank" rel="noopener" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;flex-shrink:0"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg>
+            Ver vídeos do buffet no Instagram
+          </a>
+        </div>
+
+        <!-- Destaque Quinta — Piroque -->
+        <div class="quinta-banner">
+          <div class="quinta-banner-inner">
+            <div class="quinta-banner-icon">🥟</div>
+            <div>
+              <p class="eyebrow" style="color:var(--brown-lt)">Todo quinta-feira</p>
+              <h3>Piroque no buffet!</h3>
+              <p>Toda quinta o buffet ganha um especial muito amado pelos clientes — o famoso Piroque do Ana Bella. Vem antes que acaba!</p>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          .buffet-card-img {
+            width: 100%; aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: var(--radius, 10px) var(--radius, 10px) 0 0;
+            display: block;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+            width: calc(100% + 3rem);
+          }
+          .quinta-banner {
+            margin: 2rem 0;
+            background: linear-gradient(135deg, #1b120d 0%, #3d1a00 100%);
+            border-radius: var(--radius-xl, 16px);
+            overflow: hidden;
+          }
+          .quinta-banner-inner {
+            display: flex; align-items: center; gap: 1.5rem;
+            padding: clamp(1.5rem, 4vw, 2.25rem);
+            color: #fff;
+          }
+          .quinta-banner-icon {
+            font-size: 3.5rem; flex-shrink: 0; line-height: 1;
+          }
+          .quinta-banner-inner h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: #fff; margin-bottom: .4rem;
+          }
+          .quinta-banner-inner p {
+            font-size: .9rem; color: rgba(255,255,255,.75); margin: 0;
+          }
+          .quinta-banner-inner .eyebrow {
+            font-size: .7rem; letter-spacing: .12em;
+            text-transform: uppercase; font-weight: 700;
+            margin-bottom: .3rem; display: block;
+          }
+          @media (max-width: 480px) {
+            .quinta-banner-inner { flex-direction: column; text-align: center; }
+          }
+        </style>
+
+        <div class="sabado-banner">
+          <p class="eyebrow" style="color:var(--brown-lt);justify-content:center">Destaque da semana</p>
+          <h3>🌟 Buffet especial aos sábados</h3>
+          <p>Aos sábados o buffet fica ainda mais especial — com mais pratos, receitas exclusivas e aquela energia boa de fim de semana em família.</p>
+          <p style="margin-top:1rem"><em style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--brown-lt)">"Nossa família servindo a sua família"</em></p>
+        </div>
+
+        <div class="horario-box">
+          <div class="icon">🕐</div>
+          <div>
+            <h3>Horário do almoço</h3>
+            <p>Segunda a sábado das <strong>11:30 às 14:00</strong><br>Buffet com variedade renovada a cada dia.</p>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="btn btn-primary" style="margin-left:auto">Como chegar</a>
+        </div>
+
+        <div class="visit-cta">
+          <div class="visit-cta-inner">
+            <h3>Venha nos visitar!</h3>
+            <span class="visit-slogan">Nossa família servindo a sua família</span>
+            <p>Nada substitui o prazer de sentar à mesa, ser bem recebido pelo Alceu e saborear os pratos da chef Juliana. Esperamos você na Vila Izabel.</p>
+            <div class="visit-cta-info">
+              <div class="visit-cta-info-item">
+                <div class="vi-icon">📍</div>
+                <span class="vi-label">Endereço</span>
+                <span class="vi-value">Rua Prof. Dario Veloso, 686<br>Vila Izabel · Curitiba</span>
+              </div>
+              <div class="visit-cta-info-item">
+                <div class="vi-icon">🕐</div>
+                <span class="vi-label">Horários</span>
+                <span class="vi-value">Seg–Sáb: 11:30–14:00<br>Jantar: 18:00–21:45</span>
+              </div>
+              <div class="visit-cta-info-item">
+                <div class="vi-icon">📞</div>
+                <span class="vi-label">Telefone</span>
+                <span class="vi-value">(41) 3018-2200</span>
+              </div>
+            </div>
+            <div class="visit-cta-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="btn btn-primary">📍 Como chegar</a>
+              <a href="tel:+554130182200" class="btn btn-ghost">📞 Ligue agora</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="split-grid" style="padding:0">
+      <div class="highlight-card highlight-card--dark">
+        <span class="label">Jantar</span>
+        <h3>À noite, cardápio à la carte</h3>
+        <p>Das alcatras na chapa ao parmegiana das quintas — pratos preparados pela chef Juliana para momentos especiais.</p>
+        <a href="cardapio.html" class="btn btn-secondary" style="align-self:flex-start;margin-top:.5rem">Ver cardápio do jantar</a>
+      </div>
+      <div class="highlight-card highlight-card--light">
+        <span class="label">Nossa história</span>
+        <h3>15 anos de tradição familiar</h3>
+        <p>Alceu e Juliana começaram com dois filhos pequenos e um sonho. Conheça a história por trás de cada prato.</p>
+        <a href="historia.html" class="btn btn-outline" style="align-self:flex-start;margin-top:.5rem">Conhecer nossa história</a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <h3>Contato</h3>
+        <p>Rua Professor Dario Veloso, 686<br>Curitiba – Paraná · CEP 80320-050</p>
+        <p><strong>Telefone:</strong><br>(41) 3018-2200</p>
+        <p><strong>Horários:</strong><br>Segunda a sábado<br>11:30 – 14:00 | 18:00 – 21:45</p>
+      </div>
+      <div class="footer-logo">
+        <img src="logotipo_anabella.png" alt="Ana Bella Restaurante">
+        <p class="footer-slogan">Nossa família servindo a sua família</p>
+        <p class="footer-tagline">Tradição e sabor desde 2011</p>
+      </div>
+      <div class="footer-social">
+        <h3>Siga o Ana Bella</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/AnaBellaRestaurante" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5V12H17l-.5 3h-2.7v7A10 10 0 0 0 22 12"/></svg> Facebook</a>
+          <a href="https://www.instagram.com/anabellarestaurante" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg> Instagram</a>
+          <a href="https://www.tiktok.com/@anabellarestaurante" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2h3a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.7V16a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3V2z"/></svg> TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Ana Bella · Todos os direitos reservados.</p></div>
+  </footer>
+  <button id="scrollTopBtn" aria-label="Voltar ao topo">↑</button>
+  <script src="js/script.js"></script>
+</body>
+</html>
