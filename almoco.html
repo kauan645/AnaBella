@@ -27,7 +27,7 @@
   </header>
   <main>
     <section class="hero" aria-label="Almoço Ana Bella"
-      style="min-height:65vh;background-image:linear-gradient(150deg,rgba(27,18,13,.65) 0%,rgba(86,21,37,.55) 100%),url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=80');">
+      style="min-height:65vh;background-image:linear-gradient(150deg,rgba(27,18,13,.65) 0%,rgba(86,21,37,.55) 100%),url('imagens/hero_almoco.jpg');">
       <div class="hero-overlay"></div>
       <div class="hero-content container">
         <p class="eyebrow">Almoço · Segunda a Sábado · 11:30 – 14:00</p>
@@ -49,41 +49,51 @@
           <div class="buffet-card">
             <img src="imagens/buffet_arroz.jpg" alt="Arroz e feijão" class="buffet-card-img"
                  onerror="this.style.display='none'">
-            <div class="buffet-icon">🍚</div>
-            <h3>Arroz e feijão</h3>
-            <p>Arroz branco, integral e risoto — feijão todo dia, feito com cuidado desde cedo.</p>
+            <div class="buffet-card-body">
+              <div class="buffet-icon">🍚</div>
+              <h3>Arroz e feijão</h3>
+              <p>Arroz branco, integral e risoto — feijão todo dia, feito com cuidado desde cedo.</p>
+            </div>
           </div>
 
           <div class="buffet-card">
             <img src="imagens/buffet_carnes.jpg" alt="Carnes variadas" class="buffet-card-img"
                  onerror="this.style.display='none'">
-            <div class="buffet-icon">🥩</div>
-            <h3>Carnes variadas</h3>
-            <p>Todo dia tem peixe, frango, suína e bovina — sempre frescos e bem temperados.</p>
+            <div class="buffet-card-body">
+              <div class="buffet-icon">🥩</div>
+              <h3>Carnes variadas</h3>
+              <p>Todo dia tem peixe, frango, suína e bovina — sempre frescos e bem temperados.</p>
+            </div>
           </div>
 
           <div class="buffet-card">
             <img src="imagens/buffet_saladas.jpg" alt="Saladas frescas" class="buffet-card-img"
                  onerror="this.style.display='none'">
-            <div class="buffet-icon">🥗</div>
-            <h3>Saladas frescas</h3>
-            <p>Variedade de saladas leves e coloridas para compor seu prato.</p>
+            <div class="buffet-card-body">
+              <div class="buffet-icon">🥗</div>
+              <h3>Saladas frescas</h3>
+              <p>Variedade de saladas leves e coloridas para compor seu prato.</p>
+            </div>
           </div>
 
           <div class="buffet-card">
             <img src="imagens/buffet_quentes.jpg" alt="Pratos quentes" class="buffet-card-img"
                  onerror="this.style.display='none'">
-            <div class="buffet-icon">🥘</div>
-            <h3>Pratos quentes</h3>
-            <p>Acompanhamentos e guarnições caseiros que complementam cada refeição.</p>
+            <div class="buffet-card-body">
+              <div class="buffet-icon">🥘</div>
+              <h3>Pratos quentes</h3>
+              <p>Acompanhamentos e guarnições caseiros que complementam cada refeição.</p>
+            </div>
           </div>
 
           <div class="buffet-card">
             <img src="imagens/buffet_receitas.jpg" alt="Receitas da casa" class="buffet-card-img"
                  onerror="this.style.display='none'">
-            <div class="buffet-icon">🍲</div>
-            <h3>Receitas da casa</h3>
-            <p>Pratos típicos e receitas exclusivas que só o Ana Bella tem.</p>
+            <div class="buffet-card-body">
+              <div class="buffet-icon">🍲</div>
+              <h3>Receitas da casa</h3>
+              <p>Pratos típicos e receitas exclusivas que só o Ana Bella tem.</p>
+            </div>
           </div>
 
         </div>
@@ -99,54 +109,14 @@
         <div class="quinta-banner">
           <div class="quinta-banner-inner">
             <div class="quinta-banner-icon">🥟</div>
-            <div>
+            <div style="flex:1">
               <p class="eyebrow" style="color:var(--brown-lt)">Todo quinta-feira</p>
               <h3>Piroque no buffet!</h3>
               <p>Toda quinta o buffet ganha um especial muito amado pelos clientes — o famoso Piroque do Ana Bella. Vem antes que acaba!</p>
             </div>
+            <img src="imagens/buffet_piroque.jpg" alt="Piroque Ana Bella" onerror="this.style.display='none'">
           </div>
         </div>
-
-        <style>
-          .buffet-card-img {
-            width: 100%; aspect-ratio: 16/9;
-            object-fit: cover;
-            border-radius: var(--radius, 10px) var(--radius, 10px) 0 0;
-            display: block;
-            margin: -1.5rem -1.5rem 1rem -1.5rem;
-            width: calc(100% + 3rem);
-          }
-          .quinta-banner {
-            margin: 2rem 0;
-            background: linear-gradient(135deg, #1b120d 0%, #3d1a00 100%);
-            border-radius: var(--radius-xl, 16px);
-            overflow: hidden;
-          }
-          .quinta-banner-inner {
-            display: flex; align-items: center; gap: 1.5rem;
-            padding: clamp(1.5rem, 4vw, 2.25rem);
-            color: #fff;
-          }
-          .quinta-banner-icon {
-            font-size: 3.5rem; flex-shrink: 0; line-height: 1;
-          }
-          .quinta-banner-inner h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
-            color: #fff; margin-bottom: .4rem;
-          }
-          .quinta-banner-inner p {
-            font-size: .9rem; color: rgba(255,255,255,.75); margin: 0;
-          }
-          .quinta-banner-inner .eyebrow {
-            font-size: .7rem; letter-spacing: .12em;
-            text-transform: uppercase; font-weight: 700;
-            margin-bottom: .3rem; display: block;
-          }
-          @media (max-width: 480px) {
-            .quinta-banner-inner { flex-direction: column; text-align: center; }
-          }
-        </style>
 
         <div class="sabado-banner">
           <p class="eyebrow" style="color:var(--brown-lt);justify-content:center">Destaque da semana</p>

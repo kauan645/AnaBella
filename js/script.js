@@ -58,14 +58,24 @@
   });
 
   /* 5. ACCORDION */
+  function setAccordionHeight(item, open) {
+    var body = item.querySelector('.accordion-body');
+    if (!body) return;
+    body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+  }
+
   document.querySelectorAll('.accordion-header').forEach(function (h) {
     h.addEventListener('click', function () {
       var item   = h.parentElement;
       var isOpen = item.classList.contains('open');
       item.parentElement.querySelectorAll('.accordion-item').forEach(function (i) {
         i.classList.remove('open');
+        setAccordionHeight(i, false);
       });
-      if (!isOpen) item.classList.add('open');
+      if (!isOpen) {
+        item.classList.add('open');
+        setAccordionHeight(item, true);
+      }
     });
   });
 
@@ -73,7 +83,10 @@
   var primeiroAccordion = document.querySelector('.accordion');
   if (primeiroAccordion) {
     var primeiroItem = primeiroAccordion.querySelector('.accordion-item');
-    if (primeiroItem) primeiroItem.classList.add('open');
+    if (primeiroItem) {
+      primeiroItem.classList.add('open');
+      setAccordionHeight(primeiroItem, true);
+    }
   }
 
   /* 6. CARDÁPIO DO DIA */
@@ -126,13 +139,18 @@
         var d      = cardapioDia[n];
         var isHoje = n === hoje;
         if (!d) {
-          return '<div class="dia-card dia-fechado"><p class="dia-nome">Domingo</p>' +
-                 '<p class="dia-prato-nome" style="color:var(--text-lt)">Fechado</p></div>';
+          return '<div class="dia-card dia-fechado"><div class="dia-card-body">' +
+                 '<p class="dia-nome">Domingo</p>' +
+                 '<p class="dia-prato-nome" style="color:var(--text-lt)">Fechado</p>' +
+                 '</div></div>';
         }
         return '<div class="dia-card' + (isHoje ? ' dia-hoje' : '') + '">' +
+          '<img src="' + d.img + '" alt="' + d.prato + '" class="dia-card-img" onerror="this.remove()">' +
+          '<div class="dia-card-body">' +
           '<p class="dia-nome">' + (isHoje ? '▶ ' : '') + d.nome + '</p>' +
           '<p class="dia-prato-nome">' + d.prato + '</p>' +
           (d.acompanhamentos.length ? '<p class="dia-acomp">' + d.acompanhamentos.join(' · ') + '</p>' : '') +
+          '</div>' +
         '</div>';
       }).join('');
     }

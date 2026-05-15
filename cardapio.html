@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#7a1f2e"/>
   <meta property="og:title" content="Cardápio | Ana Bella Restaurante"/>
   <meta property="og:description" content="Cardápio do jantar do Ana Bella — alcatras na chapa, massas caseiras, parmegiana das quintas e muito mais. Nossa família servindo a sua família."/>
-  <meta property="og:image" content="imagens/og-image.jpg"/>
+  <meta property="og:image" content="imagens/og-image.png"/>
   <title>Cardápio | Ana Bella Restaurante</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -40,10 +40,13 @@
 
     /* DIAS GRID */
     .dias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(185px,100%),1fr));gap:1rem;margin-bottom:2rem}
-    .dia-card{background:#fff;border:1px solid var(--beige);border-radius:var(--radius-lg);padding:1.25rem;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans)}
+    .dia-card{background:#fff;border:1px solid var(--beige);border-radius:var(--radius-lg);overflow:hidden;padding:0;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans)}
     .dia-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px var(--shadow);border-color:var(--brown-lt)}
     .dia-card.dia-hoje{border-color:var(--wine);box-shadow:0 0 0 2px var(--wine)}
     .dia-card.dia-fechado{opacity:.45;pointer-events:none}
+    .dia-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+    .dia-card:hover .dia-card-img{transform:scale(1.04)}
+    .dia-card-body{padding:1rem}
     .dia-nome{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);margin-bottom:.4rem}
     .dia-prato-nome{font-family:var(--font-display);font-size:1rem;color:var(--brown-dk);margin-bottom:.3rem}
     .dia-acomp{font-size:.8rem;color:var(--text-lt);line-height:1.5;margin:0}
@@ -58,12 +61,12 @@
 
     /* DESTAQUE CARD (Alcatra / Fettuccine) */
     .destaque-card{background:var(--cream);border:2px solid var(--wine);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.75rem}
-    .destaque-card-inner{display:grid;grid-template-columns:1fr auto}
+    .destaque-card-inner{display:grid;grid-template-columns:1fr auto;align-items:stretch}
     .destaque-card-body{padding:clamp(1.5rem,4vw,2.25rem)}
     .destaque-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--wine);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .85rem;border-radius:999px;margin-bottom:1rem}
     .destaque-card h3{color:var(--wine);margin-bottom:1rem;font-size:1.25rem}
-    .destaque-card-img{width:220px;object-fit:cover;display:block;max-width:35vw}
-    @media(max-width:600px){.destaque-card-inner{grid-template-columns:1fr}.destaque-card-img{width:100%;max-width:100%;height:200px}}
+    .destaque-card-img{width:260px;max-width:38vw;height:100%;min-height:220px;object-fit:cover;display:block;flex-shrink:0;border-radius:0 var(--radius-xl) var(--radius-xl) 0;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+    @media(max-width:600px){.destaque-card-inner{grid-template-columns:1fr;align-items:start}.destaque-card-img{width:100%;max-width:100%;height:auto;aspect-ratio:4/3;border-radius:0 0 var(--radius-xl) var(--radius-xl)}}
     .destaque-card--secondary{background:#fff;border:1px solid var(--brown-lt)}
     .destaque-card--secondary .destaque-badge{background:var(--brown-lt);color:var(--charcoal)}
     .destaque-card--secondary h3{color:var(--brown-dk)}
@@ -128,7 +131,7 @@
   <main>
 
     <section class="hero" aria-label="Cardápio Ana Bella"
-      style="min-height:60vh;background-image:linear-gradient(150deg,rgba(27,18,13,.72) 0%,rgba(86,21,37,.58) 100%),url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=80');">
+      style="min-height:60vh;background-image:linear-gradient(150deg,rgba(27,18,13,.72) 0%,rgba(86,21,37,.58) 100%),url('imagens/hero_cardapio.jpg');">
       <div class="hero-overlay"></div>
       <div class="hero-content container">
         <p class="eyebrow">Jantar · Segunda a Sábado · 18:00 – 21:45</p>
@@ -385,8 +388,8 @@
                     <div class="destaque-card-inner" style="grid-template-columns:1fr">
                       <div class="destaque-card-body" style="padding:0">
                         <img src="imagens/foto_salada.jpg" alt="Monte sua Salada" class="destaque-card-img"
-                             style="width:100%;max-width:100%;height:220px;object-fit:cover;border-radius:var(--radius-xl)"
-                             onerror="this.outerHTML='<div style=\'width:100%;height:220px;background:linear-gradient(135deg,#edf5ec,#d4ebda);border-radius:var(--radius-xl);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#4a7a50\'><span style=\'font-size:3rem\'>🥗</span><span style=\'font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6\'>foto em breve</span></div>'">
+                             style="width:100%;max-width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-xl)"
+                             onerror="this.outerHTML='<div style=\'width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#edf5ec,#d4ebda);border-radius:var(--radius-xl);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#4a7a50\'><span style=\'font-size:3rem\'>🥗</span><span style=\'font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6\'>foto em breve</span></div>'">
                       </div>
                     </div>
                   </div>
