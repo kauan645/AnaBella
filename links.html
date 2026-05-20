@@ -109,6 +109,69 @@
     .lt-link-title { font-size: .95rem; font-weight: 700; }
     .lt-arrow { font-size: 1.2rem; opacity: .4; }
 
+    /* Card Festival — banner com foto */
+    .lt-festival-card {
+      width: 100%;
+      border-radius: 18px; overflow: hidden;
+      margin-bottom: .25rem;
+      position: relative;
+      min-height: 210px;
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-orient: vertical; -webkit-box-direction: normal;
+      -ms-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;
+      text-decoration: none; color: #fff;
+      background: linear-gradient(135deg, #1a3d1a 0%, #0d2210 100%);
+      -webkit-box-shadow: 0 8px 36px rgba(0,0,0,.5);
+              box-shadow: 0 8px 36px rgba(0,0,0,.5);
+      -webkit-transition: -webkit-transform .22s, -webkit-box-shadow .22s;
+              transition: transform .22s, box-shadow .22s;
+      cursor: pointer;
+    }
+    .lt-festival-card:hover {
+      -webkit-transform: translateY(-4px); transform: translateY(-4px);
+      -webkit-box-shadow: 0 16px 56px rgba(0,0,0,.6); box-shadow: 0 16px 56px rgba(0,0,0,.6);
+    }
+    .lt-festival-card-img {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover; background-position: center;
+      -webkit-transition: -webkit-transform .5s ease; transition: transform .5s ease;
+    }
+    .lt-festival-card:hover .lt-festival-card-img { -webkit-transform: scale(1.04); transform: scale(1.04); }
+    .lt-festival-card-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: -webkit-linear-gradient(top, rgba(8,26,8,.25) 0%, rgba(8,26,8,.65) 50%, rgba(4,14,4,.95) 100%);
+      background:         linear-gradient(to bottom, rgba(8,26,8,.25) 0%, rgba(8,26,8,.65) 50%, rgba(4,14,4,.95) 100%);
+    }
+    .lt-festival-card-body {
+      position: relative; z-index: 2;
+      padding: 1.4rem 1.4rem 1.35rem;
+    }
+    .lt-festival-card-badge {
+      display: inline-block;
+      background: rgba(40,90,40,.7); border: 1px solid rgba(90,180,90,.4);
+      border-radius: 999px; padding: .3rem .85rem;
+      font-size: .65rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; color: #b8e8b8;
+      margin-bottom: .65rem;
+    }
+    .lt-festival-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; line-height: 1.1;
+      color: #fff; margin-bottom: .3rem;
+    }
+    .lt-festival-card-sub {
+      font-size: .8rem; color: rgba(255,255,255,.6);
+      display: -webkit-box; display: -ms-flexbox; display: flex;
+      -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+      gap: .5rem;
+    }
+    .lt-festival-card-arrow {
+      margin-left: auto; font-size: 1.15rem; opacity: .5;
+      -webkit-transition: opacity .18s, -webkit-transform .18s; transition: opacity .18s, transform .18s;
+    }
+    .lt-festival-card:hover .lt-festival-card-arrow { opacity: 1; -webkit-transform: translateX(3px); transform: translateX(3px); }
+
     /* Cores por rede */
     .lt-link--site   .lt-icon { background: #7a1f2e; }
     .lt-link--insta  .lt-icon { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
@@ -151,6 +214,18 @@
     <div class="lt-rating"><span>★★★★★</span><span>4.6 · +800 avaliações · Vila Izabel</span></div>
 
     <div class="lt-links">
+      <a href="festival.html" class="lt-festival-card" rel="noopener">
+        <div class="lt-festival-card-img" style="background-image:url('imagens/festival_parmegiana.jpg')"></div>
+        <div class="lt-festival-card-overlay"></div>
+        <div class="lt-festival-card-body">
+          <span class="lt-festival-card-badge">Curitiba Honesta &middot; 4ª edição</span>
+          <div class="lt-festival-card-title">4º Festival Parmegiana</div>
+          <div class="lt-festival-card-sub">
+            <span>19 mai – 7 jun · Ana Bella</span>
+            <span class="lt-festival-card-arrow">›</span>
+          </div>
+        </div>
+      </a>
       <a href="https://www.restauranteanabella.com.br" class="lt-link lt-link--site" target="_blank" rel="noopener">
         <div class="lt-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
         <div class="lt-link-text"><span class="lt-link-label">Acesse</span><span class="lt-link-title">Site Oficial</span></div>
