@@ -381,6 +381,67 @@ p:last-child{margin-bottom:0}
   .menu-toggle{z-index:101}
 }
 
+/* ── NAV FESTIVAL ── */
+.nav-link--festival{color:#2d6a2d !important;font-weight:700}
+.nav-link--festival:hover{color:#1a4a1a !important}
+
+/* ── FESTIVAL PAGE ── */
+
+/* Hero */
+.fst-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;color:#fff;background:#081608}
+.fst-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 8s ease;will-change:transform}
+.fst-hero:hover .fst-hero-bg{transform:scale(1)}
+.fst-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,22,8,.92) 0%,rgba(8,22,8,.55) 45%,rgba(8,22,8,.25) 100%)}
+.fst-hero-content{position:relative;z-index:2;padding-bottom:clamp(3.5rem,8vw,6rem);padding-top:calc(var(--header-h) + 3rem)}
+.fst-event-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(45,106,45,.35);border:1px solid rgba(45,106,45,.6);border-radius:999px;padding:.35rem .9rem;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a8d5a8;margin-bottom:1.25rem;backdrop-filter:blur(8px)}
+.fst-event-badge-dot{width:4px;height:4px;border-radius:50%;background:#a8d5a8;display:inline-block}
+.fst-hero-content h1{font-family:var(--font-display);font-size:clamp(3.5rem,10vw,7rem);line-height:.95;font-weight:700;color:#fff;margin-bottom:1rem;text-shadow:0 4px 32px rgba(0,0,0,.5)}
+.fst-hero-dates{font-family:var(--font-display);font-style:italic;font-size:clamp(1rem,2.8vw,1.35rem);color:#a8d5a8;margin-bottom:.85rem}
+.fst-hero-sub{font-size:clamp(.9rem,2vw,1.05rem);color:rgba(255,255,255,.78);max-width:520px;margin-bottom:2.25rem;line-height:1.75}
+@media(max-width:640px){.fst-hero-sub br{display:none}}
+.fst-hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.fst-hero-scroll{position:absolute;bottom:1.75rem;left:50%;transform:translateX(-50%);width:26px;height:42px;border:2px solid rgba(255,255,255,.3);border-radius:13px;z-index:2}
+.fst-hero-scroll::after{content:'';display:block;width:4px;height:8px;background:#fff;border-radius:2px;margin:5px auto 0;animation:fstScroll 1.6s ease infinite}
+@keyframes fstScroll{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
+
+/* Split foto + texto */
+.fst-split-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,7vw,6rem);align-items:center}
+.fst-split-img{position:relative;border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 24px 72px rgba(27,18,13,.35)}
+.fst-main-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.fst-split-img:hover .fst-main-img{transform:scale(1.03)}
+.fst-img-label{position:absolute;bottom:0;left:0;right:0;padding:.75rem 1rem;background:linear-gradient(to top,rgba(8,22,8,.85) 0%,transparent 100%);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.fst-split-text{display:flex;flex-direction:column;gap:0}
+.fst-split-text .label{display:block;margin-bottom:.75rem}
+.fst-split-text h2{margin-bottom:1.25rem}
+.fst-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.75rem 0}
+.fst-info-item{display:flex;flex-direction:column;gap:.2rem}
+.fst-info-item strong{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2d6a2d}
+.fst-info-item span{font-size:.9rem;color:var(--text);line-height:1.45}
+@media(max-width:768px){.fst-split-grid{grid-template-columns:1fr}.fst-split-img{order:-1}.fst-main-img{aspect-ratio:4/3}}
+
+/* Features numeradas */
+.fst-features-section{background:var(--cream)}
+.fst-features{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--beige);border-radius:var(--radius-xl);overflow:hidden;margin-top:2.5rem}
+.fst-feature{display:flex;gap:1.5rem;align-items:flex-start;padding:clamp(1.75rem,4vw,2.5rem);border-bottom:1px solid var(--beige);border-right:1px solid var(--beige);background:#fff;transition:background var(--trans)}
+.fst-feature:hover{background:var(--warm-white)}
+.fst-feature:nth-child(even){border-right:none}
+.fst-feature:nth-child(3),.fst-feature:nth-child(4){border-bottom:none}
+.fst-feature-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--beige);line-height:1;flex-shrink:0;min-width:2.5rem}
+.fst-feature-body h3{font-size:1rem;margin-bottom:.35rem;color:var(--brown-dk)}
+.fst-feature-body p{font-size:.88rem;margin:0}
+@media(max-width:640px){.fst-features{grid-template-columns:1fr}.fst-feature:nth-child(odd){border-right:none}.fst-feature:nth-child(3){border-bottom:1px solid var(--beige)}.fst-feature:nth-child(4){border-bottom:none}}
+
+/* Sobre o festival */
+.fst-about-festival{background:var(--charcoal)}
+.fst-about-festival h2,.fst-about-festival h3{color:#fff}
+.fst-about-festival p{color:rgba(255,255,255,.68)}
+.fst-about-inner{display:grid;grid-template-columns:1fr auto;gap:clamp(3rem,7vw,6rem);align-items:center}
+.fst-about-stat{display:flex;flex-direction:column;gap:2rem;min-width:160px}
+.fst-stat{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.5rem 1.75rem;border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);background:rgba(255,255,255,.04)}
+.fst-stat-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:#a8d5a8;line-height:1;margin-bottom:.35rem}
+.fst-stat-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+@media(max-width:768px){.fst-about-inner{grid-template-columns:1fr}.fst-about-stat{flex-direction:row;flex-wrap:wrap;justify-content:center}.fst-stat{flex:1;min-width:130px}}
+
 /* ── PIROQUE BANNER ── */
 .quinta-banner{margin:2rem 0;background:linear-gradient(135deg,#1b120d 0%,#3d1a00 100%);border-radius:var(--radius-xl);overflow:hidden}
 .quinta-banner-inner{display:flex;align-items:center;gap:1.5rem;padding:clamp(1.5rem,4vw,2.25rem);color:#fff}
