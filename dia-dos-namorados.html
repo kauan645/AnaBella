@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon_32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
+  <link rel="manifest" href="/favicon/site.webmanifest"/>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT86SH53M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YT86SH53M');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1314748280626079');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1314748280626079&ev=PageView&noscript=1"/></noscript>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Dia dos Namorados no Ana Bella — uma noite especial para celebrar o amor. Cardápio a dois em Curitiba, 12 de junho de 2026."/>
+  <meta property="og:title" content="Dia dos Namorados | Ana Bella Restaurante"/>
+  <meta property="og:description" content="Uma noite especial para celebrar o amor. Cardápio a dois no Ana Bella — 12 de junho de 2026, Curitiba."/>
+  <meta property="og:url" content="https://www.restauranteanabella.com.br/dia-dos-namorados"/>
+  <meta property="og:type" content="restaurant"/>
+  <meta property="og:image" content="https://www.restauranteanabella.com.br/imagens/og_dia_namorados.jpg"/>
+  <link rel="canonical" href="https://www.restauranteanabella.com.br/dia-dos-namorados"/>
+  <meta name="theme-color" content="#4a121d"/>
+  <title>Dia dos Namorados | Ana Bella Restaurante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ====== Tema romântico Dia dos Namorados (escopo .nam) ====== */
+    .nam{
+      --brown:#1a0f08;--wine:#7a1f2e;--wine-deep:#4a121d;--red:#8b1a1a;
+      --gold:#c49c64;--gold-lt:#e6c98f;--cream:#f5efe5;--cream-mut:#d9c9b0;
+      font-family:'Lato',sans-serif;color:var(--cream);
+      background:
+        radial-gradient(120% 60% at 50% -8%, rgba(196,156,100,.16), transparent 60%),
+        radial-gradient(120% 70% at 50% 108%, rgba(139,26,26,.30), transparent 60%),
+        linear-gradient(168deg,#2a130c 0%, var(--wine-deep) 48%, #1a0a09 100%);
+    }
+    .nam .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
+    .nam h1,.nam h2,.nam h3,.nam .serif{font-family:'Playfair Display',serif;}
+
+    /* HERO */
+    .nam-hero{
+      position:relative;min-height:78vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:90px 22px;overflow:hidden;
+      background:
+        linear-gradient(180deg,rgba(20,10,5,.62),rgba(74,18,29,.72)),
+        url('imagens/hero_dia_namorados.jpg') center/cover no-repeat;
+    }
+    .nam-hero::after{content:"";position:absolute;inset:0;
+      box-shadow:inset 0 0 180px 30px rgba(20,8,6,.7);pointer-events:none;}
+    .nam-hero .inner{position:relative;z-index:2;max-width:720px;}
+    .nam-eyebrow{letter-spacing:.42em;text-transform:uppercase;font-size:12px;color:var(--gold-lt);}
+    .nam-cupido{width:140px;margin:14px auto 6px;color:var(--gold);}
+    .nam-cupido svg{width:100%;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));}
+    .nam-hero h1{font-size:clamp(34px,6vw,60px);font-weight:700;line-height:1.05;color:var(--cream);
+      text-shadow:0 3px 18px rgba(0,0,0,.5);}
+    .nam-hero h1 em{font-style:italic;color:var(--gold-lt);}
+    .nam-slogan{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2.4vw,21px);
+      color:var(--cream-mut);margin-top:14px;}
+    .nam-date{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:9px 20px;
+      border:1px solid rgba(196,156,100,.55);border-radius:40px;font-size:13px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--gold-lt);background:rgba(20,8,6,.35);backdrop-filter:blur(2px);}
+    .nam .hrt{color:#d23a55;display:inline-block;line-height:1;vertical-align:middle;font-size:.95em;
+      position:relative;top:-.06em;}
+    .nam-actions{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .nam-btn{display:inline-block;padding:13px 28px;border-radius:40px;font-weight:700;font-size:14px;
+      letter-spacing:.04em;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;}
+    .nam-btn:hover{transform:translateY(-2px);}
+    .nam-btn--gold{background:linear-gradient(180deg,var(--gold-lt),var(--gold));color:var(--brown);
+      box-shadow:0 12px 30px -12px rgba(196,156,100,.8);}
+    .nam-btn--ghost{border:1.5px solid var(--gold);color:var(--gold-lt);background:transparent;}
+    .nam-btn--ghost:hover{background:rgba(196,156,100,.12);}
+
+    /* SEÇÕES */
+    .nam-section{padding:70px 0;}
+    .nam-section.tight{padding:46px 0;}
+    .nam-titulo{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px;}
+    .nam-titulo .ln{height:1px;width:48px;background:linear-gradient(90deg,transparent,var(--gold));}
+    .nam-titulo .ln.r{background:linear-gradient(90deg,var(--gold),transparent);}
+    .nam-titulo .dia{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);}
+    .nam-titulo h2{font-size:clamp(24px,4vw,34px);font-weight:600;letter-spacing:.04em;color:var(--gold-lt);
+      text-transform:uppercase;text-align:center;}
+    .nam-sub{text-align:center;color:var(--cream-mut);max-width:620px;margin:0 auto;line-height:1.6;font-size:16px;}
+
+    .nam-intro{text-align:center;max-width:720px;margin:0 auto;}
+    .nam-intro p{font-size:18px;line-height:1.8;color:#ece0cb;margin-top:14px;}
+    .nam-intro .lead{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,3vw,26px);
+      color:var(--gold-lt);}
+
+    /* CARDÁPIO sem preços */
+    .nam-menu{margin-top:30px;display:grid;gap:34px;}
+    .nam-bloco{position:relative;border:1px solid rgba(196,156,100,.30);border-radius:12px;
+      padding:26px 26px 22px;background:linear-gradient(180deg,rgba(196,156,100,.06),rgba(139,26,26,.05));}
+    .nam-bloco .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+      font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brown);
+      background:linear-gradient(180deg,var(--gold-lt),var(--gold));padding:5px 16px;border-radius:30px;white-space:nowrap;}
+    .nam-serve{text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--cream-mut);margin:6px 0 16px;}
+    .nam-item{padding:13px 2px;border-bottom:1px solid rgba(196,156,100,.16);}
+    .nam-item:last-child{border-bottom:none;}
+    .nam-item h3{font-size:20px;font-weight:600;color:var(--cream);}
+    .nam-item p{font-size:14px;line-height:1.5;color:#d8c8af;margin-top:4px;}
+    .nam-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;}
+    .nam-grid2 .nam-item{border-bottom:1px solid rgba(196,156,100,.14);}
+
+    /* FOTOS de pratos */
+    .nam-pratos-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+    .nam-foto{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;
+      box-shadow:0 18px 40px -20px rgba(0,0,0,.8);border:1px solid rgba(196,156,100,.25);}
+    .nam-foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+    .nam-foto:hover img{transform:scale(1.06);}
+    .nam-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 16px 14px;
+      background:linear-gradient(transparent,rgba(20,8,6,.88));font-family:'Playfair Display',serif;
+      font-size:16px;color:var(--cream);}
+    .nam-foto.ph{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;
+      border:1.5px dashed rgba(196,156,100,.5);background:rgba(20,8,6,.28);color:var(--cream-mut);
+      font-size:12.5px;line-height:1.5;}
+    .nam-foto.ph .lbl{font-family:'Playfair Display',serif;font-size:19px;color:var(--gold-lt);
+      display:block;margin-bottom:8px;}
+
+    /* foto única do ambiente */
+    .nam-ambiente{margin-top:30px;border-radius:14px;overflow:hidden;
+      border:1px solid rgba(196,156,100,.25);box-shadow:0 22px 50px -24px rgba(0,0,0,.85);
+      aspect-ratio:16/8;}
+    .nam-ambiente img{width:100%;height:100%;object-fit:cover;display:block;}
+
+    /* CTA final */
+    .nam-cta{text-align:center;border-top:1px solid rgba(196,156,100,.25);
+      border-bottom:1px solid rgba(196,156,100,.25);padding:64px 22px;
+      background:radial-gradient(120% 100% at 50% 0%,rgba(196,156,100,.10),transparent 60%);}
+    .nam-cta h2{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--cream);}
+    .nam-cta h2 em{font-style:italic;color:var(--gold-lt);}
+    .nam-cta p{color:var(--cream-mut);margin-top:12px;font-size:16px;}
+    .nam-obs{text-align:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--cream-mut);margin-top:26px;}
+    .nam-obs .dot{color:var(--gold);margin:0 8px;}
+
+    /* indicador de scroll no hero */
+    .nam-scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;
+      width:26px;height:42px;border:2px solid rgba(230,201,143,.55);border-radius:13px;}
+    .nam-scroll::after{content:'';display:block;width:4px;height:8px;background:var(--gold-lt);
+      border-radius:2px;margin:5px auto 0;animation:namScroll 1.6s ease infinite;}
+    @keyframes namScroll{0%{opacity:0;transform:translateY(0)}40%{opacity:1}80%{opacity:0;transform:translateY(14px)}100%{opacity:0}}
+
+    /* grid de info (data / jantar / endereço / telefone) */
+    .nam-info{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:760px;margin:30px auto 4px;}
+    .nam-info-item{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;
+      padding:16px 10px;border:1px solid rgba(196,156,100,.25);border-radius:10px;
+      background:rgba(20,8,6,.22);}
+    .nam-info-item .ic{font-size:18px;}
+    .nam-info-item .lb{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
+    .nam-info-item .vl{font-size:13px;color:var(--cream);line-height:1.4;}
+
+    @media(max-width:760px){
+      .nam-grid2{grid-template-columns:1fr;}
+      .nam-pratos-fotos{grid-template-columns:1fr;}
+      .nam-info{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="header-inner container">
+      <a href="index.html" class="brand"><img src="imagens/logo_anabella_cor.png" alt="Ana Bella Restaurante"></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html"    class="nav-link">Home</a>
+        <a href="almoco.html"   class="nav-link">Almoço</a>
+        <a href="cardapio.html" class="nav-link">Cardápio</a>
+        <a href="historia.html" class="nav-link">História</a>
+        <a href="dia-dos-namorados.html" class="nav-link nav-link--namorados active">Namorados <span class="hrt">♥</span></a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" class="nav-action" target="_blank" rel="noopener">Como chegar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="nam">
+    <!-- HERO -->
+    <section class="nam-hero">
+      <div class="inner">
+        <p class="nam-eyebrow">Restaurante Ana Bella · Curitiba</p>
+        <div class="nam-cupido">
+          <svg viewBox="0 0 120 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 17h36" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M118 17H82" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M60 28c-9-7-16-12-16-19 0-4 3-6 6-6 3 0 5 2 6 4 1-2 3-4 6-4 3 0 6 2 6 6 0 7-7 12-16 19h2z" fill="currentColor" transform="translate(0 -1)"/>
+            <circle cx="42" cy="17" r="2.2" fill="currentColor"/>
+            <circle cx="78" cy="17" r="2.2" fill="currentColor"/>
+          </svg>
+        </div>
+        <h1>Dia dos Namorados <br><em>no Ana Bella</em></h1>
+        <p class="nam-slogan">Uma noite para celebrar o amor — à luz de velas, com sabor de casa.</p>
+        <div class="nam-date"><span class="hrt">♥</span> Quinta-feira · 12 de junho de 2026</div>
+        <div class="nam-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="nam-btn nam-btn--gold">Como chegar</a>
+          <a href="#cardapio" class="nam-btn nam-btn--ghost">Ver cardápio a dois</a>
+        </div>
+      </div>
+      <div class="nam-scroll" aria-hidden="true"></div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="nam-section tight">
+      <div class="wrap nam-intro reveal">
+        <p class="lead">“Nossa família servindo o seu amor.”</p>
+        <p>Nesse dia, o Ana Bella se transforma: mesas postas com carinho, luz baixa, velas e aquele aconchego que só quem cozinha com amor sabe criar. Um cenário pensado para vocês dois — do brinde à sobremesa.</p>
+        <p>Reunimos os pratos preparados pela chef Juliana especialmente para a data. Todos os pratos principais servem o casal.</p>
+      </div>
+    </section>
+
+    <!-- FOTOS DE PRATOS -->
+    <section class="nam-section tight">
+      <div class="wrap">
+        <div class="nam-titulo"><span class="ln"></span><span class="dia"></span><h2>Feito para vocês</h2><span class="dia"></span><span class="ln r"></span></div>
+        <p class="nam-sub">Alguns dos pratos que esperam por vocês nessa noite.</p>
+        <div class="nam-pratos-fotos reveal">
+          <figure class="nam-foto"><img src="imagens/dia_quinta.jpg" alt="Parmegiana de filé mignon" loading="lazy"><figcaption>Parmegiana a dois</figcaption></figure>
+          <figure class="nam-foto ph"><span><span class="lbl">Petit Gateau</span>📸 Foto em breve</span></figure>
+          <!-- Petit Gateau: vire <figure class="nam-foto"><img src="imagens/SUA_FOTO.jpg" alt="Petit Gateau"><figcaption>Petit Gateau</figcaption></figure> quando tiver a foto. -->
+          <figure class="nam-foto ph"><span><span class="lbl">Amor Drinks</span>📸 Foto do drink em breve</span></figure>
+          <!-- Drink: vire <figure class="nam-foto"><img src="imagens/SEU_DRINK.jpg" ...><figcaption>Nome do drink</figcaption></figure> quando escolher. -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDÁPIO SEM PREÇOS -->
+    <section class="nam-section" id="cardapio">
+      <div class="wrap">
+        <div class="nam-titulo"><span class="ln"></span><span class="dia"></span><h2>Cardápio a dois</h2><span class="dia"></span><span class="ln r"></span></div>
+        <p class="nam-sub">Especial Dia dos Namorados — preparado para celebrar o amor.</p>
+
+        <div class="nam-menu reveal">
+          <!-- Pratos Principais -->
+          <div class="nam-bloco">
+            <span class="badge">Pratos Principais</span>
+            <p class="nam-serve">Todos servem 2 pessoas</p>
+            <div class="nam-grid2">
+              <div class="nam-item"><h3>Parmegiana</h3><p>Filé mignon empanado ao molho pomodoro, coberto com presunto e queijo. Fettuccine na manteiga, fritas e salada da casa.</p></div>
+              <div class="nam-item"><h3>Fettuccine Eu &amp; Você</h3><p>Massa fettuccine fresca ao molho bechamel, com tiras de mignon grelhado na manteiga. Acompanha salada da casa.</p></div>
+              <div class="nam-item"><h3>Chapa Romeu e Julieta</h3><p>Tradicional chapa de alcatra com mussarela. Acompanha arroz, fritas e salada da casa.</p></div>
+              <div class="nam-item"><h3>Rondelli 2 Amores</h3><p>Rondelli recheado de queijo e presunto, assado no molho especial 2 amores. Acompanha salada da casa.</p></div>
+            </div>
+          </div>
+
+          <!-- Amor Drinks -->
+          <div class="nam-bloco">
+            <span class="badge">Amor Drinks</span>
+            <div class="nam-grid2">
+              <div class="nam-item"><h3>Amor Perfeito</h3><p>Frutas vermelhas, gin, água tônica e gelo de morango.</p></div>
+              <div class="nam-item"><h3>Amor de Chocolate</h3><p>Cacau, licor de cacau, leite condensado, creme de leite, leite e vodka.</p></div>
+              <div class="nam-item"><h3>Amor que Acalma</h3><p>Suco de maracujá, leite condensado, creme de leite e vodka.</p></div>
+              <div class="nam-item"><h3>Morango do Amor</h3><p>Morango, leite condensado, creme de leite e vodka.</p></div>
+              <div class="nam-item"><h3>Taça de Espumante</h3><p>Para o brinde do casal.</p></div>
+            </div>
+          </div>
+
+          <!-- Sobremesas -->
+          <div class="nam-bloco">
+            <span class="badge">Sobremesas</span>
+            <div class="nam-grid2">
+              <div class="nam-item"><h3>Petit Gateau <span class="hrt">♥</span></h3><p>Bolo de chocolate servido quente, com o centro cremoso que escorre ao primeiro corte. Acompanha sorvete de creme e calda de chocolate.</p></div>
+              <div class="nam-item"><h3>Brownie Apaixonado</h3><p>Brownie de chocolate, sorvete de creme e calda de chocolate.</p></div>
+              <div class="nam-item"><h3>Churros do Amor</h3><p>Churros com canela e açúcar, com doce de leite e creme de avelã para mergulhar.</p></div>
+              <div class="nam-item"><h3>Pudim de Leite</h3><p>Pudim de leite condensado com calda de caramelo.</p></div>
+              <div class="nam-item"><h3>Maçã do Amor</h3><p>Maçã envolta em calda crocante de caramelo vermelho — clássica e feita para a data.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AMBIENTE -->
+    <section class="nam-section tight">
+      <div class="wrap">
+        <div class="nam-titulo"><span class="ln"></span><span class="dia"></span><h2>O clima da noite</h2><span class="dia"></span><span class="ln r"></span></div>
+        <p class="nam-sub">Mesas postas, luz baixa e aquele aconchego que faz da noite um momento só de vocês.</p>
+        <figure class="nam-ambiente reveal"><img src="imagens/galeria_dia_namorados.jpg" alt="Ana Bella decorado para o Dia dos Namorados" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="nam-cta">
+      <div class="wrap reveal">
+        <h2>Venham celebrar o amor <em>com a gente</em></h2>
+        <p>No Dia dos Namorados, o Ana Bella prepara uma noite especial para vocês dois. Tragam quem você ama e vivam uma experiência inesquecível, com o sabor de casa que já é tradição.</p>
+        <p style="color:var(--gold-lt);font-weight:600;margin-top:10px">Não trabalhamos com reserva — o atendimento é por ordem de chegada. Cheguem cedo para garantir a mesa de vocês.</p>
+        <div class="nam-info">
+          <div class="nam-info-item"><span class="ic">📅</span><span class="lb">Data</span><span class="vl">12 de junho<br>quinta-feira</span></div>
+          <div class="nam-info-item"><span class="ic">🕐</span><span class="lb">Jantar</span><span class="vl">18:00 – 21:45</span></div>
+          <div class="nam-info-item"><span class="ic">📍</span><span class="lb">Endereço</span><span class="vl">R. Prof. Dario Veloso, 686<br>Vila Izabel · Curitiba</span></div>
+          <div class="nam-info-item"><span class="ic">📞</span><span class="lb">Telefone</span><span class="vl"><a href="tel:+554130182200" style="color:inherit;text-decoration:none">(41) 3018-2200</a></span></div>
+        </div>
+        <div class="nam-actions" style="margin-top:26px">
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="nam-btn nam-btn--gold">Como chegar</a>
+          <a href="#cardapio" class="nam-btn nam-btn--ghost">Rever o cardápio</a>
+        </div>
+        <p class="nam-obs">Servido somente em 12 / 06 / 2026<span class="dot">·</span>Pode conter glúten e lactose<span class="dot">·</span>@anabellarestaurante</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <h3>Contato</h3>
+        <p>Rua Professor Dario Veloso, 686<br>Curitiba – Paraná · CEP 80320-050</p>
+        <p><strong>Telefone:</strong><br>(41) 3018-2200</p>
+        <p><strong>Horários:</strong><br>Segunda a sábado<br>11:30 – 14:00 | 18:00 – 21:45</p>
+      </div>
+      <div class="footer-logo">
+        <img src="imagens/logotipo_anabella.png" alt="Ana Bella Restaurante">
+        <p class="footer-slogan">Nossa família servindo a sua família</p>
+        <p class="footer-tagline">Tradição e sabor desde 2011</p>
+      </div>
+      <div class="footer-social">
+        <h3>Siga o Ana Bella</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/AnaBellaRestaurante" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5V12H17l-.5 3h-2.7v7A10 10 0 0 0 22 12"/></svg> Facebook</a>
+          <a href="https://www.instagram.com/anabellarestaurante" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg> Instagram</a>
+          <a href="https://www.tiktok.com/@anabellarestaurante" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2h3a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.7V16a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3V2z"/></svg> TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Ana Bella · Todos os direitos reservados.</p></div>
+  </footer>
+  <button id="scrollTopBtn" aria-label="Voltar ao topo">↑</button>
+  <script src="js/script.js"></script>
+</body>
+</html>
