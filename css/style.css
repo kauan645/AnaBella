@@ -385,6 +385,11 @@ p:last-child{margin-bottom:0}
 .nav-link--festival{color:#2d6a2d !important;font-weight:700}
 .nav-link--festival:hover{color:#1a4a1a !important}
 
+/* ── NAV DIA DOS NAMORADOS ── */
+.nav-link--namorados{color:#a8243a !important;font-weight:700}
+.nav-link--namorados:hover{color:#7a1f2e !important}
+.nav-link--namorados .hrt{color:#c49c64;font-size:.85em;vertical-align:middle;position:relative;top:-.05em}
+
 /* ── FESTIVAL PAGE ── */
 
 /* Hero */
