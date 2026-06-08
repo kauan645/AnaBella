@@ -171,6 +171,14 @@
       -webkit-transition: opacity .18s, -webkit-transform .18s; transition: opacity .18s, transform .18s;
     }
     .lt-festival-card:hover .lt-festival-card-arrow { opacity: 1; -webkit-transform: translateX(3px); transform: translateX(3px); }
+    /* Variante Dia dos Namorados (tom vinho/dourado) */
+    .lt-festival-card--nam .lt-festival-card-overlay {
+      background: -webkit-linear-gradient(top, rgba(20,8,6,.28) 0%, rgba(74,18,29,.70) 50%, rgba(20,8,6,.96) 100%);
+      background: linear-gradient(to bottom, rgba(20,8,6,.28) 0%, rgba(74,18,29,.70) 50%, rgba(20,8,6,.96) 100%);
+    }
+    .lt-festival-card--nam .lt-festival-card-badge {
+      background: rgba(122,31,46,.72); border-color: rgba(196,156,100,.45); color: #e6c98f;
+    }
 
     /* Cores por rede */
     .lt-link--site   .lt-icon { background: #7a1f2e; }
@@ -214,14 +222,14 @@
     <div class="lt-rating"><span>★★★★★</span><span>4.6 · +800 avaliações · Vila Izabel</span></div>
 
     <div class="lt-links">
-      <a href="festival.html" class="lt-festival-card" rel="noopener">
-        <div class="lt-festival-card-img" style="background-image:url('imagens/festival_parmegiana.jpg')"></div>
+      <a href="dia-dos-namorados.html" class="lt-festival-card lt-festival-card--nam" rel="noopener">
+        <div class="lt-festival-card-img" style="background-image:url('imagens/hero_dia_namorados.png')"></div>
         <div class="lt-festival-card-overlay"></div>
         <div class="lt-festival-card-body">
-          <span class="lt-festival-card-badge">Curitiba Honesta &middot; 4ª edição</span>
-          <div class="lt-festival-card-title">4º Festival Parmegiana</div>
+          <span class="lt-festival-card-badge">Especial &middot; 12 de junho</span>
+          <div class="lt-festival-card-title">Dia dos Namorados</div>
           <div class="lt-festival-card-sub">
-            <span>19 mai – 7 jun · Ana Bella</span>
+            <span>Cardápio a dois · Ana Bella</span>
             <span class="lt-festival-card-arrow">›</span>
           </div>
         </div>
