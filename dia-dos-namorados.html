@@ -36,7 +36,7 @@
   <meta property="og:description" content="Uma noite especial para celebrar o amor. Cardápio a dois no Ana Bella — 12 de junho de 2026, Curitiba."/>
   <meta property="og:url" content="https://www.restauranteanabella.com.br/dia-dos-namorados"/>
   <meta property="og:type" content="restaurant"/>
-  <meta property="og:image" content="https://www.restauranteanabella.com.br/imagens/og_dia_namorados.jpg"/>
+  <meta property="og:image" content="https://www.restauranteanabella.com.br/imagens/hero_dia_namorados.jpg"/>
   <link rel="canonical" href="https://www.restauranteanabella.com.br/dia-dos-namorados"/>
   <meta name="theme-color" content="#4a121d"/>
   <title>Dia dos Namorados | Ana Bella Restaurante</title>
@@ -126,7 +126,12 @@
     .nam-grid2 .nam-item{border-bottom:1px solid rgba(196,156,100,.14);}
 
     /* FOTOS de pratos */
-    .nam-pratos-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+    .nam-pratos-fotos{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:34px;}
+    .nam-drinks{max-width:620px;margin:26px auto 0;text-align:center;}
+    .nam-drinks img{width:100%;height:auto;display:block;border-radius:12px;
+      border:1px solid rgba(196,156,100,.25);box-shadow:0 18px 40px -20px rgba(0,0,0,.8);}
+    .nam-drinks figcaption{margin-top:12px;font-family:'Playfair Display',serif;
+      font-size:16px;color:var(--gold-lt);}
     .nam-foto{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;
       box-shadow:0 18px 40px -20px rgba(0,0,0,.8);border:1px solid rgba(196,156,100,.25);}
     .nam-foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
@@ -239,11 +244,9 @@
         <p class="nam-sub">Alguns dos pratos que esperam por vocês nessa noite.</p>
         <div class="nam-pratos-fotos reveal">
           <figure class="nam-foto"><img src="imagens/dia_quinta.jpg" alt="Parmegiana de filé mignon" loading="lazy"><figcaption>Parmegiana a dois</figcaption></figure>
-          <figure class="nam-foto ph"><span><span class="lbl">Petit Gateau</span>📸 Foto em breve</span></figure>
-          <!-- Petit Gateau: vire <figure class="nam-foto"><img src="imagens/SUA_FOTO.jpg" alt="Petit Gateau"><figcaption>Petit Gateau</figcaption></figure> quando tiver a foto. -->
-          <figure class="nam-foto ph"><span><span class="lbl">Amor Drinks</span>📸 Foto do drink em breve</span></figure>
-          <!-- Drink: vire <figure class="nam-foto"><img src="imagens/SEU_DRINK.jpg" ...><figcaption>Nome do drink</figcaption></figure> quando escolher. -->
+          <figure class="nam-foto"><img src="imagens/petit_gateau.jpg" alt="Petit Gateau" loading="lazy"><figcaption>Petit Gateau</figcaption></figure>
         </div>
+        <figure class="nam-drinks reveal"><img src="imagens/dia_drink.jpg" alt="Os três Amor Drinks especiais" loading="lazy"><figcaption>Amor Drinks</figcaption></figure>
       </div>
     </section>
 
