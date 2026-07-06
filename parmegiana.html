@@ -35,13 +35,14 @@
   <meta property="og:description" content="Filé mignon empanado, molho caseiro e muçarela gratinada. Prato completo por R$ 89,90, todo dia no jantar."/>
   <meta property="og:url" content="https://www.restauranteanabella.com.br/parmegiana"/>
   <meta property="og:type" content="restaurant"/>
-  <meta property="og:image" content="https://www.restauranteanabella.com.br/imagens/festival_parmegiana.jpg"/>
+  <meta property="og:image" content="https://www.restauranteanabella.com.br/imagens/parmegiana_prato.jpg"/>
   <link rel="canonical" href="https://www.restauranteanabella.com.br/parmegiana"/>
-  <meta name="theme-color" content="#1a3a1a"/>
+  <meta name="theme-color" content="#4a121d"/>
   <title>Parmegiana todo dia | Ana Bella Restaurante</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+  <link rel="preload" as="image" href="imagens/parmegiana_prato.jpg"/>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
     .fst-hero-preco {
@@ -68,6 +69,27 @@
       font-family: 'Playfair Display', serif; font-weight: 700;
       color: var(--brown-lt, #c9a14a);
     }
+
+    /* ===== RE-SKIN BORDÔ — escopado só nesta página (não toca css/style.css) ===== */
+    /* Troca o tema verde do festival pelo vinho+dourado da identidade Ana Bella */
+    .fst-hero { background:#1a0a09; }
+    .fst-hero-overlay {
+      background:linear-gradient(to top,
+        rgba(26,10,9,.93) 0%, rgba(26,10,9,.58) 45%, rgba(26,10,9,.25) 100%);
+    }
+    .fst-event-badge {
+      background:rgba(122,31,46,.32);
+      border-color:rgba(196,156,100,.55);
+      color:#e6c98f;
+    }
+    .fst-event-badge-dot { background:#e6c98f; }
+    .fst-hero-dates { color:#e6c98f; }
+    .fst-img-label {
+      background:linear-gradient(to top, rgba(26,10,9,.88) 0%, transparent 100%);
+    }
+    .fst-info-item strong { color:var(--wine); }
+    .fst-about-festival { background:linear-gradient(168deg,#2a130c 0%,#4a121d 55%,#1a0a09 100%); }
+    .fst-stat-num { color:#e6c98f; }
   </style>
 </head>
 <body>
@@ -81,6 +103,7 @@
         <a href="almoco.html"   class="nav-link">Almoço</a>
         <a href="cardapio.html" class="nav-link">Cardápio</a>
         <a href="historia.html" class="nav-link">História</a>
+        <a href="parmegiana.html" class="nav-link nav-link--parm active">Parmegiana</a>
         <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" class="nav-action" target="_blank" rel="noopener">Como chegar</a>
       </nav>
     </div>
@@ -90,7 +113,7 @@
 
     <!-- HERO -->
     <section class="fst-hero" aria-label="Parmegiana todo dia">
-      <div class="fst-hero-bg" style="background-image:url('imagens/festival_parmegiana.jpg')"></div>
+      <div class="fst-hero-bg" style="background-image:url('imagens/parmegiana_prato.jpg')"></div>
       <div class="fst-hero-overlay"></div>
       <div class="fst-hero-content container">
         <div class="fst-event-badge">
@@ -118,7 +141,7 @@
       <div class="container">
         <div class="fst-split-grid">
           <div class="fst-split-img reveal">
-            <img src="imagens/festival_parmegiana.jpg" alt="Parmegiana artesanal do Ana Bella — filé mignon empanado com queijo gratinado" class="fst-main-img">
+            <img src="imagens/parmegiana_prato.jpg" alt="Parmegiana artesanal do Ana Bella — filé mignon empanado com queijo gratinado" class="fst-main-img" loading="lazy">
             <div class="fst-img-label">Parmegiana · Ana Bella</div>
           </div>
           <div class="fst-split-text reveal">
@@ -155,7 +178,7 @@
       <div class="container">
         <div class="section-header reveal">
           <h2>Do começo ao fim, feito à mão</h2>
-          <p>Filé mignon empanado, frito e coberto com molho de tomate feito à moda da casa, por cima uma camada de presunto e queijo muçarela gratinado. Acompanha fettuccine da casa com manteiga, batata frita com salsinha e salada de escarola, bacon e cebola roxa.</p>
+          <p>Filé mignon empanado, frito e coberto com molho de tomate feito à moda da casa, por cima uma camada de presunto e queijo muçarela gratinado. Acompanha arroz ou fettuccine na manteiga com salsinha, batata frita e salada de escarola, bacon e cebola roxa.</p>
         </div>
         <div class="fst-features reveal">
           <div class="fst-feature">
@@ -183,31 +206,7 @@
             <div class="fst-feature-num">04</div>
             <div class="fst-feature-body">
               <h3>Acompanhamentos que completam</h3>
-              <p>Fettuccine da casa com manteiga, batata frita com salsinha e salada de escarola com bacon e cebola roxa. Um prato completo, do jeito que tem que ser.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROMO REDES SOCIAIS (opcional — editar/remover sem afetar o resto) -->
-    <section class="section fst-about-festival">
-      <div class="container">
-        <div class="fst-about-inner reveal">
-          <div class="fst-about-text fst-promo-inner">
-            <span class="label">Quem segue, ganha</span>
-            <span class="fst-promo-badge">R$ 5 de desconto no parmegiana</span>
-            <p>Seguiu o Ana Bella no Instagram ou Facebook? Mostre pro nosso time na hora de pedir o parmegiana e ganhe R$ 5 de desconto no prato.</p>
-            <p style="font-size:.85rem;opacity:.7">Válido só no parmegiana. Não acumula com outras promoções.</p>
-            <div class="visit-cta-actions" style="margin-top:.6rem">
-              <a href="https://www.instagram.com/anabellarestaurante" target="_blank" rel="noopener" class="btn btn-outline">Seguir no Instagram</a>
-              <a href="https://www.facebook.com/AnaBellaRestaurante" target="_blank" rel="noopener" class="btn btn-outline">Seguir no Facebook</a>
-            </div>
-          </div>
-          <div class="fst-about-stat">
-            <div class="fst-stat">
-              <span class="fst-stat-num">-R$5</span>
-              <span class="fst-stat-label">pra quem segue a gente</span>
+              <p>Arroz ou fettuccine na manteiga com salsinha (você escolhe), batata frita e salada de escarola com bacon e cebola roxa. Um prato completo, do jeito que tem que ser.</p>
             </div>
           </div>
         </div>
@@ -225,22 +224,22 @@
             <p>Todo dia, no jantar. Venha provar o prato que conquistou a cidade no festival.</p>
             <div class="visit-cta-info">
               <div class="visit-cta-info-item">
-                <span class="vi-icon">📅</span>
+                <span class="vi-icon" data-icon="calendar"></span>
                 <span class="vi-label">Quando</span>
                 <span class="vi-value">Todo dia</span>
               </div>
               <div class="visit-cta-info-item">
-                <span class="vi-icon">🕐</span>
+                <span class="vi-icon" data-icon="clock"></span>
                 <span class="vi-label">Jantar</span>
                 <span class="vi-value">18:00 – 21:45</span>
               </div>
               <div class="visit-cta-info-item">
-                <span class="vi-icon">📍</span>
+                <span class="vi-icon" data-icon="pin"></span>
                 <span class="vi-label">Endereço</span>
                 <span class="vi-value">R. Prof. Dario Veloso, 686<br>Vila Izabel · Curitiba</span>
               </div>
               <div class="visit-cta-info-item">
-                <span class="vi-icon">📞</span>
+                <span class="vi-icon" data-icon="phone"></span>
                 <span class="vi-label">Telefone</span>
                 <span class="vi-value">(41) 3018-2200</span>
               </div>
@@ -265,7 +264,7 @@
         <p><strong>Horários:</strong><br>Segunda a sábado<br>11:30 – 14:00 | 18:00 – 21:45</p>
       </div>
       <div class="footer-logo">
-        <img src="imagens/logotipo_anabella.png" alt="Ana Bella Restaurante">
+        <img src="imagens/logotipo_anabella.png" alt="Ana Bella Restaurante" loading="lazy">
         <p class="footer-slogan">Nossa família servindo a sua família</p>
         <p class="footer-tagline">Tradição e sabor desde 2011</p>
       </div>
@@ -283,5 +282,6 @@
 
   <button id="scrollTopBtn" aria-label="Voltar ao topo">↑</button>
   <script src="js/script.js"></script>
+  <script src="js/site-enhance.js" defer></script>
 </body>
 </html>

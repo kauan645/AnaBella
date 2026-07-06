@@ -99,9 +99,9 @@
       1: { nome: 'Segunda-Feira',  prato: 'Panqueca',              acompanhamentos: ['Arroz', 'Salada'],                                                                         img: 'imagens/dia_segunda.jpg' },
       2: { nome: 'Terça-Feira',    prato: 'Costelinha no Barbecue', acompanhamentos: ['Arroz', 'Salada', 'Batata Frita'],                                                         img: 'imagens/dia_terca.jpg'  },
       3: { nome: 'Quarta-Feira',   prato: 'Dia Italiano',           acompanhamentos: ['Rondelli', 'Espaguete', 'Nhoque', 'Frango', 'Tulipa', 'Risoto', 'Polenta Frita', 'Salada'], img: 'imagens/dia_quarta.jpg' },
-      4: { nome: 'Quinta-Feira',   prato: 'Parmegiana ⭐',          acompanhamentos: ['Arroz ou Macarrão', 'Batata Frita', 'Salada'],                                             img: 'imagens/dia_quinta.jpg' },
+      4: { nome: 'Quinta-Feira',   prato: 'Parmegiana',            acompanhamentos: ['Arroz ou Macarrão', 'Batata Frita', 'Salada'],                                             img: 'imagens/dia_quinta.jpg' },
       5: { nome: 'Sexta-Feira',    prato: 'Picanha na Chapa',       acompanhamentos: ['Arroz', 'Farofa', 'Legumes', 'Maionese', 'Polenta Frita'],                                 img: 'imagens/dia_sexta.jpg'  },
-      6: { nome: 'Sábado',         prato: 'Pasteis',                acompanhamentos: [],                                                                                          img: 'imagens/dia_sabado.jpg' }
+      6: { nome: 'Sábado',         prato: 'Alcatra na Chapa',       acompanhamentos: [],                                                                                          img: 'imagens/foto_alcatra.jpg', nota: 'Também disponível todos os dias' }
     };
 
     var hoje = new Date().getDay();
@@ -110,7 +110,7 @@
       if (hoje === 0) {
         hojeEl.innerHTML =
           '<div class="fechado-card">' +
-          '<p style="font-size:2.5rem;margin-bottom:.5rem">🌙</p>' +
+          '<p style="margin-bottom:.5rem"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#c9a87c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8 8 0 1 1 11.2 3 6.3 6.3 0 0 0 21 12.8Z"/></svg></p>' +
           '<h3>Estamos fechados aos domingos</h3>' +
           '<p>Voltamos na segunda-feira. Te esperamos com muito sabor!</p>' +
           '</div>';
@@ -126,6 +126,7 @@
             '<span class="hoje-badge">HOJE</span>' +
             '<p class="eyebrow" style="color:var(--brown-lt);margin-bottom:.5rem">' + d.nome + '</p>' +
             '<p class="hoje-prato">' + d.prato + '</p>' +
+            (d.nota ? '<p class="hoje-nota-extra">' + d.nota + '</p>' : '') +
             acomp +
             '<img src="' + d.img + '" alt="' + d.prato + '" class="hoje-img" onerror="this.style.display=\'none\'">' +
             '<p class="hoje-nota">Disponível das 18:00 às 22:00 · Sujeito a alteração</p>' +
@@ -150,6 +151,7 @@
           '<p class="dia-nome">' + (isHoje ? '▶ ' : '') + d.nome + '</p>' +
           '<p class="dia-prato-nome">' + d.prato + '</p>' +
           (d.acompanhamentos.length ? '<p class="dia-acomp">' + d.acompanhamentos.join(' · ') + '</p>' : '') +
+          (d.nota ? '<p class="dia-acomp" style="font-style:italic;opacity:.75">' + d.nota + '</p>' : '') +
           '</div>' +
         '</div>';
       }).join('');

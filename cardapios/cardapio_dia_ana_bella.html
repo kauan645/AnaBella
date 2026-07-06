@@ -1,0 +1,317 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+  #cdia * { margin:0; padding:0; box-sizing:border-box; }
+  #cdia {
+    background: #1a0a0f;
+    font-family: 'Lato', sans-serif;
+    color: #f5e6c8;
+    max-width: 680px;
+    position: relative;
+    overflow: hidden;
+  }
+  #cdia .frame {
+    position: absolute;
+    top:12px; left:12px; right:12px; bottom:12px;
+    border: 1px solid rgba(196,155,80,0.35);
+    pointer-events: none;
+    z-index: 10;
+  }
+  #cdia .corner {
+    position: absolute;
+    width:28px; height:28px;
+    border-color: #c49b50;
+    border-style: solid;
+    z-index: 11;
+  }
+  #cdia .tl { top:8px; left:8px; border-width:2px 0 0 2px; }
+  #cdia .tr { top:8px; right:8px; border-width:2px 2px 0 0; }
+  #cdia .bl { bottom:8px; left:8px; border-width:0 0 2px 2px; }
+  #cdia .br { bottom:8px; right:8px; border-width:0 2px 2px 0; }
+
+  #cdia .hdr {
+    text-align: center;
+    padding: 44px 40px 20px;
+    border-bottom: 1px solid rgba(196,155,80,0.25);
+  }
+  #cdia .hdr-sup {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c49b50;
+    margin-bottom: 8px;
+  }
+  #cdia .hdr h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #f5e6c8;
+    line-height: 1.1;
+  }
+  #cdia .hdr h1 em { font-style: italic; color: #c49b50; }
+  #cdia .hdr-sub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(196,155,80,0.6);
+    margin-top: 7px;
+  }
+  #cdia .badge {
+    display: inline-block;
+    border: 1px solid rgba(196,155,80,0.35);
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(196,155,80,0.7);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-top: 10px;
+  }
+
+  #cdia .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 40px;
+  }
+  #cdia .divider::before, #cdia .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(196,155,80,0.25);
+  }
+  #cdia .diamond {
+    width: 6px; height: 6px;
+    background: #c49b50;
+    transform: rotate(45deg);
+    opacity: 0.7;
+  }
+
+  #cdia .body { padding: 4px 40px 44px; }
+
+  #cdia .nota-topo {
+    text-align: center;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(196,155,80,0.5);
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
+  }
+
+  #cdia .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  #cdia .dia-card {
+    border: 1px solid rgba(196,155,80,0.18);
+    border-radius: 4px;
+    padding: 16px 18px;
+    background: rgba(196,155,80,0.04);
+    transition: background 0.2s;
+    position: relative;
+  }
+  #cdia .dia-card.fechado {
+    opacity: 0.35;
+  }
+  #cdia .dia-card.destaque {
+    border-color: rgba(196,155,80,0.55);
+    background: rgba(196,155,80,0.1);
+    grid-column: 1 / -1;
+  }
+
+  #cdia .dia-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #c49b50;
+    margin-bottom: 5px;
+  }
+  #cdia .dia-prato {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f5e6c8;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  #cdia .dia-card.destaque .dia-prato {
+    font-size: 24px;
+  }
+  #cdia .acomp-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(196,155,80,0.45);
+    margin-bottom: 5px;
+  }
+  #cdia .acomp-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  #cdia .acomp-list li {
+    font-size: 11px;
+    color: rgba(240,221,181,0.65);
+    background: rgba(196,155,80,0.08);
+    border: 1px solid rgba(196,155,80,0.15);
+    border-radius: 2px;
+    padding: 2px 8px;
+  }
+  #cdia .dia-card.destaque .acomp-list li {
+    font-size: 12px;
+  }
+
+  #cdia .estrela {
+    position: absolute;
+    top: 12px; right: 14px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #c49b50;
+    opacity: 0.8;
+  }
+
+  #cdia .domingo-card {
+    border: 1px solid rgba(196,155,80,0.1);
+    border-radius: 4px;
+    padding: 16px 18px;
+    background: rgba(0,0,0,0.15);
+    text-align: center;
+    opacity: 0.35;
+  }
+  #cdia .domingo-card .dia-label { text-align: center; }
+  #cdia .domingo-card .dia-prato { font-size: 15px; color: rgba(240,221,181,0.5); font-family: 'Lato', sans-serif; font-weight: 300; }
+
+  #cdia .footer {
+    text-align: center;
+    padding: 20px 40px 44px;
+    border-top: 1px solid rgba(196,155,80,0.2);
+  }
+  #cdia .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #c49b50;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  #cdia .footer-info {
+    font-size: 10.5px;
+    color: rgba(196,155,80,0.45);
+    letter-spacing: 1px;
+    line-height: 1.8;
+  }
+</style>
+
+<div id="cdia">
+  <div class="frame"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="hdr">
+    <div class="hdr-sup">Restaurante Ana Bella</div>
+    <h1>Cardápio <em>do Dia</em></h1>
+    <div class="hdr-sub">Jantar · Pratos Especiais</div>
+    <div class="badge">Segunda a Sábado · 18:00 – 21:45</div>
+  </div>
+
+  <div class="divider"><div class="diamond"></div></div>
+
+  <div class="body">
+    <p class="nota-topo">Pratos preparados pela chef Juliana · Sujeito a alteração sem aviso prévio</p>
+
+    <div class="grid">
+
+      <!-- SEGUNDA -->
+      <div class="dia-card">
+        <div class="dia-label">Segunda-Feira</div>
+        <div class="dia-prato">Panqueca</div>
+        <div class="acomp-label">Acompanhamentos</div>
+        <ul class="acomp-list">
+          <li>Arroz</li>
+          <li>Salada</li>
+        </ul>
+      </div>
+
+      <!-- TERÇA -->
+      <div class="dia-card">
+        <div class="dia-label">Terça-Feira</div>
+        <div class="dia-prato">Costelinha no Barbecue</div>
+        <div class="acomp-label">Acompanhamentos</div>
+        <ul class="acomp-list">
+          <li>Arroz</li>
+          <li>Salada</li>
+          <li>Batata Frita</li>
+        </ul>
+      </div>
+
+      <!-- QUINTA - destaque -->
+      <div class="dia-card destaque">
+        <div class="estrela">⭐ Especialidade</div>
+        <div class="dia-label">Quinta-Feira</div>
+        <div class="dia-prato">Parmegiana</div>
+        <div class="acomp-label">Acompanhamentos</div>
+        <ul class="acomp-list">
+          <li>Arroz ou Macarrão</li>
+          <li>Batata Frita</li>
+          <li>Salada</li>
+        </ul>
+      </div>
+
+      <!-- QUARTA -->
+      <div class="dia-card">
+        <div class="dia-label">Quarta-Feira</div>
+        <div class="dia-prato">Dia Italiano</div>
+        <div class="acomp-label">Opções</div>
+        <ul class="acomp-list">
+          <li>Rondelli</li>
+          <li>Espaguete</li>
+          <li>Nhoque</li>
+          <li>Frango</li>
+          <li>Tulipa</li>
+          <li>Risoto</li>
+          <li>Polenta Frita</li>
+          <li>Salada</li>
+        </ul>
+      </div>
+
+      <!-- SEXTA -->
+      <div class="dia-card">
+        <div class="dia-label">Sexta-Feira</div>
+        <div class="dia-prato">Picanha na Chapa</div>
+        <div class="acomp-label">Acompanhamentos</div>
+        <ul class="acomp-list">
+          <li>Arroz</li>
+          <li>Farofa</li>
+          <li>Legumes</li>
+          <li>Maionese</li>
+          <li>Polenta Frita</li>
+        </ul>
+      </div>
+
+      <!-- DOMINGO -->
+      <div class="domingo-card" style="grid-column: 1 / -1;">
+        <div class="dia-label">Domingo</div>
+        <div class="dia-prato">Fechado · Voltamos na Segunda com muito sabor</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"><div class="diamond"></div></div>
+
+  <div class="footer">
+    <div class="footer-logo">Ana Bella</div>
+    <div class="footer-info">
+      Rua Prof. Dario Veloso, 686 · Vila Izabel · Curitiba<br>
+      (41) 3018-2200 · @anabellarestaurante<br>
+      Nossa família servindo a sua família
+    </div>
+  </div>
+</div>

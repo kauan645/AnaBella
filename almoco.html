@@ -42,6 +42,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="preload" as="image" href="imagens/hero_almoco.jpg"/>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -54,6 +55,7 @@
         <a href="almoco.html"   class="nav-link active">Almoço</a>
         <a href="cardapio.html" class="nav-link">Cardápio</a>
         <a href="historia.html" class="nav-link">História</a>
+        <a href="parmegiana.html" class="nav-link nav-link--parm">Parmegiana</a>
         <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" class="nav-action" target="_blank" rel="noopener">Como chegar</a>
       </nav>
     </div>
@@ -63,6 +65,7 @@
       style="min-height:65vh;background-image:linear-gradient(150deg,rgba(27,18,13,.65) 0%,rgba(86,21,37,.55) 100%),url('imagens/hero_almoco.jpg');">
       <div class="hero-overlay"></div>
       <div class="hero-content container">
+        <div class="hero-badges"><span class="open-badge" data-open-now>Horários: seg–sáb</span></div>
         <p class="eyebrow">Almoço · Segunda a Sábado · 11:30 – 14:00</p>
         <h1>Buffet com sabor de casa</h1>
         <p class="hero-slogan">Nossa família servindo a sua família</p>
@@ -80,50 +83,50 @@
         <div class="buffet-grid">
 
           <div class="buffet-card">
-            <img src="imagens/buffet_arroz.jpg" alt="Arroz e feijão" class="buffet-card-img"
+            <img src="imagens/buffet_arroz.jpg" alt="Arroz e feijão" class="buffet-card-img" loading="lazy"
                  onerror="this.style.display='none'">
             <div class="buffet-card-body">
-              <div class="buffet-icon">🍚</div>
+              <div class="buffet-icon" data-icon="rice"></div>
               <h3>Arroz e feijão</h3>
               <p>Arroz branco, integral e risoto — feijão todo dia, feito com cuidado desde cedo.</p>
             </div>
           </div>
 
           <div class="buffet-card">
-            <img src="imagens/buffet_carnes.jpg" alt="Carnes variadas" class="buffet-card-img"
+            <img src="imagens/buffet_carnes.jpg" alt="Carnes variadas" class="buffet-card-img" loading="lazy"
                  onerror="this.style.display='none'">
             <div class="buffet-card-body">
-              <div class="buffet-icon">🥩</div>
+              <div class="buffet-icon" data-icon="beef"></div>
               <h3>Carnes variadas</h3>
               <p>Todo dia tem peixe, frango, suína e bovina — sempre frescos e bem temperados.</p>
             </div>
           </div>
 
           <div class="buffet-card">
-            <img src="imagens/buffet_saladas.jpg" alt="Saladas frescas" class="buffet-card-img"
+            <img src="imagens/buffet_saladas.jpg" alt="Saladas frescas" class="buffet-card-img" loading="lazy"
                  onerror="this.style.display='none'">
             <div class="buffet-card-body">
-              <div class="buffet-icon">🥗</div>
+              <div class="buffet-icon" data-icon="salad"></div>
               <h3>Saladas frescas</h3>
               <p>Variedade de saladas leves e coloridas para compor seu prato.</p>
             </div>
           </div>
 
           <div class="buffet-card">
-            <img src="imagens/buffet_quentes.jpg" alt="Pratos quentes" class="buffet-card-img"
+            <img src="imagens/buffet_quentes.jpg" alt="Pratos quentes" class="buffet-card-img" loading="lazy"
                  onerror="this.style.display='none'">
             <div class="buffet-card-body">
-              <div class="buffet-icon">🥘</div>
+              <div class="buffet-icon" data-icon="soup"></div>
               <h3>Pratos quentes</h3>
               <p>Acompanhamentos e guarnições caseiros que complementam cada refeição.</p>
             </div>
           </div>
 
           <div class="buffet-card">
-            <img src="imagens/buffet_receitas.jpg" alt="Receitas da casa" class="buffet-card-img"
+            <img src="imagens/buffet_receitas.jpg" alt="Receitas da casa" class="buffet-card-img" loading="lazy"
                  onerror="this.style.display='none'">
             <div class="buffet-card-body">
-              <div class="buffet-icon">🍲</div>
+              <div class="buffet-icon" data-icon="soup"></div>
               <h3>Receitas da casa</h3>
               <p>Pratos típicos e receitas exclusivas que só o Ana Bella tem.</p>
             </div>
@@ -141,25 +144,25 @@
         <!-- Destaque Quinta — Piroque -->
         <div class="quinta-banner">
           <div class="quinta-banner-inner">
-            <div class="quinta-banner-icon">🥟</div>
+            <div class="quinta-banner-icon" data-icon="utensils"></div>
             <div style="flex:1">
-              <p class="eyebrow" style="color:var(--brown-lt)">Todo quinta-feira</p>
+              <p class="eyebrow" style="color:var(--brown-lt)">Toda quinta-feira</p>
               <h3>Piroque no buffet!</h3>
               <p>Toda quinta o buffet ganha um especial muito amado pelos clientes — o famoso Piroque do Ana Bella. Vem antes que acaba!</p>
             </div>
-            <img src="imagens/buffet_piroque.jpg" alt="Piroque Ana Bella" onerror="this.style.display='none'">
+            <img src="imagens/buffet_piroque.jpg" alt="Piroque Ana Bella" loading="lazy" onerror="this.style.display='none'">
           </div>
         </div>
 
         <div class="sabado-banner">
           <p class="eyebrow" style="color:var(--brown-lt);justify-content:center">Destaque da semana</p>
-          <h3>🌟 Buffet especial aos sábados</h3>
+          <h3><span data-icon="sparkle"></span> Buffet especial aos sábados</h3>
           <p>Aos sábados o buffet fica ainda mais especial — com mais pratos, receitas exclusivas e aquela energia boa de fim de semana em família.</p>
           <p style="margin-top:1rem"><em style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--brown-lt)">"Nossa família servindo a sua família"</em></p>
         </div>
 
         <div class="horario-box">
-          <div class="icon">🕐</div>
+          <div class="icon" data-icon="clock"></div>
           <div>
             <h3>Horário do almoço</h3>
             <p>Segunda a sábado das <strong>11:30 às 14:00</strong><br>Buffet com variedade renovada a cada dia.</p>
@@ -174,24 +177,24 @@
             <p>Nada substitui o prazer de sentar à mesa, ser bem recebido pelo Alceu e saborear os pratos da chef Juliana. Esperamos você na Vila Izabel.</p>
             <div class="visit-cta-info">
               <div class="visit-cta-info-item">
-                <div class="vi-icon">📍</div>
+                <div class="vi-icon" data-icon="pin"></div>
                 <span class="vi-label">Endereço</span>
                 <span class="vi-value">Rua Prof. Dario Veloso, 686<br>Vila Izabel · Curitiba</span>
               </div>
               <div class="visit-cta-info-item">
-                <div class="vi-icon">🕐</div>
+                <div class="vi-icon" data-icon="clock"></div>
                 <span class="vi-label">Horários</span>
                 <span class="vi-value">Seg–Sáb: 11:30–14:00<br>Jantar: 18:00–21:45</span>
               </div>
               <div class="visit-cta-info-item">
-                <div class="vi-icon">📞</div>
+                <div class="vi-icon" data-icon="phone"></div>
                 <span class="vi-label">Telefone</span>
                 <span class="vi-value">(41) 3018-2200</span>
               </div>
             </div>
             <div class="visit-cta-actions">
-              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="btn btn-primary">📍 Como chegar</a>
-              <a href="tel:+554130182200" class="btn btn-ghost">📞 Ligue agora</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana" target="_blank" rel="noopener" class="btn btn-primary"><span data-icon="pin"></span> Como chegar</a>
+              <a href="tel:+554130182200" class="btn btn-ghost"><span data-icon="phone"></span> Ligue agora</a>
             </div>
           </div>
         </div>
@@ -203,7 +206,7 @@
       <div class="highlight-card highlight-card--dark">
         <span class="label">Jantar</span>
         <h3>À noite, cardápio à la carte</h3>
-        <p>Das alcatras na chapa ao parmegiana das quintas — pratos preparados pela chef Juliana para momentos especiais.</p>
+        <p>Das alcatras na chapa ao parmegiana todo dia — pratos preparados pela chef Juliana para momentos especiais.</p>
         <a href="cardapio.html" class="btn btn-secondary" style="align-self:flex-start;margin-top:.5rem">Ver cardápio do jantar</a>
       </div>
       <div class="highlight-card highlight-card--light">
@@ -223,7 +226,7 @@
         <p><strong>Horários:</strong><br>Segunda a sábado<br>11:30 – 14:00 | 18:00 – 21:45</p>
       </div>
       <div class="footer-logo">
-        <img src="imagens/logotipo_anabella.png" alt="Ana Bella Restaurante">
+        <img src="imagens/logotipo_anabella.png" alt="Ana Bella Restaurante" loading="lazy">
         <p class="footer-slogan">Nossa família servindo a sua família</p>
         <p class="footer-tagline">Tradição e sabor desde 2011</p>
       </div>
@@ -240,5 +243,6 @@
   </footer>
   <button id="scrollTopBtn" aria-label="Voltar ao topo">↑</button>
   <script src="js/script.js"></script>
+  <script src="js/site-enhance.js" defer></script>
 </body>
 </html>

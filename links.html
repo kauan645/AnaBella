@@ -179,6 +179,14 @@
     .lt-festival-card--buffet .lt-festival-card-badge {
       background: rgba(120,80,28,.72); border-color: rgba(214,178,110,.45); color: #f0d9a8;
     }
+    /* Variante Parmegiana (bordô + dourado) */
+    .lt-festival-card--parm .lt-festival-card-overlay {
+      background: -webkit-linear-gradient(top, rgba(42,19,12,.25) 0%, rgba(74,18,29,.7) 50%, rgba(26,10,9,.96) 100%);
+      background: linear-gradient(to bottom, rgba(42,19,12,.25) 0%, rgba(74,18,29,.7) 50%, rgba(26,10,9,.96) 100%);
+    }
+    .lt-festival-card--parm .lt-festival-card-badge {
+      background: rgba(122,31,46,.72); border-color: rgba(196,156,100,.5); color: #e6c98f;
+    }
 
     /* Cores por rede */
     .lt-link--site   .lt-icon { background: #7a1f2e; }
@@ -213,7 +221,7 @@
     }
   </style>
 </head>
-<body>
+<body data-no-actionbar>
   <div class="linktree-page">
     <div class="lt-logo"><img src="imagens/logotipo_anabella.png" alt="Ana Bella Restaurante"></div>
     <h1 class="lt-name">Ana Bella</h1>
@@ -222,7 +230,19 @@
     <div class="lt-rating"><span>★★★★★</span><span>4.6 · +800 avaliações · Vila Izabel</span></div>
 
     <div class="lt-links">
-      <a href="almoco.html" class="lt-festival-card lt-festival-card--buffet" rel="noopener">
+      <a href="parmegiana.html" class="lt-festival-card lt-festival-card--parm" data-timecard="dinner" rel="noopener">
+        <div class="lt-festival-card-img" style="background-image:url('imagens/parmegiana_prato.jpg')"></div>
+        <div class="lt-festival-card-overlay"></div>
+        <div class="lt-festival-card-body">
+          <span class="lt-festival-card-badge">Jantar &middot; todos os dias</span>
+          <div class="lt-festival-card-title">Parmegiana todo dia</div>
+          <div class="lt-festival-card-sub">
+            <span>Filé mignon · R$ 89,90 · prato completo</span>
+            <span class="lt-festival-card-arrow">›</span>
+          </div>
+        </div>
+      </a>
+      <a href="almoco.html" class="lt-festival-card lt-festival-card--buffet" data-timecard="lunch" rel="noopener">
         <div class="lt-festival-card-img" style="background-image:url('imagens/hero_almoco.jpg')"></div>
         <div class="lt-festival-card-overlay"></div>
         <div class="lt-festival-card-body">
@@ -273,5 +293,17 @@
     <p class="lt-footer">Nossa família servindo a sua família · desde 2011</p>
   </div>
   <script src="js/script.js"></script>
+  <script>
+    /* Card por horário: almoço de dia, parmegiana à noite.
+       CORTE = hora de virada (24h). Antes mostra Buffet, a partir dela mostra Parmegiana. */
+    (function () {
+      var CORTE = 16;
+      var hora = new Date().getHours();
+      var mostrar = hora < CORTE ? 'lunch' : 'dinner';
+      document.querySelectorAll('[data-timecard]').forEach(function (el) {
+        if (el.getAttribute('data-timecard') !== mostrar) el.style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 </html>

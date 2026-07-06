@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Post Parmegiana 1080×1920 · Ana Bella</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet"/>
+<style>
+  :root{ --gold:#c49c64;--gold-lt:#e6c98f;--cream:#f5efe5;--cream-mut:#d9c9b0; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Lato',sans-serif;-webkit-font-smoothing:antialiased}
+
+  .post{
+    width:1080px;height:1920px;position:relative;overflow:hidden;
+    background:linear-gradient(168deg,#2a130c 0%,#4a121d 48%,#1a0a09 100%);
+    color:var(--cream);
+    display:flex;flex-direction:column;align-items:center;
+    padding:60px 90px 56px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .post::after{content:"";position:absolute;inset:38px;
+    border:2px solid rgba(196,156,100,.40);pointer-events:none}
+
+  .logo{width:380px;display:block}
+  .lbl{font-size:23px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--gold);margin:20px 0 6px}
+  .orn{color:var(--gold);font-size:28px;letter-spacing:.5em;margin:6px 0}
+
+  .h1{font-family:'Playfair Display',serif;font-weight:700;
+    font-size:120px;letter-spacing:.01em;color:#fff;line-height:1}
+  .sub{font-family:'Playfair Display',serif;font-style:italic;
+    font-size:44px;color:var(--gold-lt);margin-top:4px}
+
+  .foto{width:100%;height:390px;object-fit:cover;object-position:center 62%;
+    border-radius:14px;border:2px solid rgba(196,156,100,.55);
+    margin:26px 0 20px;display:block;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+
+  .desc{font-size:31px;color:#ece0cb;line-height:1.55;text-align:center;
+    margin:0 20px 4px;max-width:840px}
+
+  .accT{font-family:'Playfair Display',serif;font-size:31px;
+    letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:34px 0 14px}
+  .acc{font-size:33px;color:#efe5d4;line-height:1.85;text-align:center}
+  .acc .ou{color:var(--gold-lt);font-style:italic;font-family:'Playfair Display',serif}
+
+  .spacer{flex:1;min-height:20px}
+
+  .preco{font-family:'Playfair Display',serif;font-weight:700;
+    font-size:150px;color:#fff;line-height:1}
+  .preco small{font-size:62px;vertical-align:top}
+  .precoL{font-size:25px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin-top:12px}
+
+  .divisor{width:420px;height:2px;margin:40px 0 24px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .foot{font-size:26px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--cream-mut);text-align:center}
+
+  /* ===== Preview na tela: encolhe pra caber. NÃO afeta a exportação do node. ===== */
+  @media screen{
+    html,body{background:#15080a}
+    body{height:902px;overflow:hidden;display:flex;justify-content:center}
+    .scaler{transform:scale(.47);transform-origin:top center}
+  }
+  @media print{ .scaler{transform:none} }
+</style>
+</head>
+<body>
+  <div class="scaler">
+    <div class="post">
+      <img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt="Ana Bella"/>
+      <div class="lbl">Cardápio Fixo</div>
+      <div class="orn">— ❖ —</div>
+      <div class="h1">PARMEGIANA</div>
+      <div class="sub">todos os dias, no jantar</div>
+
+      <img class="foto" src="../imagens/parmegiana_prato.jpg" alt="Parmegiana do Ana Bella"/>
+
+      <div class="desc">Filé mignon empanado, coberto com presunto e muçarela gratinada,
+        servido ao molho de tomate à moda da casa.</div>
+
+      <div class="accT">— Acompanha —</div>
+      <div class="acc">
+        Arroz <span class="ou">ou</span> Fettuccine na manteiga com salsinha<br>
+        Batata frita<br>
+        Salada de escarola, bacon e cebola roxa
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="preco">R$ 89<small>,90</small></div>
+      <div class="precoL">serve 1 pessoa · prato completo</div>
+
+      <div class="divisor"></div>
+      <div class="foot">todos os dias no jantar · 18h às 21h45</div>
+    </div>
+  </div>
+</body>
+</html>

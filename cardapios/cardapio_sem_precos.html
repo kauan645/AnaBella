@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a0a0f;
+    font-family: 'Lato', sans-serif;
+    color: #f5e6c8;
+    min-height: 100vh;
+  }
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #1a0a0f;
+    position: relative;
+    overflow: hidden;
+  }
+  .border-frame {
+    position: absolute;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid rgba(196, 155, 80, 0.35);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .border-frame::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 1px solid rgba(196, 155, 80, 0.15);
+  }
+  .corner {
+    position: absolute;
+    width: 28px; height: 28px;
+    border-color: #c49b50;
+    border-style: solid;
+    z-index: 11;
+  }
+  .corner-tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+  .header {
+    text-align: center;
+    padding: 48px 40px 24px;
+    border-bottom: 1px solid rgba(196, 155, 80, 0.3);
+    position: relative;
+  }
+  .header-top {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c49b50;
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #f5e6c8;
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: #c49b50;
+  }
+  .header-sub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(196, 155, 80, 0.7);
+    margin-top: 8px;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 40px;
+    color: rgba(196, 155, 80, 0.5);
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(196, 155, 80, 0.3);
+  }
+  .divider-diamond {
+    width: 6px; height: 6px;
+    background: #c49b50;
+    transform: rotate(45deg);
+    opacity: 0.7;
+  }
+
+  .body { padding: 0 40px 40px; }
+
+  .section { margin-bottom: 28px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #c49b50;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(196, 155, 80, 0.2);
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .item:last-child { border-bottom: none; }
+  .item-left { flex: 1; }
+  .item-name {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: #f0ddb5;
+    line-height: 1.3;
+  }
+  .item-desc {
+    font-size: 11.5px;
+    color: rgba(196, 155, 80, 0.6);
+    margin-top: 2px;
+    line-height: 1.3;
+    font-style: italic;
+  }
+  }
+
+  .destaque-box {
+    background: rgba(196, 155, 80, 0.07);
+    border: 1px solid rgba(196, 155, 80, 0.2);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .destaque-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c49b50;
+    margin-bottom: 4px;
+  }
+  .destaque-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f5e6c8;
+  }
+  .destaque-desc {
+    font-size: 11.5px;
+    color: rgba(240, 221, 181, 0.65);
+    margin-top: 4px;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .destaque-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #c49b50;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .destaque-price small {
+    display: block;
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    color: rgba(196, 155, 80, 0.6);
+    font-weight: 400;
+    text-align: right;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+  }
+
+  .adicional-bar {
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(196, 155, 80, 0.15);
+    padding: 8px 12px;
+    font-size: 11px;
+    color: rgba(196, 155, 80, 0.55);
+    text-align: center;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px 40px 48px;
+    border-top: 1px solid rgba(196, 155, 80, 0.25);
+    margin: 0 0 0;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #c49b50;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .footer-info {
+    font-size: 10.5px;
+    color: rgba(196, 155, 80, 0.5);
+    letter-spacing: 1.5px;
+    line-height: 1.7;
+  }
+
+  .nota {
+    font-size: 10px;
+    color: rgba(196, 155, 80, 0.35);
+    text-align: center;
+    margin: 10px 0 0;
+    letter-spacing: 0.5px;
+  }
+
+  .horario-badge {
+    display: inline-block;
+    border: 1px solid rgba(196, 155, 80, 0.35);
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(196, 155, 80, 0.7);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="border-frame"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="header">
+    <div class="header-top">Restaurante</div>
+    <h1>Ana <em>Bella</em></h1>
+    <div class="header-sub">Cardápio do Jantar</div>
+    <div class="horario-badge">Segunda a Sábado · 18:00 – 21:45</div>
+  </div>
+
+  <div class="divider"><div class="divider-diamond"></div></div>
+
+  <div class="body">
+
+    <!-- PORÇÕES -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Porções</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="destaque-box">
+        <div>
+          <div class="destaque-label">Especialidade da Casa</div>
+          <div class="destaque-name">Alcatra na Chapa</div>
+          <div class="destaque-desc">300g · Acompanhe com fritas, aipim, polenta<br>ou batata rústica</div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Frango a Passarinho</div>
+              <div class="item-desc">600g, tulipa c/ queijo</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Tulipa + Polenta</div>
+              <div class="item-desc">c/ queijo</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Frango e Aipim</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Frios</div>
+              <div class="item-desc">Krakovia, mussarela, azeitonas, ovo de codorna</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Fritas (500g)</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Fritas c/ Bacon e Cheddar</div>
+            </div>
+            
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Aipim (500g)</div>
+              <div class="item-desc">c/ bacon e salcinha</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Polenta (500g)</div>
+              <div class="item-desc">c/ queijo</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Carinha de Batata</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Fritas Pequena (250g)</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Onions</div>
+              <div class="item-desc">c/ mostarda</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Arroz (400g)</div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="adicional-bar">Pratos feitos na hora · Pode conter glúten e lactose</div>
+    </div>
+
+    <div class="divider"><div class="divider-diamond"></div></div>
+
+    <!-- MASSAS -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Massas</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="destaque-box">
+        <div>
+          <div class="destaque-label">Destaque da Casa</div>
+          <div class="destaque-name">Fettuccine</div>
+          <div class="destaque-desc">Molhos: Sugo · Bolonhesa · 4 Queijos<br>Bechamel · Manteiga · Bechamel c/ Bacon</div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="item">
+            <div class="item-left"><div class="item-name">Espaguete</div></div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left"><div class="item-name">Penne</div></div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left"><div class="item-name">Pirogue (6 un.)</div></div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left"><div class="item-name">Nhoque</div></div>
+            
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Rondeli</div>
+              <div class="item-desc">Queijo ou queijo e presunto</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Lasanha</div>
+              <div class="item-desc">Queijo ou queijo e presunto</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Conchiglione</div>
+              <div class="item-desc">Recheio de queijo</div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="adicional-bar">Massa tipo caseira · Tempo médio: 45 min</div>
+    </div>
+
+    <div class="divider"><div class="divider-diamond"></div></div>
+
+    <!-- PRATOS ESPECIAIS -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Pratos Especiais</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Ana Bella Alcatra</div>
+              <div class="item-desc">150g · arroz, fritas, salada</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Ana Bella Frango</div>
+              <div class="item-desc">150g · arroz, fritas, salada</div>
+            </div>
+            
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">Frango Aromatizado</div>
+              <div class="item-desc">Manteiga/champignon, salada</div>
+            </div>
+            
+          </div>
+          <div class="item">
+            <div class="item-left">
+              <div class="item-name">A Moda da Casa</div>
+              <div class="item-desc">Alcatra acebolada, rústica, salada</div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="adicional-bar">Adicionais: Ovo · Feijão</div>
+    </div>
+
+    <div class="divider"><div class="divider-diamond"></div></div>
+
+    <!-- SALADA + KIDS em linha -->
+    <div class="two-col" style="gap: 32px; margin-bottom: 28px;">
+      <div class="section" style="margin-bottom:0">
+        <div class="section-header">
+          <h2>Monte sua Salada</h2>
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">Individual (até 5 ing.)</div>
+          </div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">Item extra</div>
+          </div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">+ Alcatra 150g</div>
+          </div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">+ Frango 150g</div>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="section" style="margin-bottom:0">
+        <div class="section-header">
+          <h2>Kids</h2>
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">Prato Xuxu</div>
+            <div class="item-desc">Salada, arroz, batata, frango ou alcatra</div>
+          </div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">Massinha</div>
+            <div class="item-desc">Espaguete / Nhoque / Fettuccine</div>
+          </div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left">
+            <div class="item-name">Porção Kids</div>
+            <div class="item-desc">Batata, tulipa, polenta, carinha</div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-diamond"></div></div>
+
+    <!-- BEBIDAS + VINHOS -->
+    <div class="two-col" style="gap: 32px; margin-bottom: 8px;">
+      <div class="section" style="margin-bottom:0">
+        <div class="section-header">
+          <h2>Bebidas</h2>
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Água</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Sucos Del Valle</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Suco de Laranja</div><div class="item-desc">copo / jarra</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Refri 290ml</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Refri 600ml</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Chopp 300ml / 500ml</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Torre de Chopp 2,5L</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Cerveja Preta (lata)</div></div>
+          
+        </div>
+      </div>
+
+      <div class="section" style="margin-bottom:0">
+        <div class="section-header">
+          <h2>Carta de Vinhos</h2>
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Vinho da Casa</div><div class="item-desc">Granja de Vale — garrafa / jarra</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Vinho Fino (taça)</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Vinho Colonial (taça)</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Nacionais 750ml</div><div class="item-desc">Almadén, Miolo, Anônimo e outros</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Chilenos 750ml</div><div class="item-desc">Concha Y Toro, Santa Carolina...</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Argentinos Malbec</div><div class="item-desc">Benjamin, Trapiche, Catena...</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Quentão</div></div>
+          
+        </div>
+        <div class="item">
+          <div class="item-left"><div class="item-name">Rolha (traga o seu)</div></div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="divider" style="margin: 0 0 20px;"><div class="divider-diamond"></div></div>
+    <div class="footer-logo">Ana Bella</div>
+    <div class="footer-info">
+      Rua Prof. Dario Veloso, 686 · Vila Izabel · Curitiba<br>
+      (41) 3018-2200 · @anabellarestaurante<br>
+      Nossa família servindo a sua família
+    </div>
+    <div class="nota">Pode conter glúten e lactose</div>
+  </div>
+</div>
+</body>
+</html>

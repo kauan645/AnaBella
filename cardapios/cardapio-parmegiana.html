@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Cardápio Parmegiana 15×30 · Ana Bella</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --wine:#7a1f2e;--wine-deep:#4a121d;--gold:#c49c64;--gold-lt:#e6c98f;
+    --cream:#f5efe5;--cream-mut:#d9c9b0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#2a1118;display:flex;justify-content:center;
+    -webkit-font-smoothing:antialiased;font-family:'Lato',sans-serif}
+
+  /* 15 x 30 cm */
+  @page{size:150mm 300mm;margin:0}
+  .folha{
+    width:150mm;height:300mm;position:relative;overflow:hidden;
+    background:linear-gradient(168deg,#2a130c 0%,#4a121d 45%,#1a0a09 100%);
+    color:var(--cream);
+    display:flex;flex-direction:column;align-items:center;
+    padding:13mm 11mm 11mm;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  /* moldura dourada interna */
+  .folha::after{content:"";position:absolute;inset:5mm;
+    border:0.4mm solid rgba(196,156,100,.45);pointer-events:none}
+
+  .logo{width:62mm;display:block;margin-top:1mm}
+  .lbl{font-size:3.4mm;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);margin:5mm 0 1.5mm}
+  .orn{color:var(--gold);font-size:4mm;letter-spacing:.5em;margin:2mm 0}
+
+  .h1{font-family:'Playfair Display',serif;font-weight:700;
+    font-size:15mm;letter-spacing:.02em;color:#fff;line-height:1}
+  .sub{font-family:'Playfair Display',serif;font-style:italic;
+    font-size:6mm;color:var(--gold-lt);margin-top:1mm}
+
+  .foto-wrap{width:100%;margin:6mm 0 5mm;position:relative}
+  .foto{width:100%;height:78mm;object-fit:cover;border-radius:2mm;
+    border:0.4mm solid rgba(196,156,100,.55);display:block}
+
+  .desc{font-size:4mm;color:#ece0cb;line-height:1.55;text-align:center;
+    margin:0 4mm 1mm;max-width:120mm}
+
+  .accT{font-family:'Playfair Display',serif;font-size:4.6mm;
+    letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:6mm 0 3mm}
+  .acc{font-size:4.6mm;color:#efe5d4;line-height:2;text-align:center}
+  .acc .ou{color:var(--gold-lt);font-style:italic;font-family:'Playfair Display',serif}
+
+  .spacer{flex:1}
+
+  .preco{font-family:'Playfair Display',serif;font-weight:700;
+    font-size:22mm;color:#fff;line-height:1}
+  .preco small{font-size:9mm;vertical-align:top}
+  .precoL{font-size:3.2mm;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin-top:2mm}
+
+  .divisor{width:60mm;height:0.3mm;margin:6mm 0 4mm;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .foot{font-size:3.4mm;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--cream-mut);text-align:center}
+
+  /* tela: simula a folha centralizada */
+  @media screen{
+    body{padding:20px;align-items:flex-start}
+    .folha{box-shadow:0 18px 60px -10px rgba(0,0,0,.7)}
+  }
+</style>
+</head>
+<body>
+  <div class="folha">
+    <img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt="Ana Bella"/>
+    <div class="lbl">Cardápio Fixo</div>
+    <div class="orn">— ❖ —</div>
+    <div class="h1">PARMEGIANA</div>
+    <div class="sub">todos os dias, no jantar</div>
+
+    <div class="foto-wrap">
+      <img class="foto" src="../imagens/parmegiana_prato.jpg" alt="Parmegiana do Ana Bella"/>
+    </div>
+
+    <div class="desc">Filé mignon empanado, coberto com presunto e muçarela gratinada,
+      servido ao molho de tomate à moda da casa.</div>
+
+    <div class="accT">— Acompanha —</div>
+    <div class="acc">
+      Arroz <span class="ou">ou</span> Fettuccine na manteiga com salsinha<br>
+      Batata frita<br>
+      Salada de escarola, bacon e cebola roxa
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="preco">R$ 89<small>,90</small></div>
+    <div class="precoL">serve 1 pessoa · prato completo</div>
+
+    <div class="divisor"></div>
+    <div class="foot">todos os dias no jantar · 18h às 21h45</div>
+  </div>
+</body>
+</html>
