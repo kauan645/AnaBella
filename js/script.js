@@ -99,7 +99,7 @@
       1: { nome: 'Segunda-Feira',  prato: 'Panqueca',              acompanhamentos: ['Arroz', 'Salada'],                                                                         img: 'imagens/dia_segunda.jpg' },
       2: { nome: 'Terça-Feira',    prato: 'Costelinha no Barbecue', acompanhamentos: ['Arroz', 'Salada', 'Batata Frita'],                                                         img: 'imagens/dia_terca.jpg'  },
       3: { nome: 'Quarta-Feira',   prato: 'Dia Italiano',           acompanhamentos: ['Rondelli', 'Espaguete', 'Nhoque', 'Frango', 'Tulipa', 'Risoto', 'Polenta Frita', 'Salada'], img: 'imagens/dia_quarta.jpg' },
-      4: { nome: 'Quinta-Feira',   prato: 'Parmegiana',            acompanhamentos: ['Arroz ou Macarrão', 'Batata Frita', 'Salada'],                                             img: 'imagens/dia_quinta.jpg' },
+      4: { nome: 'Quinta-Feira',   prato: 'Parmegiana',            acompanhamentos: ['Arroz ou Macarrão', 'Batata Frita', 'Salada'],                                             img: 'imagens/dia_quinta.jpg', nota: 'Também disponível todos os dias' },
       5: { nome: 'Sexta-Feira',    prato: 'Picanha na Chapa',       acompanhamentos: ['Arroz', 'Farofa', 'Legumes', 'Maionese', 'Polenta Frita'],                                 img: 'imagens/dia_sexta.jpg'  },
       6: { nome: 'Sábado',         prato: 'Alcatra na Chapa',       acompanhamentos: [],                                                                                          img: 'imagens/foto_alcatra.jpg', nota: 'Também disponível todos os dias' }
     };
@@ -129,7 +129,7 @@
             (d.nota ? '<p class="hoje-nota-extra">' + d.nota + '</p>' : '') +
             acomp +
             '<img src="' + d.img + '" alt="' + d.prato + '" class="hoje-img" onerror="this.style.display=\'none\'">' +
-            '<p class="hoje-nota">Disponível das 18:00 às 22:00 · Sujeito a alteração</p>' +
+            '<p class="hoje-nota">Disponível das 18:00 às 21:45 · Sujeito a alteração</p>' +
           '</div></div>';
       }
     }
