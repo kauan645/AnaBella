@@ -46,7 +46,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="preload" as="image" href="imagens/hero_home.jpg"/>
+  <link rel="preload" as="image" href="imagens/hero_home_mobile.jpg" media="(max-width: 640px)"/>
+  <link rel="preload" as="image" href="imagens/hero_home.jpg" media="(min-width: 641px)"/>
   <link rel="stylesheet" href="css/style.css"/>
   <!-- Dados estruturados — Google local / rich results -->
   <script type="application/ld+json">
@@ -106,8 +107,7 @@
     </div>
   </header>
   <main>
-    <section class="hero" aria-label="Ana Bella Restaurante"
-      style="background-image:linear-gradient(150deg,rgba(27,18,13,.76) 0%,rgba(86,21,37,.6) 100%),url('imagens/hero_home.jpg');">
+    <section class="hero hero-home" aria-label="Ana Bella Restaurante">
       <div class="hero-overlay"></div>
       <div class="hero-content container">
         <div class="hero-badges">
