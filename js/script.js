@@ -9,19 +9,34 @@
   var mainNav    = document.getElementById('mainNav');
 
   if (menuToggle && mainNav) {
+    function setMenu(open) {
+      mainNav.classList.toggle('open', open);
+      menuToggle.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      if (open) {
+        var firstLink = mainNav.querySelector('a');
+        if (firstLink) firstLink.focus();
+      } else {
+        menuToggle.focus();
+      }
+    }
     menuToggle.addEventListener('click', function () {
-      var isOpen = mainNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', isOpen);
+      setMenu(!mainNav.classList.contains('open'));
     });
     document.addEventListener('click', function (e) {
-      if (!menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
+      if (mainNav.classList.contains('open') && !menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
         mainNav.classList.remove('open');
+        menuToggle.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
       }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mainNav.classList.contains('open')) setMenu(false);
     });
     mainNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         mainNav.classList.remove('open');
+        menuToggle.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
@@ -39,7 +54,7 @@
   var scrollTopBtn = document.getElementById('scrollTopBtn');
   if (scrollTopBtn) {
     window.addEventListener('scroll', function () {
-      scrollTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
     scrollTopBtn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -47,15 +62,39 @@
   }
 
   /* 4. TABS */
-  document.querySelectorAll('.tab-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
-      document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
-      btn.classList.add('active');
-      var panel = document.getElementById(btn.dataset.tab);
-      if (panel) panel.classList.add('active');
+  var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+
+  function activateTab(btn) {
+    tabBtns.forEach(function (b) {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.tabIndex = -1;
+    });
+    document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    btn.tabIndex = 0;
+    var panel = document.getElementById(btn.dataset.tab);
+    if (panel) panel.classList.add('active');
+  }
+
+  tabBtns.forEach(function (btn, idx) {
+    btn.addEventListener('click', function () { activateTab(btn); });
+    btn.addEventListener('keydown', function (e) {
+      var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!dir) return;
+      e.preventDefault();
+      var next = tabBtns[(idx + dir + tabBtns.length) % tabBtns.length];
+      next.focus();
+      activateTab(next);
     });
   });
+
+  // Link direto tipo cardapio.html#restaurante abre naquela aba de cara.
+  if (location.hash) {
+    var targetTab = tabBtns.filter(function (b) { return b.dataset.tab === location.hash.slice(1); })[0];
+    if (targetTab) activateTab(targetTab);
+  }
 
   /* 5. ACCORDION */
   function setAccordionHeight(item, open) {
@@ -64,18 +103,37 @@
     body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
   }
 
+  function setAccordionState(item, open) {
+    var header = item.querySelector('.accordion-header');
+    item.classList.toggle('open', open);
+    setAccordionHeight(item, open);
+    if (header) header.setAttribute('aria-expanded', String(open));
+  }
+
+  // IDs unicos + aria-controls/aria-labelledby gerados em runtime (evita repetir
+  // id a mao em cada um dos 6 blocos de accordion do cardapio a la carte).
+  document.querySelectorAll('.accordion-item').forEach(function (item, idx) {
+    var header = item.querySelector('.accordion-header');
+    var body = item.querySelector('.accordion-body');
+    if (!header || !body) return;
+    var headerId = 'acc-header-' + idx;
+    var bodyId = 'acc-body-' + idx;
+    header.id = headerId;
+    header.setAttribute('aria-controls', bodyId);
+    header.setAttribute('aria-expanded', 'false');
+    body.id = bodyId;
+    body.setAttribute('role', 'region');
+    body.setAttribute('aria-labelledby', headerId);
+  });
+
   document.querySelectorAll('.accordion-header').forEach(function (h) {
     h.addEventListener('click', function () {
       var item   = h.parentElement;
       var isOpen = item.classList.contains('open');
       item.parentElement.querySelectorAll('.accordion-item').forEach(function (i) {
-        i.classList.remove('open');
-        setAccordionHeight(i, false);
+        setAccordionState(i, false);
       });
-      if (!isOpen) {
-        item.classList.add('open');
-        setAccordionHeight(item, true);
-      }
+      if (!isOpen) setAccordionState(item, true);
     });
   });
 
@@ -83,11 +141,20 @@
   var primeiroAccordion = document.querySelector('.accordion');
   if (primeiroAccordion) {
     var primeiroItem = primeiroAccordion.querySelector('.accordion-item');
-    if (primeiroItem) {
-      primeiroItem.classList.add('open');
-      setAccordionHeight(primeiroItem, true);
-    }
+    if (primeiroItem) setAccordionState(primeiroItem, true);
   }
+
+  // Recalcula altura de itens abertos apos resize (fonte/zoom/orientacao) —
+  // scrollHeight so e medido na abertura, senao o painel corta conteudo novo.
+  var accordionResizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(accordionResizeTimer);
+    accordionResizeTimer = setTimeout(function () {
+      document.querySelectorAll('.accordion-item.open').forEach(function (item) {
+        setAccordionHeight(item, true);
+      });
+    }, 150);
+  });
 
   /* 6. CARDÁPIO DO DIA */
   var hojeEl = document.getElementById('hoje-card');
@@ -128,7 +195,7 @@
             '<p class="hoje-prato">' + d.prato + '</p>' +
             (d.nota ? '<p class="hoje-nota-extra">' + d.nota + '</p>' : '') +
             acomp +
-            '<img src="' + d.img + '" alt="' + d.prato + '" class="hoje-img" onerror="this.style.display=\'none\'">' +
+            '<img src="' + d.img + '" alt="' + d.prato + '" class="hoje-img" onerror="this.outerHTML=\'<div class=hoje-img--placeholder>🍽️ Foto em breve</div>\'">' +
             '<p class="hoje-nota">Disponível das 18:00 às 21:45 · Sujeito a alteração</p>' +
           '</div></div>';
       }
@@ -146,7 +213,7 @@
                  '</div></div>';
         }
         return '<div class="dia-card' + (isHoje ? ' dia-hoje' : '') + '">' +
-          '<img src="' + d.img + '" alt="' + d.prato + '" class="dia-card-img" onerror="this.remove()">' +
+          '<img src="' + d.img + '" alt="' + d.prato + '" class="dia-card-img" onerror="this.outerHTML=\'<div class=dia-card-img--placeholder>🍽️ Foto em breve</div>\'">' +
           '<div class="dia-card-body">' +
           '<p class="dia-nome">' + (isHoje ? '▶ ' : '') + d.nome + '</p>' +
           '<p class="dia-prato-nome">' + d.prato + '</p>' +

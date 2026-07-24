@@ -11,7 +11,7 @@
   var TEL_DIGITS = '4130182200';
   var TEL_LABEL  = '(41) 3018-2200';
   var MAPS_URL   = 'https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana';
-  var CARDAPIO   = 'cardapio.html';
+  var CARDAPIO   = 'cardapio.html#restaurante';
 
   // Janelas Seg–Sáb (minutos desde 00:00). Domingo (0) fechado.
   var ALMOCO = [11 * 60 + 30, 14 * 60];        // 11:30–14:00
@@ -37,10 +37,24 @@
     return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
   }
 
-  function openNow(now) {
-    now = now || new Date();
-    var day = now.getDay();
-    var mins = now.getHours() * 60 + now.getMinutes();
+  // Curitiba fica sempre em America/Sao_Paulo (-03:00, sem horario de verao
+  // desde 2019) — calcula pelo fuso do restaurante, nao pelo do navegador do
+  // visitante, senao alguem fora do Brasil ve "aberto/fechado" errado.
+  var WEEKDAY_MAP = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  function nowInCuritiba() {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Sao_Paulo', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23'
+    }).formatToParts(new Date());
+    var map = {};
+    parts.forEach(function (p) { map[p.type] = p.value; });
+    var hour = parseInt(map.hour, 10) % 24;
+    return { day: WEEKDAY_MAP[map.weekday], mins: hour * 60 + parseInt(map.minute, 10) };
+  }
+
+  function openNow() {
+    var agora = nowInCuritiba();
+    var day = agora.day;
+    var mins = agora.mins;
 
     if (day === 0) {
       return { state: 'closed', text: 'Fechado · abre segunda 11:30' };

@@ -238,7 +238,7 @@
         <div class="lt-festival-card-img" style="background-image:url('imagens/parmegiana_prato.jpg')"></div>
         <div class="lt-festival-card-overlay"></div>
         <div class="lt-festival-card-body">
-          <span class="lt-festival-card-badge">Jantar &middot; todos os dias</span>
+          <span class="lt-festival-card-badge">Jantar &middot; Seg&ndash;S&aacute;b</span>
           <div class="lt-festival-card-title">Parmegiana todo dia</div>
           <div class="lt-festival-card-sub">
             <span>Filé mignon · R$ 89,90 · prato completo</span>
@@ -250,7 +250,7 @@
         <div class="lt-festival-card-img" style="background-image:url('imagens/hero_almoco.jpg')"></div>
         <div class="lt-festival-card-overlay"></div>
         <div class="lt-festival-card-body">
-          <span class="lt-festival-card-badge">Almoço &middot; todos os dias</span>
+          <span class="lt-festival-card-badge">Almoço &middot; Seg&ndash;S&aacute;b</span>
           <div class="lt-festival-card-title">Buffet Ana Bella</div>
           <div class="lt-festival-card-sub">
             <span>Comida caseira · self-service</span>
@@ -290,7 +290,7 @@
       <div class="lt-map-info">
         <strong>Restaurante Ana Bella</strong>
         <small>Rua Prof. Dario Veloso, 686 · Vila Izabel · Curitiba – PR · (41) 3018-2200</small>
-        <small>Seg–Sáb: 11:30–14:00 | 18:00–22:00</small>
+        <small>Seg–Sáb: 11:30–14:00 | 18:00–21:45</small>
       </div>
     </div>
 
@@ -302,7 +302,8 @@
        CORTE = hora de virada (24h). Antes mostra Buffet, a partir dela mostra Parmegiana. */
     (function () {
       var CORTE = 16;
-      var hora = new Date().getHours();
+      // Hora de Curitiba (America/Sao_Paulo), nao a do navegador do visitante.
+      var hora = parseInt(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', hour: 'numeric', hourCycle: 'h23' }).format(new Date()), 10);
       var mostrar = hora < CORTE ? 'lunch' : 'dinner';
       document.querySelectorAll('[data-timecard]').forEach(function (el) {
         if (el.getAttribute('data-timecard') !== mostrar) el.style.display = 'none';

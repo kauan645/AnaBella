@@ -262,8 +262,9 @@ p:last-child{margin-bottom:0}
 @keyframes ltSlideUp{to{opacity:1;transform:none}}
 
 /* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
-.reveal.visible{opacity:1;transform:none}
+.reveal{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+html.js .reveal{opacity:0;transform:translateY(28px)}
+html.js .reveal.visible{opacity:1;transform:none}
 
 /* FOOTER */
 .site-footer{background:var(--charcoal);color:rgba(255,255,255,.72);padding-top:3.5rem}
@@ -334,6 +335,7 @@ p:last-child{margin-bottom:0}
 /* Imagem do dia (hoje-card, gerada pelo script.js) */
 .hoje-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-lg);margin-top:1.25rem;box-shadow:0 8px 32px rgba(27,18,13,.35);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .hoje-card:hover .hoje-img{transform:scale(1.02)}
+.hoje-img--placeholder{width:100%;aspect-ratio:16/9;border-radius:var(--radius-lg);margin-top:1.25rem;display:flex;align-items:center;justify-content:center;gap:.5rem;background:var(--beige);color:var(--text-lt);font-family:var(--font-display);font-size:1rem}
 
 /* Buffet cards — imagem ocupa topo do card, sangrada */
 .buffet-card{overflow:hidden;padding:0}

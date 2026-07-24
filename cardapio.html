@@ -78,6 +78,7 @@
     .dia-card.dia-fechado{opacity:.45;pointer-events:none}
     .dia-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.4,0,.2,1)}
     .dia-card:hover .dia-card-img{transform:scale(1.04)}
+    .dia-card-img--placeholder{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;gap:.4rem;background:var(--beige);color:var(--text-lt);font-size:.85rem}
     .dia-card-body{padding:1rem}
     .dia-nome{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);margin-bottom:.4rem}
     .dia-prato-nome{font-family:var(--font-display);font-size:1rem;color:var(--brown-dk);margin-bottom:.3rem}
@@ -149,7 +150,7 @@
   <header class="site-header" id="header">
     <div class="header-inner container">
       <a href="index.html" class="brand"><img src="imagens/logo_anabella_cor.png" alt="Ana Bella Restaurante"></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
       <nav class="main-nav" id="mainNav">
         <a href="index.html"    class="nav-link">Home</a>
         <a href="almoco.html"   class="nav-link">Almoço</a>
@@ -178,20 +179,20 @@
     <section class="section">
       <div class="container">
 
-        <div class="cardapio-tabs">
-          <button class="tab-btn active" data-tab="dia"><span data-icon="calendar"></span> Cardápio do Dia</button>
-          <button class="tab-btn" data-tab="restaurante"><span data-icon="utensils"></span> Cardápio do Restaurante</button>
+        <div class="cardapio-tabs" role="tablist" aria-label="Tipo de cardápio">
+          <button class="tab-btn active" data-tab="dia" role="tab" id="tab-dia" aria-selected="true" aria-controls="dia" tabindex="0"><span data-icon="calendar"></span> Cardápio do Dia</button>
+          <button class="tab-btn" data-tab="restaurante" role="tab" id="tab-restaurante" aria-selected="false" aria-controls="restaurante" tabindex="-1"><span data-icon="utensils"></span> Cardápio do Restaurante</button>
         </div>
 
         <!-- ===== ABA: CARDÁPIO DO DIA ===== -->
-        <div class="tab-panel active" id="dia">
+        <div class="tab-panel active" id="dia" role="tabpanel" aria-labelledby="tab-dia" tabindex="0">
           <p class="tab-panel-intro" style="text-align:center;color:var(--text-lt);margin:-.5rem 0 1.5rem">Especial do jantar à la carte, um prato diferente por dia</p>
           <div id="hoje-card"></div>
           <div id="dias-grid" class="dias-grid"></div>
         </div>
 
         <!-- ===== ABA: CARDÁPIO DO RESTAURANTE ===== -->
-        <div class="tab-panel" id="restaurante">
+        <div class="tab-panel" id="restaurante" role="tabpanel" aria-labelledby="tab-restaurante" tabindex="0">
 
           <!-- Chef idea -->
           <div class="chef-idea">
@@ -282,7 +283,7 @@
                   <!-- Demais porções -->
                   <p class="secao-header">Demais Porções</p>
                   <ul class="menu-list">
-                    <li class="menu-list-item"><div><p class="menu-list-nome">Aipim (500g) c/ bacon e salcinha</p></div><span class="menu-list-preco">R$ 28,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Aipim (500g) c/ bacon e salsinha</p></div><span class="menu-list-preco">R$ 28,90</span></li>
                     <li class="menu-list-item"><div><p class="menu-list-nome">Arroz (400g)</p></div><span class="menu-list-preco">R$ 12,90</span></li>
                     <li class="menu-list-item"><div><p class="menu-list-nome">Carinha de Batata</p></div><span class="menu-list-preco">R$ 21,90</span></li>
                     <li class="menu-list-item"><div><p class="menu-list-nome">Frios</p><p class="menu-list-desc">Krakovia, Queijo Mussarela, Azeitonas, Ovo de Codorna</p></div><span class="menu-list-preco">R$ 36,90</span></li>
@@ -348,7 +349,7 @@
                       <span class="menu-list-preco">R$ 32,90</span>
                     </li>
                     <li class="menu-list-item">
-                      <div><p class="menu-list-nome">Rondeli (Queijo ou Queijo e Presunto)</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel</p></div>
+                      <div><p class="menu-list-nome">Rondelli (Queijo ou Queijo e Presunto)</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Bechamel</p></div>
                       <span class="menu-list-preco">R$ 39,90</span>
                     </li>
                     <li class="menu-list-item">
@@ -489,9 +490,9 @@
 
                   <p class="secao-header">Massinha</p>
                   <ul class="menu-list">
-                    <li class="menu-list-item"><div><p class="menu-list-nome">Espaguete</p><p class="menu-list-molhos">Sugo · Bolonha · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 22,90</span></li>
-                    <li class="menu-list-item"><div><p class="menu-list-nome">Nhoque</p><p class="menu-list-molhos">Sugo · Bolonha · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 22,90</span></li>
-                    <li class="menu-list-item"><div><p class="menu-list-nome">Fettutine</p><p class="menu-list-molhos">Sugo · Bolonha · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 23,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Espaguete</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 22,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Nhoque</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 22,90</span></li>
+                    <li class="menu-list-item"><div><p class="menu-list-nome">Fettuccine</p><p class="menu-list-molhos">Sugo · Bolonhesa · 4 Queijos · Acompanha Queijos</p></div><span class="menu-list-preco">R$ 23,90</span></li>
                   </ul>
                   <p style="font-size:.8rem;color:var(--text-lt);font-style:italic;margin-top:.5rem">Todas as massas são frescas, feitas com produtos selecionados.</p>
 
@@ -565,7 +566,7 @@
                       <span class="vinho-tag">Miolo Seleção Tinto</span>
                       <span class="vinho-tag">Cabernet Sauvignon</span>
                       <span class="vinho-tag">Anônimo</span>
-                      <span class="vinho-tag">Tanat</span>
+                      <span class="vinho-tag">Tannat</span>
                       <span class="vinho-tag">Merlot</span>
                       <span class="vinho-tag">Syrah</span>
                       <span class="vinho-tag">Carménère</span>
