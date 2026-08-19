@@ -121,6 +121,10 @@ p:last-child{margin-bottom:0}
 /* GALLERY */
 .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
 @media(min-width:600px){.gallery-grid{grid-template-columns:repeat(4,1fr);gap:1rem}}
+
+/* Galeria de sábado: 5 fotos, uma linha só no desktop (não mexe no .gallery-grid base da home) */
+@media(min-width:600px){.gallery-grid-sabado{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:599px){.gallery-grid-sabado .gallery-item:last-child:nth-child(odd){grid-column:1/-1;max-width:calc(50% - .375rem);margin-inline:auto}}
 .gallery-item{aspect-ratio:1/1;border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s cubic-bezier(.4,0,.2,1),box-shadow .45s,filter .45s}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
 .gallery-item:hover{transform:scale(1.04);box-shadow:0 20px 60px rgba(27,18,13,.35);filter:brightness(1.08)}
