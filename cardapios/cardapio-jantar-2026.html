@@ -45,6 +45,9 @@
   .sub{font-family:'Playfair Display',serif;font-style:italic;
     font-size:5.3mm;color:var(--gold-lt);margin-top:1mm}
   .orn{color:var(--gold);font-size:4.3mm;letter-spacing:.5em;margin:3mm 0 5mm}
+  /* AV-04: capa tinha 56% de vão vazio entre medalhão e título — ornamento com
+     margin-top:auto reparte o espaço livre com o .nome (que já tem margin-top:auto) */
+  .divisora.capa .orn{margin-top:auto;margin-bottom:0}
 
   /* ---------- linhas de item com condutor pontilhado ---------- */
   .lista{width:100%;display:flex;flex-direction:column;gap:3.2mm}
@@ -146,6 +149,11 @@
     border:0.5mm solid rgba(201,168,76,.55);
     box-shadow:0 2mm 5mm rgba(0,0,0,.4)}
   .logo-oval .logo{display:block}
+  /* AV-05: Saladas tem tons quentes (queijo/tomate) atrás do medalhão — opacidade maior
+     só nesta página pra manter contraste do "Ana Bella" em script vermelho */
+  .divisora.saladas .logo-oval{
+    background:radial-gradient(closest-side,rgba(235,228,212,.72) 0%,
+      rgba(224,212,186,.72) 70%,rgba(206,188,152,.72) 100%)}
   .divisora .nome{font-family:'Playfair Display',serif;font-style:italic;
     font-weight:700;font-size:15mm;color:#fff;line-height:1.06;text-align:center;
     margin-top:auto;text-shadow:0 1mm 3mm rgba(0,0,0,.6)}
@@ -265,6 +273,7 @@
   <div class="base-vinho"></div>
   <div class="conteudo">
     <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt="Ana Bella"/></div></div>
+    <div class="orn">— ❖ —</div>
     <div class="nome">Cardápio</div>
     <div class="selo">Jantar · à la carte</div>
   </div>
@@ -425,7 +434,7 @@
 </div>
 
 <!-- ============ 7 · divisor SALADAS ============ -->
-<div class="folha divisora">
+<div class="folha divisora saladas">
   <img class="foto" src="../imagens/foto_salada.jpg" alt=""/>
   <div class="vinheta"></div>
   <div class="conteudo">
