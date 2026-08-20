@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Cardápio Jantar 15×30 · Ana Bella</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet"/>
+<style>
+  /* ---------------------------------------------------------------
+     Identidade herdada de cardapio-parmegiana.html — mesma paleta,
+     mesmas fontes, mesma moldura. Layout novo: lista densa, não vitrine.
+     Folha 15x30 cm. Conteúdo de um lado, foto-divisor no verso.
+     --------------------------------------------------------------- */
+  :root{
+    --wine:#7a1f2e;--wine-deep:#4a121d;--gold:#c9a84c;--gold-lt:#e6c98f;
+    --cream:#f5efe5;--cream-mut:#d9c9b0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#2a1118;-webkit-font-smoothing:antialiased;
+    font-family:'Lora',serif}
+
+  @page{size:150mm 300mm;margin:0}
+
+  .folha{
+    width:150mm;height:300mm;position:relative;z-index:0;overflow:hidden;
+    background:linear-gradient(168deg,#2a130c 0%,#4a121d 45%,#1a0a09 100%);
+    color:var(--cream);display:flex;flex-direction:column;align-items:center;
+    padding:15mm 13mm 11mm;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    page-break-after:always;break-after:page;
+  }
+  .folha:last-child{page-break-after:auto;break-after:auto}
+  /* moldura dourada interna */
+  .folha::after{content:"";position:absolute;inset:5mm;
+    border:0.4mm solid rgba(201,168,76,.45);pointer-events:none;z-index:3}
+
+  /* ---------- cabeçalho de seção ---------- */
+  .lbl{font-size:3.5mm;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--gold);opacity:.85}
+  .h1{font-family:'Playfair Display',serif;font-weight:700;
+    font-size:13.2mm;letter-spacing:.03em;color:#fff;line-height:1.05;
+    text-align:center;margin-top:1.5mm}
+  .sub{font-family:'Playfair Display',serif;font-style:italic;
+    font-size:5.3mm;color:var(--gold-lt);margin-top:1mm}
+  .orn{color:var(--gold);font-size:4.3mm;letter-spacing:.5em;margin:3mm 0 5mm}
+
+  /* ---------- linhas de item com condutor pontilhado ---------- */
+  .lista{width:100%;display:flex;flex-direction:column;gap:3.2mm}
+  .item{display:flex;align-items:baseline;gap:2mm;width:100%}
+  .item .n{font-size:4.7mm;font-weight:400;color:#f2e9da;flex:0 1 auto}
+  .item .n b{font-weight:700}
+  .item .ld{flex:1 1 auto;min-width:4mm;height:0;
+    border-bottom:0.25mm dotted rgba(201,168,76,.5);transform:translateY(-1.1mm)}
+  .item .p{font-size:4.7mm;font-weight:700;color:var(--gold-lt);
+    flex:0 0 auto;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .item .p i{font-style:normal;font-size:3.5mm;color:var(--gold);opacity:.9}
+  .desc{font-size:3.7mm;line-height:1.45;color:var(--cream-mut);
+    margin-top:.8mm;padding-right:16mm}
+
+  /* ---------- caixas auxiliares ---------- */
+  .nota{width:100%;margin-top:3.5mm;padding:3mm 4mm;
+    border:0.3mm solid rgba(196,156,100,.35);border-radius:1mm;
+    background:rgba(122,31,46,.22)}
+  .nota .t{font-size:3.2mm;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.5mm}
+  .nota .v{font-size:4.0mm;line-height:1.5;color:#ede2d0}
+  .nota .v em{font-family:'Playfair Display',serif;font-style:italic;
+    color:var(--gold-lt);padding:0 .4mm}
+
+  .subT{font-family:'Playfair Display',serif;font-size:5.0mm;
+    letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+    margin:7mm 0 4mm;text-align:center;width:100%}
+  .subT::before,.subT::after{content:"—";opacity:.6;padding:0 2mm;
+    font-family:'Lora',serif}
+
+  .destaque{width:100%;text-align:center;margin:1mm 0 4mm}
+  .destaque .pv{font-family:'Playfair Display',serif;font-weight:700;
+    font-size:19.2mm;color:#fff;line-height:1}
+  .destaque .pv small{font-size:8.4mm;vertical-align:top}
+  .destaque .pl{font-size:3.5mm;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);margin-top:1.5mm}
+
+  /* grade de ingredientes / rótulos */
+  .grid2{width:100%;display:grid;grid-template-columns:1fr 1fr;
+    gap:2.6mm 6mm;margin-top:1mm}
+  .grid2 li{list-style:none;font-size:4.2mm;color:#f2e9da;
+    display:flex;gap:2mm;align-items:baseline}
+  .grid2 li span{color:var(--gold);font-size:3.5mm;
+    font-variant-numeric:tabular-nums;flex:0 0 auto}
+
+  .rotulos{font-size:3.8mm;line-height:1.65;color:#ede2d0;text-align:center;
+    padding:0 2mm}
+  .rotulos em{font-family:'Playfair Display',serif;font-style:italic;
+    color:var(--gold);font-size:4.1mm}
+
+  /* grade de garrafas com foto */
+  .vgrid{display:flex;flex-wrap:wrap;justify-content:center;
+    gap:3.2mm 2.4mm;width:100%;margin-top:2.8mm}
+  .vgrid .b{width:21mm;display:flex;flex-direction:column;align-items:center;
+    text-align:center}
+  .vgrid .b .ph{width:100%;height:27mm;display:flex;align-items:center;
+    justify-content:center}
+  .vgrid .b .ph img{width:100%;height:100%;object-fit:contain;
+    filter:drop-shadow(0 1mm 1.6mm rgba(0,0,0,.55))}
+  .vgrid .b .bn{font-size:3mm;line-height:1.22;color:#f2e9da;margin-top:1.3mm}
+  .vgrid .b .bn em{font-style:normal;color:var(--gold)}
+  .vgrid .b .gr{font-size:3mm;font-style:italic;color:var(--gold-lt);opacity:.9;margin-top:.4mm;line-height:1.15}
+  .vgrid .b .bp{font-size:3mm;font-weight:700;color:var(--gold-lt);
+    margin-top:.6mm;font-variant-numeric:tabular-nums}
+
+  .spacer{flex:1 1 auto;min-height:3mm}
+
+  /* ---------- rodapé ---------- */
+  .rodape{width:100%;text-align:center;margin-top:4mm}
+  .divisor{width:56mm;height:0.3mm;margin:0 auto 3.5mm;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .rodape .hr{font-size:3.7mm;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--cream-mut)}
+  .rodape .al{font-size:3.1mm;letter-spacing:.1em;color:var(--cream-mut);
+    opacity:.72;margin-top:1.5mm}
+  .rodape .dc{font-size:2.8mm;color:var(--cream-mut);opacity:.8;margin-top:1.2mm;
+    font-style:italic}
+
+  /* =================== páginas-divisor (foto) =================== */
+  .divisora{padding:0;justify-content:flex-start}
+  .divisora .foto{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;z-index:0}
+  .divisora .vinheta{position:absolute;inset:0;z-index:1;
+    background:
+      linear-gradient(180deg,rgba(26,10,9,.78) 0%,rgba(26,10,9,.18) 38%,
+                      rgba(26,10,9,.30) 62%,rgba(26,10,9,.86) 100%),
+      radial-gradient(120% 80% at 50% 50%,transparent 40%,rgba(26,10,9,.55) 100%)}
+  .divisora .conteudo{position:relative;z-index:2;width:100%;height:100%;
+    display:flex;flex-direction:column;align-items:center;
+    padding:20mm 13mm 18mm}
+  .divisora .logo{width:54mm;display:block}
+  /* fundo atrás da logo: moldura oval sólida cor de creme, como no
+     cardápio físico atual — sem halo difuso, borda fina + sombra curta */
+  .logo-frame{display:inline-flex}
+  .logo-oval{display:flex;align-items:center;justify-content:center;
+    padding:9mm 11mm;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(235,228,212,.38) 0%,
+      rgba(224,212,186,.38) 70%,rgba(206,188,152,.38) 100%);
+    border:0.5mm solid rgba(201,168,76,.55);
+    box-shadow:0 2mm 5mm rgba(0,0,0,.4)}
+  .logo-oval .logo{display:block}
+  .divisora .nome{font-family:'Playfair Display',serif;font-style:italic;
+    font-weight:700;font-size:15mm;color:#fff;line-height:1.06;text-align:center;
+    margin-top:auto;text-shadow:0 1mm 3mm rgba(0,0,0,.6)}
+  .divisora .nome.duas{font-size:12.5mm}
+  .divisora .selo{font-size:2.9mm;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold-lt);margin-top:3mm;text-shadow:0 .5mm 2mm rgba(0,0,0,.7)}
+
+  /* legenda de canto — identifica o prato da foto-divisor */
+  .divisora .legenda{position:absolute;z-index:2;top:14mm;left:10mm;max-width:60mm;
+    padding:3mm 5mm;border-radius:2mm;background:rgba(26,10,9,.6);
+    border:0.35mm solid rgba(201,168,76,.55)}
+  .divisora .legenda .prato{font-family:'Playfair Display',serif;font-style:italic;
+    font-weight:700;font-size:4.6mm;color:#fff;line-height:1.15}
+  .divisora .legenda .molho{font-family:'Lora',serif;font-size:3.1mm;
+    color:var(--gold-lt);letter-spacing:.03em;margin-top:0.8mm}
+
+  /* divisor KIDS — sem foto, balões CSS sobre a mesma base bordô */
+  .divisora.kids{background:radial-gradient(120% 90% at 50% 12%,#8a2438 0%,
+    #5a1522 55%,#260c11 100%)}
+  .baloes{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .balao{position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.6) 0%,
+      rgba(255,255,255,0) 32%),currentColor;
+    box-shadow:0 3mm 6mm rgba(0,0,0,.35)}
+  .balao::before{content:"";position:absolute;left:50%;top:100%;
+    width:.3mm;height:16mm;background:rgba(255,255,255,.5);
+    transform:translateX(-50%)}
+  .balao::after{content:"";position:absolute;left:50%;bottom:-2.8mm;
+    width:0;height:0;border-left:1.8mm solid transparent;
+    border-right:1.8mm solid transparent;border-top:2.8mm solid currentColor;
+    transform:translateX(-50%)}
+  .balao.mini::before{height:8mm}
+  .balao.mini::after{border-left-width:1mm;border-right-width:1mm;
+    border-top-width:1.6mm;bottom:-1.6mm}
+  .confete{position:absolute;border-radius:50%;background:currentColor;
+    opacity:.55}
+  /* fora do divisor (que já resolve empilhamento via .conteudo z-index2),
+     manda os decorativos pra trás do texto estático com z-index negativo */
+  .balao.mini,.confete{z-index:-1}
+
+  /* capa e contracapa */
+  .capa .nome{font-size:19mm;margin-top:auto}
+  .capa .selo{font-size:3.2mm}
+  .contracapa .conteudo{justify-content:center;text-align:center}
+  .contracapa .texto{font-family:'Playfair Display',serif;font-style:italic;
+    font-size:4.6mm;line-height:1.75;color:#f5efe5;
+    text-shadow:0 1mm 3mm rgba(0,0,0,.75);max-width:112mm;margin:0 auto}
+  .contracapa .assin{font-family:'Playfair Display',serif;font-weight:700;
+    font-style:italic;font-size:7mm;color:var(--gold-lt);margin-top:8mm;
+    text-shadow:0 1mm 3mm rgba(0,0,0,.75)}
+  .contracapa .end{font-size:3mm;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream-mut);margin-top:9mm;line-height:2;
+    text-shadow:0 .5mm 2mm rgba(0,0,0,.8)}
+  /* fundo de madeira: mostra o grão em cima, vira faixa bordô sólida embaixo
+     (mesmo visual do cardápio físico atual). Filtro sepia/brightness que
+     escurecia o fundo_madeira.jpg (pinho claro) tirado — fundo_madeira_verniz.jpg
+     já vem no tom certo, filtro por cima só dobrava o escurecimento. */
+  .capa .vinheta{background:
+    linear-gradient(180deg,rgba(20,8,7,.42) 0%,rgba(20,8,7,.18) 28%,
+      rgba(20,8,7,.22) 68%,rgba(20,8,7,.1) 100%)}
+  /* base bordô com curva única e suave, em vez do degradê reto anterior.
+     Grão sutil (SVG feTurbulence embutido) + dois brilhos radiais simulando
+     reflexo de verniz, por cima de um degradê de 4 paradas — tira o "chapado"
+     do gradiente linear original sem depender de imagem nova. Mesma curva na
+     capa e na contracapa — fecha o cardápio com o mesmo acabamento. */
+  .capa .base-vinho,.contracapa .base-vinho{position:absolute;inset:0;z-index:1;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(140% 60% at 28% 4%,rgba(150,55,70,.4) 0%,transparent 55%),
+      radial-gradient(120% 65% at 78% 96%,rgba(10,3,6,.55) 0%,transparent 62%),
+      linear-gradient(160deg,#5c1621 0%,#4a0f1a 32%,#33090f 68%,#220509 100%);
+    background-repeat:repeat,no-repeat,no-repeat,no-repeat;
+    background-blend-mode:overlay,normal,normal,normal;
+    clip-path:polygon(0% 72%,10% 70.15%,20% 68.47%,30% 67.15%,40% 66.29%,
+      50% 66%,60% 66.29%,70% 67.15%,80% 68.47%,90% 70.15%,100% 72%,
+      100% 100%,0% 100%)}
+  /* vinheta da contracapa só precisa escurecer a madeira acima da curva —
+     abaixo dela o base-vinho (opaco) já cobre por cima */
+  .contracapa .vinheta{background:
+    linear-gradient(180deg,rgba(20,8,7,.30) 0%,rgba(20,8,7,.04) 20%,
+      rgba(20,8,7,.10) 40%,rgba(20,8,7,.18) 70%,transparent 100%)}
+  /* institucional: foto do Coliseu de fundo, texto por cima */
+  .inst .foto{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:50% 15%;z-index:0}
+  .inst .vinheta{position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(20,8,7,.62) 0%,rgba(20,8,7,.42) 45%,
+      rgba(20,8,7,.72) 100%),
+      radial-gradient(120% 80% at 50% 50%,transparent 25%,rgba(20,8,7,.5) 100%)}
+  .inst .conteudo-inst{position:relative;z-index:2;display:flex;
+    flex-direction:column;align-items:center}
+
+  /* =================== institucional =================== */
+  .inst{justify-content:center;text-align:center}
+  .inst .logo{width:66mm;margin:0 auto}
+  .inst .texto-fundo{background:rgba(20,8,7,.6);border-radius:2mm;
+    padding:7mm 8mm;margin-top:5mm;display:flex;flex-direction:column;
+    align-items:center}
+  .inst p{font-family:'Playfair Display',serif;font-style:italic;
+    font-size:4.5mm;line-height:1.8;color:#f2e9da;margin-top:7mm;max-width:110mm}
+  .inst p:first-child{margin-top:0}
+  .inst .assin{font-family:'Playfair Display',serif;font-weight:700;
+    font-style:italic;font-size:6.6mm;color:var(--gold-lt);line-height:1.35;
+    margin-top:10mm}
+
+</style>
+</head>
+<body>
+
+<!-- Fotos a confirmar/substituir antes do PDF final: capa, porções, massas,
+     saladas, pratos especiais, kids, bebidas, contracapa
+     (ver imagens/*.jpg referenciadas em cada .foto abaixo) -->
+
+<!-- ============ 1 · CAPA (foto) ============ -->
+<div class="folha divisora capa">
+  <img class="foto" src="../imagens/fundo_madeira_verniz.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="base-vinho"></div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt="Ana Bella"/></div></div>
+    <div class="nome">Cardápio</div>
+    <div class="selo">Jantar · à la carte</div>
+  </div>
+</div>
+
+<!-- ============ 2 · INSTITUCIONAL ============ -->
+<div class="folha inst">
+  <img class="foto" src="../imagens/contracapa_mesa-roma.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="conteudo-inst">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="orn">— ❖ —</div>
+    <div class="texto-fundo">
+      <p>Desde 2011, preparamos cada prato pensando em você e na sua família,
+         com o cuidado de agradar todos os gostos.</p>
+      <p>Selecionamos ingredientes frescos e de boa procedência para cada receita.</p>
+      <p>Nossa cozinha é caseira de verdade — o mesmo sabor e cheirinho
+         da casa da vovó.</p>
+      <p>Servimos com qualidade e o carinho de quem cozinha para a própria família.</p>
+      <div class="assin">Ana Bella,<br>da nossa família<br>para a sua, há quase 15 anos.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 3 · divisor PORÇÕES ============ -->
+<div class="folha divisora">
+  <img class="foto" src="../imagens/foto_alcatra.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="legenda">
+    <div class="prato">Alcatra na Chapa</div>
+    <div class="molho">Com Polenta</div>
+  </div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome">Porções</div>
+  </div>
+</div>
+
+<!-- ============ 4 · PORÇÕES ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">PORÇÕES</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="subT" style="margin-top:0">Carnes</div>
+  <div class="lista" style="gap:2mm">
+    <div>
+      <div class="item"><span class="n">Alcatra Ana Bella <b>(300 g)</b></span><span class="ld"></span><span class="p">R$&nbsp;45,90</span></div>
+      <div class="desc">Escolha o acompanhamento: <b>fritas</b> · <b>aipim</b> · <b>polenta</b> · <b>onions</b> · <b>batata rústica</b></div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Alcatra Ana Bella <b>(300 g)</b></span><span class="ld"></span><span class="p">R$&nbsp;43,90</span></div>
+      <div class="desc">Com <b>queijo mussarela ou acebolada</b> — acompanha pão</div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Frango Tulipa <b>(600 g)</b> com queijo</span><span class="ld"></span><span class="p">R$&nbsp;48,90</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Frango Tulipa <b>Polenta ou Aipim</b> <b>(400 g)</b></span><span class="ld"></span><span class="p">R$&nbsp;42,90</span></div>
+      <div class="desc">com queijo</div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Frios</span><span class="ld"></span><span class="p">R$&nbsp;36,90</span></div>
+      <div class="desc">Krakovia, queijo mussarela, azeitonas e ovo de codorna</div>
+    </div>
+  </div>
+
+  <div class="subT" style="margin:4mm 0 3mm">Acompanhamentos</div>
+  <div class="lista" style="gap:2mm">
+    <div class="item"><span class="n">Fritas (500 g) com bacon e cheddar</span><span class="ld"></span><span class="p">R$&nbsp;41,90</span></div>
+    <div class="item"><span class="n">Fritas (500 g)</span><span class="ld"></span><span class="p">R$&nbsp;34,90</span></div>
+    <div class="item"><span class="n">Fritas pequenas (250 g)</span><span class="ld"></span><span class="p">R$&nbsp;21,90</span></div>
+    <div class="item"><span class="n">Aipim (500 g) com bacon e salsinha</span><span class="ld"></span><span class="p">R$&nbsp;28,90</span></div>
+    <div class="item"><span class="n">Polenta (500 g) com queijo</span><span class="ld"></span><span class="p">R$&nbsp;22,90</span></div>
+    <div class="item"><span class="n">Carinha de batata</span><span class="ld"></span><span class="p">R$&nbsp;21,90</span></div>
+    <div class="item"><span class="n">Onions com mostarda</span><span class="ld"></span><span class="p">R$&nbsp;21,90</span></div>
+    <div class="item"><span class="n">Arroz (400 g)</span><span class="ld"></span><span class="p">R$&nbsp;12,90</span></div>
+    <div class="item"><span class="n">Pururuca <span style="font-size:3.1mm;color:var(--cream-mut)">(pele suína frita)</span></span><span class="ld"></span><span class="p">R$&nbsp;25,00</span></div>
+    <div class="item"><span class="n">Pururuca meia porção</span><span class="ld"></span><span class="p">R$&nbsp;15,00</span></div>
+  </div>
+
+  <div class="nota" style="margin-top:2mm;padding:2mm 4mm">
+    <div class="t">Adicional</div>
+    <div class="v">Adicionar qualquer item <em>·</em> R$&nbsp;12,50</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr">Cozinha: 18h às 21h45 · seg a sáb</div>
+    <div class="al">Pratos feitos na hora · pode conter glúten e lactose</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 5 · divisor MASSAS ============ -->
+<div class="folha divisora">
+  <img class="foto" src="../imagens/foto_massas.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="legenda">
+    <div class="prato">Pirogue</div>
+    <div class="molho">Molho Bolonhesa</div>
+  </div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome">Massas</div>
+  </div>
+</div>
+
+<!-- ============ 6 · MASSAS ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">MASSAS</div>
+  <div class="sub">porção individual</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="lista">
+    <div class="item"><span class="n">Espaguete</span><span class="ld"></span><span class="p">R$&nbsp;31,90</span></div>
+    <div class="item"><span class="n">Fettuccine</span><span class="ld"></span><span class="p">R$&nbsp;32,90</span></div>
+    <div class="item"><span class="n">Penne</span><span class="ld"></span><span class="p">R$&nbsp;32,90</span></div>
+    <div class="item"><span class="n">Nhoque</span><span class="ld"></span><span class="p">R$&nbsp;32,90</span></div>
+    <div class="item"><span class="n">Pirogue (6 unidades)</span><span class="ld"></span><span class="p">R$&nbsp;31,90</span></div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Escolha seu molho</div>
+    <div class="v">Sugo <em>·</em> Bolonhesa <em>·</em> 4 Queijos <em>·</em> Bechamel
+      <em>·</em> Manteiga <em>·</em> Bechamel com bacon — todos acompanham queijo</div>
+  </div>
+
+  <div class="subT">Recheadas</div>
+
+  <div class="lista">
+    <div>
+      <div class="item"><span class="n">Rondelli</span><span class="ld"></span><span class="p">R$&nbsp;39,90</span></div>
+      <div class="desc">Queijo, ou queijo e presunto</div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Conchiglione</span><span class="ld"></span><span class="p">R$&nbsp;37,90</span></div>
+      <div class="desc">Queijo</div>
+    </div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Escolha seu molho</div>
+    <div class="v">Sugo <em>·</em> Bolonhesa <em>·</em> 4 Queijos <em>·</em> Bechamel — todos acompanham queijo</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr" style="font-family:'Playfair Display',serif;font-style:italic;
+      text-transform:none;letter-spacing:.02em;font-size:3.6mm;color:var(--gold-lt)">
+      Massa tipo caseira, feita na hora — preparo de 45 min. em média</div>
+    <div class="al" style="margin-top:2.5mm">Pode conter glúten e lactose · cozinha 18h às 21h45</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 7 · divisor SALADAS ============ -->
+<div class="folha divisora">
+  <img class="foto" src="../imagens/foto_salada.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome duas">Monte sua<br>Salada</div>
+  </div>
+</div>
+
+<!-- ============ 8 · MONTE SUA SALADA ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">MONTE SUA<br>SALADA</div>
+  <div class="sub">porção individual</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="destaque">
+    <div class="pv">R$&nbsp;26<small>,90</small></div>
+    <div class="pl">até 5 ingredientes</div>
+  </div>
+
+  <ul class="grid2">
+    <li><span>01</span>Alface crespa</li>
+    <li><span>08</span>Ervilha</li>
+    <li><span>02</span>Alface americana</li>
+    <li><span>09</span>Milho</li>
+    <li><span>03</span>Rúcula</li>
+    <li><span>10</span>Tomate seco</li>
+    <li><span>04</span>Tomate</li>
+    <li><span>11</span>Queijo ralado</li>
+    <li><span>05</span>Cenoura ralada</li>
+    <li><span>12</span>Cebola</li>
+    <li><span>06</span>Ovos de codorna</li>
+    <li><span>13</span>Palmito picado</li>
+    <li><span>07</span>Champignon</li>
+    <li><span>14</span>Croutons</li>
+  </ul>
+
+  <div class="nota">
+    <div class="t">Sugestão da casa</div>
+    <div class="v">Alface americana <em>·</em> Tomate <em>·</em> Cenoura <em>·</em> Queijo <em>·</em> Palmito</div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Adicione proteína</div>
+    <div class="v">
+      Alcatra 150 g <em>·</em> R$&nbsp;15,00<br>
+      Frango 150 g <em>·</em> R$&nbsp;15,00
+    </div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Item extra</div>
+    <div class="v">R$&nbsp;5,50 cada</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr">Cozinha: 18h às 21h45 · seg a sáb</div>
+    <div class="al">Pratos feitos na hora · pode conter glúten e lactose</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 9 · divisor PRATOS ESPECIAIS ============ -->
+<!-- foto provisória (fundo de madeira, sem prato) — dia_sabado.jpg tirado por
+     ser pastel/rissole, não bate com a seção. Kauan vai tirar foto do prato. -->
+<div class="folha divisora">
+  <img class="foto" src="../imagens/fundo_madeira_verniz.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome duas">Pratos<br>Especiais</div>
+  </div>
+</div>
+
+<!-- ============ 10 · PRATOS ESPECIAIS ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">PRATOS<br>ESPECIAIS</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="lista" style="gap:6mm">
+    <div>
+      <div class="item"><span class="n">Ana Bella <b>À Moda da Casa</b></span><span class="ld"></span><span class="p">R$&nbsp;38,90</span></div>
+      <div class="desc">Alcatra picada acebolada 150 g, arroz branco e batata rústica.</div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Ana Bella <b>Frango Aromatizado</b></span><span class="ld"></span><span class="p">R$&nbsp;34,90</span></div>
+      <div class="desc">Frango picado 150 g, aromatizado na manteiga com champignon.
+        Arroz branco e batata rústica.</div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Ana Bella <b>Alcatra</b></span><span class="ld"></span><span class="p">R$&nbsp;30,90</span></div>
+      <div class="desc">Alcatra picada 150 g, arroz branco e fritas.</div>
+    </div>
+    <div>
+      <div class="item"><span class="n">Ana Bella <b>Frango</b></span><span class="ld"></span><span class="p">R$&nbsp;30,00</span></div>
+      <div class="desc">Frango picado 150 g, arroz branco e fritas.</div>
+    </div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Acompanha</div>
+    <div class="v">Salada de alface, tomate, cenoura ralada e milho</div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Adicionais</div>
+    <div class="v">Ovo frito <em>·</em> R$&nbsp;4,00 &nbsp;&nbsp; Feijão <em>·</em> R$&nbsp;5,00</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr">Cozinha: 18h às 21h45 · seg a sáb</div>
+    <div class="al">Pratos feitos na hora · pode conter glúten e lactose</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 11 · divisor KIDS (sem foto — balões CSS) ============ -->
+<div class="folha divisora kids">
+  <div class="baloes">
+    <div class="balao" style="top:26mm;left:16mm;width:26mm;height:31mm;color:#e63946"></div>
+    <div class="balao" style="top:52mm;left:104mm;width:22mm;height:26mm;color:#2f7fc1"></div>
+    <div class="balao" style="top:92mm;left:26mm;width:19mm;height:23mm;color:#f4c430"></div>
+    <div class="balao" style="top:116mm;left:92mm;width:30mm;height:36mm;color:#ec6fa0"></div>
+    <div class="balao" style="top:158mm;left:12mm;width:17mm;height:20mm;color:#2f7fc1"></div>
+    <div class="balao" style="top:172mm;left:118mm;width:24mm;height:29mm;color:#e63946"></div>
+    <div class="balao" style="top:206mm;left:52mm;width:16mm;height:19mm;color:#f4c430"></div>
+  </div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome duas">Ana Bella<br>Kids</div>
+  </div>
+</div>
+
+<!-- ============ 12 · KIDS ============ -->
+<div class="folha">
+  <div class="balao mini" style="top:5mm;left:9mm;width:11mm;height:13mm;color:#2f7fc1"></div>
+  <div class="balao mini" style="top:3mm;left:122mm;width:13mm;height:16mm;color:#e63946"></div>
+  <div class="confete" style="top:35mm;left:8mm;width:5mm;height:5mm;color:#2f7fc1"></div>
+  <div class="confete" style="top:60mm;left:141mm;width:6mm;height:6mm;color:#f4c430"></div>
+  <div class="confete" style="top:95mm;left:9mm;width:4mm;height:4mm;color:#ec6fa0"></div>
+  <div class="confete" style="top:130mm;left:140mm;width:7mm;height:7mm;color:#e63946"></div>
+  <div class="confete" style="top:165mm;left:7mm;width:5mm;height:5mm;color:#f4c430"></div>
+  <div class="confete" style="top:200mm;left:9mm;width:6mm;height:6mm;color:#f4c430"></div>
+  <div class="confete" style="top:205mm;left:139mm;width:6mm;height:6mm;color:#2f7fc1"></div>
+  <div class="confete" style="top:222mm;left:44mm;width:5mm;height:5mm;color:#2f7fc1"></div>
+  <div class="confete" style="top:232mm;left:88mm;width:7mm;height:7mm;color:#e63946"></div>
+  <div class="confete" style="top:244mm;left:20mm;width:5mm;height:5mm;color:#ec6fa0"></div>
+  <div class="confete" style="top:250mm;left:118mm;width:6mm;height:6mm;color:#f4c430"></div>
+  <div class="confete" style="top:265mm;left:9mm;width:4mm;height:4mm;color:#ec6fa0"></div>
+
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">KIDS</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="lista" style="gap:5mm">
+    <div>
+      <div class="item"><span class="n">Prato <b>Xuxu</b></span><span class="ld"></span><span class="p">R$&nbsp;21,90</span></div>
+      <div class="desc">Salada de tomate e milho, arroz e carinha de batata.
+        Carne: frango ou alcatra picadinha (100 g).</div>
+    </div>
+  </div>
+
+  <div class="subT">Massinha</div>
+  <div class="desc" style="text-align:center;padding-right:0;width:100%;margin-bottom:2mm">
+    Mesma massa fresca da casa, feita na hora — em porção kids. Acompanha queijo.</div>
+  <div class="lista">
+    <div class="item"><span class="n">Espaguete</span><span class="ld"></span><span class="p">R$&nbsp;22,90</span></div>
+    <div class="item"><span class="n">Nhoque</span><span class="ld"></span><span class="p">R$&nbsp;22,90</span></div>
+    <div class="item"><span class="n">Fettuccine</span><span class="ld"></span><span class="p">R$&nbsp;23,90</span></div>
+  </div>
+  <div class="nota">
+    <div class="t">Escolha seu molho</div>
+    <div class="v">Sugo <em>·</em> Bolonhesa <em>·</em> 4 Queijos</div>
+  </div>
+
+  <div class="subT">Porção Kids</div>
+  <div class="desc" style="text-align:center;padding-right:0;width:100%;margin-bottom:2mm">
+    Mesmas guarnições das porções grandes, em tamanho kids.</div>
+  <div class="lista">
+    <div class="item"><span class="n">Tulipa</span><span class="ld"></span><span class="p">R$&nbsp;16,90</span></div>
+    <div class="item"><span class="n">Carinha de batata</span><span class="ld"></span><span class="p">R$&nbsp;12,90</span></div>
+    <div class="item"><span class="n">Batata</span><span class="ld"></span><span class="p">R$&nbsp;11,90</span></div>
+    <div class="item"><span class="n">Polenta</span><span class="ld"></span><span class="p">R$&nbsp;11,90</span></div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr" style="font-family:'Playfair Display',serif;font-style:italic;
+      text-transform:none;letter-spacing:.02em;font-size:3.6mm;color:var(--gold-lt)">
+      Todas as nossas massas são frescas, feitas com produtos selecionados —
+      como você faz na sua casa</div>
+    <div class="al" style="margin-top:2.5mm">Pratos feitos na hora · pode conter glúten e lactose · cozinha 18h às 21h45</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 13 · divisor BEBIDAS ============ -->
+<div class="folha divisora">
+  <img class="foto" src="../imagens/dia_drink.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome">Bebidas</div>
+  </div>
+</div>
+
+<!-- ============ 14 · BEBIDAS ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">BEBIDAS</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="subT" style="margin-top:0">Chopp e cerveja</div>
+  <div class="lista">
+    <div class="item"><span class="n">Torre de chopp 2,5 L</span><span class="ld"></span><span class="p">R$&nbsp;60,00</span></div>
+    <div class="item"><span class="n">Copo Stanley 600 ml</span><span class="ld"></span><span class="p">R$&nbsp;13,50</span></div>
+    <div class="item"><span class="n">Chopp 500 ml</span><span class="ld"></span><span class="p">R$&nbsp;11,50</span></div>
+    <div class="item"><span class="n">Chopp 300 ml</span><span class="ld"></span><span class="p">R$&nbsp;9,00</span></div>
+    <div class="item"><span class="n">Cerveja preta (lata)</span><span class="ld"></span><span class="p">R$&nbsp;12,50</span></div>
+  </div>
+
+  <div class="subT">Sucos</div>
+  <div class="lista">
+    <div class="item"><span class="n">Suco de laranja (jarra)</span><span class="ld"></span><span class="p">R$&nbsp;22,00</span></div>
+    <div class="item"><span class="n">Suco de laranja (copo)</span><span class="ld"></span><span class="p">R$&nbsp;10,00</span></div>
+    <div class="item"><span class="n">Suco integral de uva 300 ml</span><span class="ld"></span><span class="p">R$&nbsp;12,90</span></div>
+    <div class="item"><span class="n">Sucos Del Valle</span><span class="ld"></span><span class="p">R$&nbsp;8,50</span></div>
+  </div>
+
+  <div class="subT">Refrigerantes e águas</div>
+  <div class="lista">
+    <div class="item"><span class="n">Refri 600 ml (diversos sabores)</span><span class="ld"></span><span class="p">R$&nbsp;12,90</span></div>
+    <div class="item"><span class="n">Refri lata (diversos sabores)</span><span class="ld"></span><span class="p">R$&nbsp;8,00</span></div>
+    <div class="item"><span class="n">Refri 290 ml (KS)</span><span class="ld"></span><span class="p">R$&nbsp;7,50</span></div>
+    <div class="item"><span class="n">Chá mate (copo e garrafa)</span><span class="ld"></span><span class="p">R$&nbsp;8,00</span></div>
+    <div class="item"><span class="n">Água com gás / sem gás</span><span class="ld"></span><span class="p">R$&nbsp;8,00</span></div>
+    <div class="item"><span class="n">Água com sabor</span><span class="ld"></span><span class="p">R$&nbsp;9,00</span></div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr">Cozinha: 18h às 21h45 · seg a sáb</div>
+    <div class="al">Pode conter glúten e lactose</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 15 · divisor VINHOS ============ -->
+<div class="folha divisora">
+  <img class="foto" src="../imagens/hero_vinhos.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div class="nome duas">Carta de<br>Vinhos</div>
+  </div>
+</div>
+
+<!-- ============ 16 · CARTA DE VINHOS — vinho da casa & nacionais ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1">CARTA DE<br>VINHOS</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="subT" style="margin-top:0">Vinho da Casa · Granja do Vale</div>
+  <div class="lista">
+    <div class="item"><span class="n">Garrafa (colonial)</span><span class="ld"></span><span class="p">R$&nbsp;30,00</span></div>
+    <div class="item"><span class="n">Jarra (colonial)</span><span class="ld"></span><span class="p">R$&nbsp;26,00</span></div>
+    <div class="item"><span class="n">Vinho fino nacional (taça)</span><span class="ld"></span><span class="p">R$&nbsp;20,00</span></div>
+    <div class="item"><span class="n">Vinho colonial (taça)</span><span class="ld"></span><span class="p">R$&nbsp;15,00</span></div>
+    <div class="item"><span class="n">Quentão</span><span class="ld"></span><span class="p">R$&nbsp;12,00</span></div>
+  </div>
+
+  <div class="subT" style="margin-top:5mm">Nacionais</div>
+  <div class="lista">
+    <div class="item"><span class="n">Garrafa</span><span class="ld"></span><span class="p">R$&nbsp;50,00</span></div>
+  </div>
+  <div class="vgrid">
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/almaden-cabernet.png" alt=""/></div><div class="bn">Almadén</div><div class="gr">Cabernet Sauvignon</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/almaden-merlot.png" alt=""/></div><div class="bn">Almadén</div><div class="gr">Merlot</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/miolo-selecao-tinto.png" alt=""/></div><div class="bn">Miolo<br>Seleção Tinto</div><div class="gr">Cabernet Sauvignon &amp; Merlot</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_cabernet-sauvignon-nacional.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Cabernet Sauvignon</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_antonino.png" alt=""/></div><div class="bn">Granja do Vale<br>Anônimo</div><div class="gr">Tannat &amp; Ancelotta</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_tannat.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Tannat</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_merlot-nacional.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Merlot</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_syrah.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Syrah</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_carmenere.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Carménère</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_teroldego.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Teroldego</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_malbec-nacional.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Malbec</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_cabernet-franc.png" alt=""/></div><div class="bn">Granja do Vale</div><div class="gr">Cabernet Franc</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_chardonnay.png" alt=""/></div><div class="bn">Granja do Vale<br><em>(branco)</em></div><div class="gr">Chardonnay</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_espumante-brut.png" alt=""/></div><div class="bn">Granja do Vale<br>Espumante Brut</div><div class="gr">Chardonnay &amp; Riesling Itálico</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/granja_espumante-moscatel.png" alt=""/></div><div class="bn">Granja do Vale<br>Espumante</div><div class="gr">Moscatel</div></div>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- ============ 16b · CARTA DE VINHOS — importados ============ -->
+<div class="folha">
+  <div class="lbl">Ana Bella</div>
+  <div class="h1" style="font-size:9mm">VINHOS<br>IMPORTADOS</div>
+  <div class="orn">— ❖ —</div>
+
+  <div class="item"><span class="n"><b>Chilenos</b></span><span class="ld"></span><span class="p">R$&nbsp;60,00</span></div>
+  <div class="vgrid">
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/santa-carolina-cabernet.png" alt=""/></div><div class="bn">Santa Carolina<br>Reservado</div><div class="gr">Cabernet Sauvignon</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/concha-y-toro-cabernet.png" alt=""/></div><div class="bn">Concha y Toro<br>Reservado</div><div class="gr">Cabernet Sauvignon</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/santa-carolina-merlot.png" alt=""/></div><div class="bn">Santa Carolina<br>Reservado</div><div class="gr">Merlot</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/santa-helena-cabernet.png" alt=""/></div><div class="bn">Santa Helena<br>Reservado</div><div class="gr">Cabernet Sauvignon</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/concha-y-toro-merlot.png" alt=""/></div><div class="bn">Concha y Toro<br>Reservado</div><div class="gr">Merlot</div></div>
+  </div>
+
+  <div class="item" style="margin-top:5mm"><span class="n"><b>Argentinos</b></span><span class="ld"></span><span class="p">R$&nbsp;85,00</span></div>
+  <div class="vgrid">
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/benjamin-malbec.png" alt=""/></div><div class="bn">Benjamin</div><div class="gr">Malbec</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/cordero-malbec.png" alt=""/></div><div class="bn">Cordero con<br>Piel de Lobo</div><div class="gr">Malbec</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/trapiche-malbec.png" alt=""/></div><div class="bn">Trapiche</div><div class="gr">Malbec</div></div>
+  </div>
+
+  <div class="subT">Rótulos Premium</div>
+  <div class="vgrid">
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/dv-catena-cabernet-malbec.png" alt=""/></div><div class="bn">D.V. Catena</div><div class="gr">Cabernet Sauvignon &amp; Malbec</div><div class="bp">R$&nbsp;125,00</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/dv-catena-malbec-malbec.png" alt=""/></div><div class="bn">D.V. Catena</div><div class="gr">Malbec</div><div class="bp">R$&nbsp;150,00</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/sapo-otro-pozo-malbec.png" alt=""/></div><div class="bn">Sapo de Otro Pozo</div><div class="gr">Malbec</div><div class="bp">R$&nbsp;150,00</div></div>
+    <div class="b"><div class="ph"><img src="../imagens/vinhos/cutout/pispi-blend-de-tintas.png" alt=""/></div><div class="bn">Pispi</div><div class="gr">Blend (5 uvas)</div><div class="bp">R$&nbsp;150,00</div></div>
+  </div>
+
+  <div class="nota">
+    <div class="t">Traga o seu</div>
+    <div class="v">Taxa de rolha <em>·</em> R$&nbsp;20,00</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="rodape">
+    <div class="divisor"></div>
+    <div class="hr" style="font-family:'Playfair Display',serif;font-style:italic;
+      text-transform:none;letter-spacing:.02em;font-size:3.8mm;color:var(--gold-lt)">
+      Temos diversas marcas em exposição</div>
+    <div class="al" style="margin-top:2.5mm">Vinhos servidos à temperatura ideal</div>
+    <div class="al" style="margin-top:1mm">Cozinha: 18h às 21h45 · seg a sáb</div>
+    <div class="dc">A Ana Bella reserva-se o direito de alterar os valores sem aviso prévio.</div>
+  </div>
+</div>
+
+<!-- ============ 17 · CONTRACAPA ============ -->
+<div class="folha divisora contracapa">
+  <img class="foto" src="../imagens/fundo_madeira_verniz.jpg" alt=""/>
+  <div class="vinheta"></div>
+  <div class="base-vinho"></div>
+  <div class="conteudo">
+    <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
+    <div style="margin-top:auto"></div>
+    <div class="orn">— ❖ —</div>
+    <div class="texto">“Com sabor e cheirinho de casa da vovó.”</div>
+    <div class="assin">Da nossa família<br>para sua família</div>
+    <div class="divisor"></div>
+    <div class="end">
+      Rua Prof. Dário Veloso, 686 · Vila Izabel · Curitiba<br>
+      @anabellarestaurante · restauranteanabella.com.br<br>
+      Jantar: seg a sáb, 18h às 21h45
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
