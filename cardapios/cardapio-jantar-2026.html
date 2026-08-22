@@ -14,7 +14,7 @@
      Folha 15x30 cm. Conteúdo de um lado, foto-divisor no verso.
      --------------------------------------------------------------- */
   :root{
-    --wine:#7a1f2e;--wine-deep:#4a121d;--gold:#c9a84c;--gold-lt:#e6c98f;
+    --wine:#7a1f2e;--wine-deep:#4a121d;--gold:#c49c64;--gold-lt:#e6c98f;
     --cream:#f5efe5;--cream-mut:#d9c9b0;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -34,7 +34,7 @@
   .folha:last-child{page-break-after:auto;break-after:auto}
   /* moldura dourada interna */
   .folha::after{content:"";position:absolute;inset:5mm;
-    border:0.4mm solid rgba(201,168,76,.45);pointer-events:none;z-index:3}
+    border:0.4mm solid rgba(196,156,100,.45);pointer-events:none;z-index:3}
 
   /* ---------- cabeçalho de seção ---------- */
   .lbl{font-size:3.5mm;letter-spacing:.34em;text-transform:uppercase;
@@ -55,7 +55,7 @@
   .item .n{font-size:4.7mm;font-weight:400;color:#f2e9da;flex:0 1 auto}
   .item .n b{font-weight:700}
   .item .ld{flex:1 1 auto;min-width:4mm;height:0;
-    border-bottom:0.25mm dotted rgba(201,168,76,.5);transform:translateY(-1.1mm)}
+    border-bottom:0.25mm dotted rgba(196,156,100,.5);transform:translateY(-1.1mm)}
   .item .p{font-size:4.7mm;font-weight:700;color:var(--gold-lt);
     flex:0 0 auto;white-space:nowrap;font-variant-numeric:tabular-nums}
   .item .p i{font-style:normal;font-size:3.5mm;color:var(--gold);opacity:.9}
@@ -146,7 +146,7 @@
     padding:9mm 11mm;border-radius:50%;
     background:radial-gradient(closest-side,rgba(235,228,212,.38) 0%,
       rgba(224,212,186,.38) 70%,rgba(206,188,152,.38) 100%);
-    border:0.5mm solid rgba(201,168,76,.55);
+    border:0.5mm solid rgba(196,156,100,.55);
     box-shadow:0 2mm 5mm rgba(0,0,0,.4)}
   .logo-oval .logo{display:block}
   /* AV-05: Saladas tem tons quentes (queijo/tomate) atrás do medalhão — opacidade maior
@@ -164,7 +164,7 @@
   /* legenda de canto — identifica o prato da foto-divisor */
   .divisora .legenda{position:absolute;z-index:2;top:14mm;left:10mm;max-width:60mm;
     padding:3mm 5mm;border-radius:2mm;background:rgba(26,10,9,.6);
-    border:0.35mm solid rgba(201,168,76,.55)}
+    border:0.35mm solid rgba(196,156,100,.55)}
   .divisora .legenda .prato{font-family:'Playfair Display',serif;font-style:italic;
     font-weight:700;font-size:4.6mm;color:#fff;line-height:1.15}
   .divisora .legenda .molho{font-family:'Lora',serif;font-size:3.1mm;
@@ -195,7 +195,7 @@
   .balao.mini,.confete{z-index:-1}
 
   /* capa e contracapa */
-  .capa .nome{font-size:19mm;margin-top:auto}
+  .capa .nome{font-size:19mm;margin-top:0}
   .capa .selo{font-size:3.2mm}
   .contracapa .conteudo{justify-content:center;text-align:center}
   .contracapa .texto{font-family:'Playfair Display',serif;font-style:italic;
@@ -248,6 +248,7 @@
   /* =================== institucional =================== */
   .inst{justify-content:center;text-align:center}
   .inst .logo{width:66mm;margin:0 auto}
+  .inst .orn{margin-bottom:0}
   .inst .texto-fundo{background:rgba(20,8,7,.6);border-radius:2mm;
     padding:7mm 8mm;margin-top:5mm;display:flex;flex-direction:column;
     align-items:center}
@@ -262,8 +263,10 @@
 </head>
 <body>
 
-<!-- Fotos a confirmar/substituir antes do PDF final: capa, porções, massas,
-     saladas, pratos especiais, kids, bebidas, contracapa
+<!-- Fotos a confirmar/substituir antes do PDF final: kids (sem foto nenhuma) e
+     bebidas (placeholder TEMP explícito, ver comentário abaixo). Capa/institucional/
+     porções/massas/saladas/pratos especiais/contracapa já têm foto ou fundo definido
+     — falta specs de gráfica (dpi, sangria) pra aprovação física, ver to-do-cardapio.md.
      (ver imagens/*.jpg referenciadas em cada .foto abaixo) -->
 
 <!-- ============ 1 · CAPA (foto) ============ -->
@@ -322,7 +325,7 @@
   <div class="lista" style="gap:2mm">
     <div>
       <div class="item"><span class="n">Alcatra Ana Bella <b>(300 g)</b></span><span class="ld"></span><span class="p">R$&nbsp;45,90</span></div>
-      <div class="desc">Escolha o acompanhamento: <b>fritas</b> · <b>aipim</b> · <b>polenta</b> · <b>onions</b> · <b>batata rústica</b></div>
+      <div class="desc">Inclui <b>1 acompanhamento</b> à escolha: <b>fritas</b> · <b>aipim</b> · <b>polenta</b> · <b>onions</b> · <b>batata rústica</b></div>
     </div>
     <div>
       <div class="item"><span class="n">Alcatra Ana Bella <b>(300 g)</b></span><span class="ld"></span><span class="p">R$&nbsp;43,90</span></div>
@@ -341,7 +344,7 @@
     </div>
   </div>
 
-  <div class="subT" style="margin:4mm 0 3mm">Acompanhamentos</div>
+  <div class="subT" style="margin:4mm 0 3mm">Porções</div>
   <div class="lista" style="gap:2mm">
     <div class="item"><span class="n">Fritas (500 g) com bacon e cheddar</span><span class="ld"></span><span class="p">R$&nbsp;41,90</span></div>
     <div class="item"><span class="n">Fritas (500 g)</span><span class="ld"></span><span class="p">R$&nbsp;34,90</span></div>
@@ -353,11 +356,6 @@
     <div class="item"><span class="n">Arroz (400 g)</span><span class="ld"></span><span class="p">R$&nbsp;12,90</span></div>
     <div class="item"><span class="n">Pururuca <span style="font-size:3.1mm;color:var(--cream-mut)">(pele suína frita)</span></span><span class="ld"></span><span class="p">R$&nbsp;25,00</span></div>
     <div class="item"><span class="n">Pururuca meia porção</span><span class="ld"></span><span class="p">R$&nbsp;15,00</span></div>
-  </div>
-
-  <div class="nota" style="margin-top:2mm;padding:2mm 4mm">
-    <div class="t">Adicional</div>
-    <div class="v">Adicionar qualquer item <em>·</em> R$&nbsp;12,50</div>
   </div>
 
   <div class="spacer"></div>
@@ -500,11 +498,12 @@
 </div>
 
 <!-- ============ 9 · divisor PRATOS ESPECIAIS ============ -->
-<!-- foto provisória (fundo de madeira, sem prato) — dia_sabado.jpg tirado por
-     ser pastel/rissole, não bate com a seção. Kauan vai tirar foto do prato. -->
 <div class="folha divisora">
-  <img class="foto" src="../imagens/fundo_madeira_verniz.jpg" alt=""/>
+  <img class="foto" src="../imagens/foto_pratos_especiais.jpg" alt=""/>
   <div class="vinheta"></div>
+  <div class="legenda">
+    <div class="prato">Ana Bella à Moda da Casa</div>
+  </div>
   <div class="conteudo">
     <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
     <div class="nome duas">Pratos<br>Especiais</div>
@@ -639,7 +638,7 @@
 
 <!-- ============ 13 · divisor BEBIDAS ============ -->
 <div class="folha divisora">
-  <img class="foto" src="../imagens/dia_drink.jpg" alt=""/>
+  <!-- PLACEHOLDER TEMP: suco laranja stock, so pra preview -- trocar antes de deploy/print --><img class="foto" src="../imagens/dia_drink_placeholder-TEMP.png" alt=""/>
   <div class="vinheta"></div>
   <div class="conteudo">
     <div class="logo-frame"><div class="logo-oval"><img class="logo" src="../imagens/logotipo_anabella sem fundo.png" alt=""/></div></div>
