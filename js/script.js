@@ -97,16 +97,9 @@
   }
 
   /* 5. ACCORDION */
-  function setAccordionHeight(item, open) {
-    var body = item.querySelector('.accordion-body');
-    if (!body) return;
-    body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
-  }
-
   function setAccordionState(item, open) {
     var header = item.querySelector('.accordion-header');
     item.classList.toggle('open', open);
-    setAccordionHeight(item, open);
     if (header) header.setAttribute('aria-expanded', String(open));
   }
 
@@ -143,18 +136,6 @@
     var primeiroItem = primeiroAccordion.querySelector('.accordion-item');
     if (primeiroItem) setAccordionState(primeiroItem, true);
   }
-
-  // Recalcula altura de itens abertos apos resize (fonte/zoom/orientacao) —
-  // scrollHeight so e medido na abertura, senao o painel corta conteudo novo.
-  var accordionResizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(accordionResizeTimer);
-    accordionResizeTimer = setTimeout(function () {
-      document.querySelectorAll('.accordion-item.open').forEach(function (item) {
-        setAccordionHeight(item, true);
-      });
-    }, 150);
-  });
 
   /* 6. CARDÁPIO DO DIA */
   var hojeEl = document.getElementById('hoje-card');

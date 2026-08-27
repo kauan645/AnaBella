@@ -44,6 +44,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="preload" as="image" href="imagens/hero_cardapio_mobile.jpg" media="(max-width: 640px)"/>
+  <link rel="preload" as="image" href="imagens/hero_cardapio.jpg" media="(min-width: 641px)"/>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
     /* ACCORDION */
@@ -53,9 +55,9 @@
     .accordion-header:hover{color:var(--wine)}
     .accordion-arrow{transition:transform .3s ease;font-size:.9rem;flex-shrink:0;color:var(--wine)}
     .accordion-item.open .accordion-arrow{transform:rotate(180deg)}
-    .accordion-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
-    .accordion-item.open .accordion-body{max-height:9999px}
-    .accordion-content{padding:1rem 0 2.5rem}
+    .accordion-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.4,0,.2,1)}
+    .accordion-item.open .accordion-body{grid-template-rows:1fr}
+    .accordion-content{overflow:hidden;padding:1rem 0 2.5rem;min-height:0}
 
     /* HOJE CARD */
     .hoje-card{background:linear-gradient(135deg,var(--charcoal) 0%,#2e0e06 100%);border-radius:var(--radius-xl);padding:clamp(2rem,5vw,3rem);color:#fff;position:relative;overflow:hidden;margin-bottom:2.5rem}
@@ -164,8 +166,7 @@
 
   <main>
 
-    <section class="hero" aria-label="Cardápio Ana Bella"
-      style="min-height:60vh;background-image:linear-gradient(150deg,rgba(27,18,13,.72) 0%,rgba(86,21,37,.58) 100%),url('imagens/hero_cardapio.jpg');">
+    <section class="hero hero-cardapio" aria-label="Cardápio Ana Bella" style="min-height:60vh">
       <div class="hero-overlay"></div>
       <div class="hero-content container">
         <div class="hero-badges"><span class="open-badge" data-open-now>Horários: seg–sáb</span></div>
