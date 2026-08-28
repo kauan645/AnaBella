@@ -57,7 +57,8 @@
     .accordion-item.open .accordion-arrow{transform:rotate(180deg)}
     .accordion-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.4,0,.2,1)}
     .accordion-item.open .accordion-body{grid-template-rows:1fr}
-    .accordion-content{overflow:hidden;padding:1rem 0 2.5rem;min-height:0}
+    .accordion-content{overflow:hidden;padding:0 0;min-height:0;transition:padding .45s cubic-bezier(.4,0,.2,1)}
+    .accordion-item.open .accordion-content{padding:1rem 0 2.5rem}
 
     /* HOJE CARD */
     .hoje-card{background:linear-gradient(135deg,var(--charcoal) 0%,#2e0e06 100%);border-radius:var(--radius-xl);padding:clamp(2rem,5vw,3rem);color:#fff;position:relative;overflow:hidden;margin-bottom:2.5rem}

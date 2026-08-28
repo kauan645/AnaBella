@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "cardapio.html"
+        ],
+        "createdAt": "2026-08-28T01:54:45.750Z",
+        "reason": "Kauan confirmou: padding transition no accordion é intencional"
+      }
+    ]
+  }
+}
