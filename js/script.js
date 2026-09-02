@@ -137,6 +137,28 @@
     if (primeiroItem) setAccordionState(primeiroItem, true);
   }
 
+  // Nav de categorias sticky: pula pro accordion-item e já abre ele.
+  // Altura recalculada a cada clique (não no load) porque a nav só tem
+  // altura real depois que a aba "restaurante" fica visível.
+  var catNav = document.querySelector('.cat-nav');
+  if (catNav) {
+    var catBtns = Array.prototype.slice.call(catNav.querySelectorAll('.cat-nav-btn'));
+    catBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = document.querySelector('.accordion-item[data-cat="' + btn.dataset.cat + '"]');
+        if (!item) return;
+        document.documentElement.style.setProperty('--cat-nav-h', catNav.offsetHeight + 'px');
+        catBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        item.parentElement.querySelectorAll('.accordion-item').forEach(function (i) {
+          setAccordionState(i, false);
+        });
+        setAccordionState(item, true);
+        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
   /* 6. CARDÁPIO DO DIA */
   var hojeEl = document.getElementById('hoje-card');
   var diasEl = document.getElementById('dias-grid');

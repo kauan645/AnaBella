@@ -59,6 +59,14 @@
     .accordion-item.open .accordion-body{grid-template-rows:1fr}
     .accordion-content{overflow:hidden;padding:0 0;min-height:0;transition:padding .45s cubic-bezier(.4,0,.2,1)}
     .accordion-item.open .accordion-content{padding:1rem 0 2.5rem}
+    .accordion-item{scroll-margin-top:calc(var(--header-h) + var(--cat-nav-h, 60px))}
+
+    /* NAV DE CATEGORIAS (sticky, aba Cardápio do Restaurante) */
+    .cat-nav{position:sticky;top:var(--header-h);z-index:90;display:flex;gap:.5rem;overflow-x:auto;padding:.75rem 0;margin:0 0 1.5rem;background:var(--warm-white);border-bottom:1px solid var(--beige);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .cat-nav::-webkit-scrollbar{display:none}
+    .cat-nav-btn{flex:0 0 auto;padding:.5rem 1.1rem;border-radius:999px;border:2px solid var(--beige);background:#fff;font-family:var(--font-body);font-weight:700;font-size:.8rem;color:var(--text-lt);cursor:pointer;white-space:nowrap;transition:all var(--trans);-webkit-tap-highlight-color:transparent}
+    .cat-nav-btn:hover{border-color:var(--wine);color:var(--wine)}
+    .cat-nav-btn.active{background:var(--wine);border-color:var(--wine);color:#fff}
 
     /* HOJE CARD */
     .hoje-card{background:linear-gradient(135deg,var(--charcoal) 0%,#2e0e06 100%);border-radius:var(--radius-xl);padding:clamp(2rem,5vw,3rem);color:#fff;position:relative;overflow:hidden;margin-bottom:2.5rem}
@@ -214,11 +222,22 @@
             </a>
           </div>
 
+          <!-- Nav de categorias (sticky, jump-to) -->
+          <nav class="cat-nav" aria-label="Categorias do cardápio">
+            <button class="cat-nav-btn" data-cat="porcoes">Porções</button>
+            <button class="cat-nav-btn" data-cat="massas">Massas</button>
+            <button class="cat-nav-btn" data-cat="pratos-especiais">Pratos Especiais</button>
+            <button class="cat-nav-btn" data-cat="salada">Salada</button>
+            <button class="cat-nav-btn" data-cat="kids">Kids</button>
+            <button class="cat-nav-btn" data-cat="bebidas">Bebidas</button>
+            <button class="cat-nav-btn" data-cat="vinhos">Vinhos</button>
+          </nav>
+
           <!-- Accordion Grupo 1 -->
           <div class="accordion">
 
             <!-- PORÇÕES -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="porcoes">
               <button class="accordion-header"><span data-icon="beef"></span> Porções <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
@@ -305,7 +324,7 @@
             </div>
 
             <!-- MASSAS -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="massas">
               <button class="accordion-header"><span data-icon="utensils"></span> Massas <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
@@ -370,7 +389,7 @@
             </div>
 
             <!-- PRATOS ESPECIAIS -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="pratos-especiais">
               <button class="accordion-header"><span data-icon="utensils"></span> Pratos Especiais <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
@@ -428,7 +447,7 @@
           <div class="accordion">
 
             <!-- MONTE SUA SALADA -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="salada">
               <button class="accordion-header"><span data-icon="salad"></span> Monte sua Salada <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
@@ -488,7 +507,7 @@
             </div>
 
             <!-- KIDS -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="kids">
               <button class="accordion-header"><span data-icon="baby"></span> Ana Bella Kids <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
@@ -524,7 +543,7 @@
             </div>
 
             <!-- BEBIDAS -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="bebidas">
               <button class="accordion-header"><span data-icon="cup"></span> Bebidas <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
@@ -566,7 +585,7 @@
             </div>
 
             <!-- CARTA DE VINHOS -->
-            <div class="accordion-item">
+            <div class="accordion-item" data-cat="vinhos">
               <button class="accordion-header"><span data-icon="wine"></span> Carta de Vinhos <span class="accordion-arrow">▾</span></button>
               <div class="accordion-body">
                 <div class="accordion-content">
