@@ -126,7 +126,14 @@
       item.parentElement.querySelectorAll('.accordion-item').forEach(function (i) {
         setAccordionState(i, false);
       });
-      if (!isOpen) setAccordionState(item, true);
+      if (!isOpen) {
+        setAccordionState(item, true);
+        // Mobile: item abre pra baixo e some da tela em telas curtas, então rola
+        // até ele. Desktop tem espaço de sobra, não precisa.
+        if (window.matchMedia('(max-width: 640px)').matches) {
+          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
   });
 
