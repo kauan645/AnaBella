@@ -308,7 +308,7 @@ html.js .reveal.visible{opacity:1;transform:none}
 /* FOOTER */
 .site-footer{background:var(--charcoal);color:rgba(255,255,255,.72);padding-top:3.5rem}
 .footer-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start;padding-bottom:3rem}
-.footer-info h3,.footer-social h3{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brown-lt);margin-bottom:1.15rem}
+.footer-info h2,.footer-social h2{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brown-lt);margin-bottom:1.15rem}
 .footer-info p{font-size:.86rem;margin-bottom:.8rem;color:rgba(255,255,255,.55)}
 .footer-info strong{color:var(--brown-lt)}
 .footer-logo{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.65rem}
