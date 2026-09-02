@@ -1,2 +1,6 @@
 .impeccable/config.local.json
 .impeccable/hook.cache.json
+
+# pastas de backup de imagem datadas (imagens/backup-YYYY-MM-DD/) — cópia
+# local antes de trocar foto, não precisa entrar no histórico do repo
+imagens/backup-*/
