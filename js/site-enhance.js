@@ -8,7 +8,7 @@
   'use strict';
 
   /* ───────── Config ───────── */
-  var TEL_DIGITS = '4130182200';
+  var TEL_DIGITS = '+554130182200';
   var TEL_LABEL  = '(41) 3018-2200';
   var MAPS_URL   = 'https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana';
   var CARDAPIO   = 'cardapio.html#restaurante';
