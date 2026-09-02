@@ -139,6 +139,8 @@
   }
   // exposto p/ conteúdo gerado por JS (ex.: cardápio do dia)
   window.AB_icon = function (name) { return ICONS[name] || ''; };
+  // exposto p/ script.js não duplicar o cálculo de dia/hora de Curitiba
+  window.AB_nowInCuritiba = nowInCuritiba;
 
   /* ───────── Init ───────── */
   function init() {

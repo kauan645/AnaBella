@@ -152,7 +152,10 @@
       6: { nome: 'Sábado',         prato: 'Alcatra na Chapa',       acompanhamentos: [],                                                                                          img: 'imagens/foto_alcatra.jpg', nota: 'Também disponível todos os dias' }
     };
 
-    var hoje = new Date().getDay();
+    // Dia de Curitiba (America/Sao_Paulo), não do fuso do aparelho do visitante —
+    // site-enhance.js carrega antes deste script e expõe o cálculo já feito lá
+    // pro banner "Aberto agora". Fallback só cobre página sem site-enhance.js.
+    var hoje = window.AB_nowInCuritiba ? window.AB_nowInCuritiba().day : new Date().getDay();
 
     if (hojeEl) {
       if (hoje === 0) {
