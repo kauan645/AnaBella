@@ -534,7 +534,13 @@ html.js .reveal.visible{opacity:1;transform:none}
 /* Acessibilidade: foco visível */
 a:focus-visible,button:focus-visible,.btn:focus-visible,
 .action-bar a:focus-visible,.nav-link:focus-visible,.nav-action:focus-visible{
-  outline:3px solid var(--brown-lt);outline-offset:2px;border-radius:4px}
+  outline:3px solid var(--wine);outline-offset:2px;border-radius:4px}
+
+/* --wine não passa 3:1 sobre fundo escuro (--charcoal) — nessas seções,
+   troca pra --brown-lt, que já é a cor de hover usada nelas */
+.highlight-card--dark :focus-visible,.section-location :focus-visible,
+.fst-about-festival :focus-visible,.site-footer :focus-visible{
+  outline-color:var(--brown-lt)}
 
 /* Números tabulares (preços) */
 .preco,.menu-item-price,.price,[data-tabular]{font-variant-numeric:tabular-nums}
