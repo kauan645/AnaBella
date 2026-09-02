@@ -127,9 +127,23 @@ p:last-child{margin-bottom:0}
 /* Galeria de sábado: 5 fotos, uma linha só no desktop (não mexe no .gallery-grid base da home) */
 @media(min-width:600px){.gallery-grid-sabado{grid-template-columns:repeat(5,1fr)}}
 @media(max-width:599px){.gallery-grid-sabado .gallery-item:last-child:nth-child(odd){grid-column:1/-1;max-width:calc(50% - .375rem);margin-inline:auto}}
-.gallery-item{aspect-ratio:1/1;border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s cubic-bezier(.4,0,.2,1),box-shadow .45s,filter .45s}
+.gallery-item{position:relative;aspect-ratio:1/1;border-radius:var(--radius-lg);overflow:hidden;cursor:zoom-in;transition:transform .45s cubic-bezier(.4,0,.2,1),box-shadow .45s,filter .45s}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
 .gallery-item:hover{transform:scale(1.04);box-shadow:0 20px 60px rgba(27,18,13,.35);filter:brightness(1.08)}
+.gallery-item::after{content:'🔍';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;background:rgba(27,18,13,.38);opacity:0;transition:opacity .3s ease}
+.gallery-item:hover::after,.gallery-item:focus-visible::after{opacity:1}
+
+/* LIGHTBOX */
+.lightbox-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .25s ease}
+.lightbox-modal.active{opacity:1}
+.lightbox-backdrop{position:absolute;inset:0;background:rgba(15,9,6,.92);backdrop-filter:blur(4px);cursor:zoom-out}
+.lightbox-content{position:relative;z-index:1;max-width:min(92vw,900px);max-height:88vh;display:flex;flex-direction:column;gap:.75rem;transform:scale(.96);transition:transform .25s ease}
+.lightbox-modal.active .lightbox-content{transform:scale(1)}
+.lightbox-content img{max-width:100%;max-height:78vh;width:auto;height:auto;border-radius:var(--radius-lg);box-shadow:0 24px 72px rgba(0,0,0,.5);object-fit:contain;margin-inline:auto}
+.lightbox-caption{color:rgba(255,255,255,.82);font-size:.86rem;text-align:center}
+.lightbox-close{position:absolute;top:-2.75rem;right:0;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;transition:background .2s ease}
+.lightbox-close:hover{background:rgba(255,255,255,.22)}
+body.lightbox-open{overflow:hidden}
 
 /* LOCATION */
 .section-location{background:var(--charcoal);color:#fff}
@@ -261,6 +275,18 @@ p:last-child{margin-bottom:0}
 .reveal{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
 html.js .reveal{opacity:0;transform:translateY(28px)}
 html.js .reveal.visible{opacity:1;transform:none}
+/* Cascata: cada card revela um pouco depois do anterior */
+.reviews-grid .reveal:nth-child(2){transition-delay:.08s}
+.reviews-grid .reveal:nth-child(3){transition-delay:.16s}
+.reviews-grid .reveal:nth-child(4){transition-delay:.24s}
+.gallery-grid .reveal:nth-child(2){transition-delay:.08s}
+.gallery-grid .reveal:nth-child(3){transition-delay:.16s}
+.gallery-grid .reveal:nth-child(4){transition-delay:.24s}
+.gallery-grid-sabado .reveal:nth-child(2){transition-delay:.06s}
+.gallery-grid-sabado .reveal:nth-child(3){transition-delay:.12s}
+.gallery-grid-sabado .reveal:nth-child(4){transition-delay:.18s}
+.gallery-grid-sabado .reveal:nth-child(5){transition-delay:.24s}
+.split-grid .reveal:nth-child(2){transition-delay:.12s}
 
 /* FOOTER */
 .site-footer{background:var(--charcoal);color:rgba(255,255,255,.72);padding-top:3.5rem}

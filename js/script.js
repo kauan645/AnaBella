@@ -228,4 +228,57 @@
     }
   }
 
+  /* 8. LIGHTBOX DA GALERIA */
+  var galleryItems = document.querySelectorAll('.gallery-item');
+  if (galleryItems.length) {
+    var lightboxModal = null;
+
+    function closeLightbox() {
+      if (!lightboxModal) return;
+      var modal = lightboxModal;
+      lightboxModal = null;
+      modal.classList.remove('active');
+      document.body.classList.remove('lightbox-open');
+      setTimeout(function () { modal.remove(); }, 250);
+    }
+
+    function openLightbox(item) {
+      var img = item.querySelector('img');
+      if (!img) return;
+      var modal = document.createElement('div');
+      modal.className = 'lightbox-modal';
+      modal.innerHTML =
+        '<div class="lightbox-backdrop"></div>' +
+        '<div class="lightbox-content">' +
+          '<img src="' + img.currentSrc + '" alt="' + img.alt.replace(/"/g, '&quot;') + '">' +
+          (img.alt ? '<p class="lightbox-caption">' + img.alt + '</p>' : '') +
+          '<button type="button" class="lightbox-close" aria-label="Fechar foto ampliada">✕</button>' +
+        '</div>';
+      document.body.appendChild(modal);
+      document.body.classList.add('lightbox-open');
+      lightboxModal = modal;
+      requestAnimationFrame(function () { modal.classList.add('active'); });
+      modal.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
+      modal.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    }
+
+    galleryItems.forEach(function (item) {
+      var img = item.querySelector('img');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('role', 'button');
+      if (img) item.setAttribute('aria-label', 'Ampliar foto: ' + img.alt);
+      item.addEventListener('click', function () { openLightbox(item); });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(item);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightboxModal) closeLightbox();
+    });
+  }
+
 })();
