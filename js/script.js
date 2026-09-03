@@ -97,6 +97,13 @@
   }
 
   /* 5. ACCORDION */
+  // Duracao do transition:grid-template-rows do .accordion-body (css/cardapio.html
+  // inline, .45s) + folga. Rolar antes disso mira a posicao do item enquanto o
+  // anterior ainda esta com a altura cheia (fechamento so comecou a encolher) -
+  // quando esse item fechado era mais alto, o scroll acerta o alvo errado e a
+  // pagina acaba la embaixo assim que a transicao termina de verdade.
+  var ACCORDION_CLOSE_MS = 460;
+
   function setAccordionState(item, open) {
     var header = item.querySelector('.accordion-header');
     item.classList.toggle('open', open);
@@ -121,8 +128,9 @@
 
   document.querySelectorAll('.accordion-header').forEach(function (h) {
     h.addEventListener('click', function () {
-      var item   = h.closest('.accordion-item');
-      var isOpen = item.classList.contains('open');
+      var item     = h.closest('.accordion-item');
+      var isOpen   = item.classList.contains('open');
+      var prevOpen = document.querySelector('.accordion-item.open');
       document.querySelectorAll('.accordion-item').forEach(function (i) {
         setAccordionState(i, false);
       });
@@ -131,9 +139,10 @@
         // Mobile: item abre pra baixo e some da tela em telas curtas, então rola
         // até ele. Desktop tem espaço de sobra, não precisa.
         if (window.matchMedia('(max-width: 640px)').matches) {
-          requestAnimationFrame(function () {
+          var delay = (prevOpen && prevOpen !== item) ? ACCORDION_CLOSE_MS : 0;
+          setTimeout(function () {
             item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
+          }, delay);
         }
       }
     });
@@ -161,6 +170,7 @@
       btn.addEventListener('click', function () {
         var item = document.querySelector('.accordion-item[data-cat="' + btn.dataset.cat + '"]');
         if (!item) return;
+        var prevOpen = document.querySelector('.accordion-item.open');
         document.documentElement.style.setProperty('--cat-nav-h', catNav.offsetHeight + 'px');
         catBtns.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
@@ -168,9 +178,10 @@
           setAccordionState(i, false);
         });
         setAccordionState(item, true);
-        requestAnimationFrame(function () {
+        var delay = (prevOpen && prevOpen !== item) ? ACCORDION_CLOSE_MS : 0;
+        setTimeout(function () {
           item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        }, delay);
       });
     });
   }
