@@ -121,9 +121,9 @@
 
   document.querySelectorAll('.accordion-header').forEach(function (h) {
     h.addEventListener('click', function () {
-      var item   = h.parentElement;
+      var item   = h.closest('.accordion-item');
       var isOpen = item.classList.contains('open');
-      item.parentElement.querySelectorAll('.accordion-item').forEach(function (i) {
+      document.querySelectorAll('.accordion-item').forEach(function (i) {
         setAccordionState(i, false);
       });
       if (!isOpen) {
@@ -131,7 +131,9 @@
         // Mobile: item abre pra baixo e some da tela em telas curtas, então rola
         // até ele. Desktop tem espaço de sobra, não precisa.
         if (window.matchMedia('(max-width: 640px)').matches) {
-          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          requestAnimationFrame(function () {
+            item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
         }
       }
     });
@@ -150,6 +152,11 @@
   var catNav = document.querySelector('.cat-nav');
   if (catNav) {
     var catBtns = Array.prototype.slice.call(catNav.querySelectorAll('.cat-nav-btn'));
+    var activeItem = document.querySelector('.accordion-item.open[data-cat]');
+    if (activeItem) {
+      var initialBtn = catNav.querySelector('.cat-nav-btn[data-cat="' + activeItem.dataset.cat + '"]');
+      if (initialBtn) initialBtn.classList.add('active');
+    }
     catBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var item = document.querySelector('.accordion-item[data-cat="' + btn.dataset.cat + '"]');
@@ -157,11 +164,13 @@
         document.documentElement.style.setProperty('--cat-nav-h', catNav.offsetHeight + 'px');
         catBtns.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        item.parentElement.querySelectorAll('.accordion-item').forEach(function (i) {
+        document.querySelectorAll('.accordion-item').forEach(function (i) {
           setAccordionState(i, false);
         });
         setAccordionState(item, true);
-        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        requestAnimationFrame(function () {
+          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       });
     });
   }
@@ -261,6 +270,20 @@
   var galleryItems = document.querySelectorAll('.gallery-item');
   if (galleryItems.length) {
     var lightboxModal = null;
+    var currentGalleryIndex = -1;
+    var lightboxTrigger = null;
+
+    function updateLightbox(index) {
+      if (!lightboxModal) return;
+      currentGalleryIndex = (index + galleryItems.length) % galleryItems.length;
+      var img = galleryItems[currentGalleryIndex].querySelector('img');
+      if (!img) return;
+      var modalImg = lightboxModal.querySelector('.lightbox-content img');
+      var caption = lightboxModal.querySelector('.lightbox-caption');
+      modalImg.src = img.currentSrc || img.src;
+      modalImg.alt = img.alt;
+      caption.textContent = img.alt;
+    }
 
     function closeLightbox() {
       if (!lightboxModal) return;
@@ -268,27 +291,47 @@
       lightboxModal = null;
       modal.classList.remove('active');
       document.body.classList.remove('lightbox-open');
-      setTimeout(function () { modal.remove(); }, 250);
+      document.body.style.removeProperty('--lightbox-scrollbar-width');
+      setTimeout(function () {
+        modal.remove();
+        if (lightboxTrigger) lightboxTrigger.focus();
+        lightboxTrigger = null;
+      }, 250);
     }
 
     function openLightbox(item) {
       var img = item.querySelector('img');
       if (!img) return;
+      currentGalleryIndex = Array.prototype.indexOf.call(galleryItems, item);
+      lightboxTrigger = item;
       var modal = document.createElement('div');
       modal.className = 'lightbox-modal';
       modal.innerHTML =
         '<div class="lightbox-backdrop"></div>' +
         '<div class="lightbox-content">' +
           '<img src="' + img.currentSrc + '" alt="' + img.alt.replace(/"/g, '&quot;') + '">' +
-          (img.alt ? '<p class="lightbox-caption">' + img.alt + '</p>' : '') +
+          '<p class="lightbox-caption">' + img.alt + '</p>' +
+          '<button type="button" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">‹</button>' +
+          '<button type="button" class="lightbox-nav lightbox-next" aria-label="Próxima foto">›</button>' +
           '<button type="button" class="lightbox-close" aria-label="Fechar foto ampliada">✕</button>' +
         '</div>';
       document.body.appendChild(modal);
+      document.body.style.setProperty('--lightbox-scrollbar-width', (window.innerWidth - document.documentElement.clientWidth) + 'px');
       document.body.classList.add('lightbox-open');
       lightboxModal = modal;
       requestAnimationFrame(function () { modal.classList.add('active'); });
       modal.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
       modal.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+      modal.querySelector('.lightbox-prev').addEventListener('click', function () { updateLightbox(currentGalleryIndex - 1); });
+      modal.querySelector('.lightbox-next').addEventListener('click', function () { updateLightbox(currentGalleryIndex + 1); });
+      var touchStartX = 0;
+      modal.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      modal.addEventListener('touchend', function (e) {
+        var deltaX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) < 50) return;
+        updateLightbox(currentGalleryIndex + (deltaX < 0 ? 1 : -1));
+      }, { passive: true });
+      modal.querySelector('.lightbox-close').focus();
     }
 
     galleryItems.forEach(function (item) {
@@ -307,6 +350,8 @@
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && lightboxModal) closeLightbox();
+      if (e.key === 'ArrowLeft' && lightboxModal) updateLightbox(currentGalleryIndex - 1);
+      if (e.key === 'ArrowRight' && lightboxModal) updateLightbox(currentGalleryIndex + 1);
     });
   }
 
