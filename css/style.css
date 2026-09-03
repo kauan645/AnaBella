@@ -94,7 +94,7 @@ a{color:inherit;text-decoration:none}
 .hero-pick-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px var(--shadow-md)}
 .hero-pick-card>*{position:relative;z-index:1}
 .hero-pick-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown-lt);margin-bottom:.35rem}
-.hero-pick-card h3{color:#fff;font-size:1.6rem;margin-bottom:.35rem}
+.hero-pick-card h2{color:#fff;font-size:1.6rem;margin-bottom:.35rem}
 .hero-pick-card p{color:rgba(255,255,255,.85);font-size:.88rem;margin:0}
 @media(max-width:640px){.hero-picks-grid{grid-template-columns:1fr}.hero-pick-card{min-height:200px}}
 
