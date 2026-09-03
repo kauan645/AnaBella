@@ -28,18 +28,24 @@ a{color:inherit;text-decoration:none}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.8rem;border-radius:var(--radius);font-family:var(--font-body);font-size:.92rem;font-weight:700;letter-spacing:.04em;cursor:pointer;border:2px solid transparent;transition:background var(--trans),color var(--trans),border-color var(--trans),transform var(--trans),box-shadow var(--trans);-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--shadow-md)}
 .btn:active{transform:translateY(0) scale(.98)}
 .btn-primary{background:var(--wine);color:#fff;position:relative;overflow:hidden}
-.btn-primary:hover,.btn-primary:focus-visible{background:var(--wine-dk)}
+.btn-primary:focus-visible{background:var(--wine-dk)}
 .btn-primary::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}
-.btn-primary:hover::after,.btn-primary:focus-visible::after{left:130%;transition:left .55s ease}
+.btn-primary:focus-visible::after{left:130%;transition:left .55s ease}
 .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
-.btn-secondary:hover{background:#fff;color:var(--brown-dk);border-color:#fff}
 .btn-outline{background:transparent;color:var(--wine);border-color:var(--wine)}
-.btn-outline:hover{background:var(--wine);color:#fff}
 .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2)}
-.btn-ghost:hover{background:rgba(255,255,255,.16)}
+/* :hover só em dispositivo com mouse de verdade — em touch, :hover gruda após o
+   tap (sem mouseleave pra limpar) e o botão fica com cara de "sempre ativo". */
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--shadow-md)}
+  .btn-primary:hover{background:var(--wine-dk)}
+  .btn-primary:hover::after{left:130%;transition:left .55s ease}
+  .btn-secondary:hover{background:#fff;color:var(--brown-dk);border-color:#fff}
+  .btn-outline:hover{background:var(--wine);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+}
 
 /* HEADER */
 .site-header{position:sticky;top:0;z-index:100;height:var(--header-h);background:rgba(250,247,242,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color var(--trans),box-shadow var(--trans)}
