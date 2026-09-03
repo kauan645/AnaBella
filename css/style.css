@@ -363,13 +363,13 @@ html.js .reveal.visible{opacity:1;transform:none}
   .social-icons{align-items:flex-start}
   .social-icons a:hover{transform:translateX(3px)}
   .horario-box{flex-direction:column;text-align:center}
-  .horario-box .btn{width:100%}
+  .horario-box .btn,.horario-box .chegar-multi{width:100%}
   .hero-actions{flex-direction:column}
   .hero-actions .btn{width:100%}
   .location-info{grid-template-columns:1fr}
   .visit-cta-info{gap:1.25rem}
   .visit-cta-actions{flex-direction:column;align-items:center}
-  .visit-cta-actions .btn{width:100%;max-width:320px}
+  .visit-cta-actions .btn,.visit-cta-actions .chegar-multi{width:100%;max-width:320px}
 }
 @media(max-width:400px){
   .lt-link{padding:.85rem 1rem}
@@ -548,6 +548,16 @@ html.js .reveal.visible{opacity:1;transform:none}
 .vi-icon .ico,.buffet-icon .ico,.quinta-banner-icon .ico,.chef-idea-icon .ico{color:var(--wine)}
 .highlight-card--dark .vi-icon .ico,.visit-cta .vi-icon .ico{color:var(--brown-lt)}
 .btn svg{flex-shrink:0}
+
+/* "COMO CHEGAR" MULTIMODAL (Maps/Waze/Uber) */
+.chegar-multi{position:relative;display:inline-flex}
+.chegar-multi>button{width:100%}
+.chegar-caret{margin-left:.4em;font-size:.75em;opacity:.8;transform:translateY(-1px);display:inline-block}
+.chegar-menu{position:absolute;top:calc(100% + .6rem);left:0;z-index:20;background:var(--warm-white);border:1px solid var(--beige);border-radius:var(--radius);box-shadow:0 12px 32px var(--shadow-md);padding:.4rem;min-width:190px;display:flex;flex-direction:column;gap:.15rem}
+.chegar-menu a{display:flex;align-items:center;gap:.6rem;padding:.6rem .75rem;border-radius:calc(var(--radius) - 4px);color:var(--text);font-weight:700;font-size:.9rem;white-space:nowrap}
+.chegar-menu a:hover,.chegar-menu a:focus-visible{background:var(--cream)}
+.chegar-menu svg{width:17px;height:17px;flex-shrink:0;color:var(--wine)}
+
 @supports (min-height:100dvh){.hero{min-height:88dvh}}
 
 /* Barra de ação fixa (mobile) */

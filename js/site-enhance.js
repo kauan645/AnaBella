@@ -11,6 +11,8 @@
   var TEL_DIGITS = '+554130182200';
   var TEL_LABEL  = '(41) 3018-2200';
   var MAPS_URL   = 'https://www.google.com/maps/search/?api=1&query=Rua+Professor+Dario+Veloso+686+Curitiba+Parana';
+  var WAZE_URL   = 'https://waze.com/ul?q=Rua+Professor+Dario+Veloso+686+Curitiba+Parana&navigate=yes';
+  var UBER_URL   = 'https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Rua+Professor+Dario+Veloso+686+Curitiba+Parana';
   var CARDAPIO   = 'cardapio.html#restaurante';
 
   // Janelas Seg–Sáb (minutos desde 00:00). Domingo (0) fechado.
@@ -104,6 +106,61 @@
     document.body.classList.add('has-action-bar');
   }
 
+  /* ───────── "Como chegar" multimodal (Maps/Waze/Uber) ───────── */
+  // Progressive enhancement: <a data-chegar-multi> vira botão + menu. Sem JS,
+  // continua um link normal pro Google Maps (fallback seguro).
+  function closeChegarMenus() {
+    document.querySelectorAll('.chegar-menu').forEach(function (m) { m.hidden = true; });
+    document.querySelectorAll('.chegar-multi > button').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+  }
+  function buildChegarMenus() {
+    var links = document.querySelectorAll('a[data-chegar-multi]');
+    if (!links.length) return;
+
+    links.forEach(function (a) {
+      var wrap = document.createElement('div');
+      wrap.className = 'chegar-multi';
+      var style = a.getAttribute('style');
+      if (style) wrap.setAttribute('style', style);
+      a.parentNode.insertBefore(wrap, a);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = a.className;
+      btn.setAttribute('aria-haspopup', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = a.innerHTML + '<span class="chegar-caret" aria-hidden="true">&#9662;</span>';
+
+      var menu = document.createElement('div');
+      menu.className = 'chegar-menu';
+      menu.setAttribute('role', 'menu');
+      menu.hidden = true;
+      menu.innerHTML =
+        '<a role="menuitem" href="' + MAPS_URL + '" target="_blank" rel="noopener">' + ICON.pin + '<span>Google Maps</span></a>' +
+        '<a role="menuitem" href="' + WAZE_URL + '" target="_blank" rel="noopener"><span>Waze</span></a>' +
+        '<a role="menuitem" href="' + UBER_URL + '" target="_blank" rel="noopener"><span>Uber</span></a>';
+
+      wrap.appendChild(btn);
+      wrap.appendChild(menu);
+      a.remove();
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var wasOpen = !menu.hidden;
+        closeChegarMenus();
+        if (!wasOpen) {
+          menu.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    document.addEventListener('click', closeChegarMenus);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeChegarMenus();
+    });
+  }
+
   /* ───────── Ícones SVG (substituem emojis) ───────── */
   // Lucide-style, stroke currentColor. 'star'/'trophy'/'sparkle' usam fill.
   var S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
@@ -147,6 +204,7 @@
     buildActionBar();
     fillOpenBadges();
     injectIcons();
+    buildChegarMenus();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
