@@ -366,4 +366,47 @@
     });
   }
 
+  /* 9. HERO ADAPTATIVO POR TURNO (home) */
+  // Fora do horário de almoço/jantar (ou domingo fechado) o hero fica no texto
+  // padrão do HTML — só troca durante o serviço, quando é decisão quente ("vou
+  // agora?"). Usa o mesmo cálculo de horário de Curitiba do site-enhance.js.
+  var heroHome = document.querySelector('.hero-home');
+  if (heroHome && window.AB_nowInCuritiba) {
+    var agoraHero = window.AB_nowInCuritiba();
+    var turno = null;
+    if (agoraHero.day !== 0) {
+      if (agoraHero.mins >= 11 * 60 + 30 && agoraHero.mins < 14 * 60) {
+        turno = {
+          eyebrow: 'Aberto agora · Almoço',
+          h1: 'Almoço servido agora',
+          copy: 'Buffet fresquinho, variado e pronto pra você. Venha ainda hoje ou peça sua mesa.',
+          ctaLabel: 'Ver o almoço',
+          ctaHref: 'almoco.html'
+        };
+      } else if (agoraHero.mins >= 17 * 60 + 30 && agoraHero.mins < 22 * 60) {
+        turno = {
+          eyebrow: 'Aberto agora · Jantar',
+          h1: 'Jantar à la carte aberto',
+          copy: 'Da parmegiana à picanha na chapa — pratos preparados na hora pra sua noite.',
+          ctaLabel: 'Ver cardápio do jantar',
+          ctaHref: 'cardapio.html#restaurante'
+        };
+      }
+    }
+    if (turno) {
+      var eyebrowEl = heroHome.querySelector('.eyebrow');
+      var h1El      = heroHome.querySelector('h1');
+      var copyEl    = heroHome.querySelector('.hero-copy');
+      var ctaEl     = heroHome.querySelector('.hero-actions .btn-primary');
+      if (eyebrowEl) eyebrowEl.textContent = turno.eyebrow;
+      if (h1El)      h1El.textContent = turno.h1;
+      if (copyEl)    copyEl.textContent = turno.copy;
+      if (ctaEl) {
+        ctaEl.textContent = turno.ctaLabel;
+        ctaEl.setAttribute('href', turno.ctaHref);
+      }
+    }
+  }
+
+
 })();
