@@ -560,6 +560,7 @@ html.js .reveal.visible{opacity:1;transform:none}
 .chegar-multi>button{width:100%}
 .chegar-caret{margin-left:.4em;font-size:.75em;opacity:.8;transform:translateY(-1px);display:inline-block}
 .chegar-menu{position:absolute;top:calc(100% + .6rem);left:0;z-index:20;background:var(--warm-white);border:1px solid var(--beige);border-radius:var(--radius);box-shadow:0 12px 32px var(--shadow-md);padding:.4rem;min-width:190px;display:flex;flex-direction:column;gap:.15rem}
+.chegar-menu[hidden]{display:none}
 .chegar-menu a{display:flex;align-items:center;gap:.6rem;padding:.6rem .75rem;border-radius:calc(var(--radius) - 4px);color:var(--text);font-weight:700;font-size:.9rem;white-space:nowrap}
 .chegar-menu a:hover,.chegar-menu a:focus-visible{background:var(--cream)}
 .chegar-menu svg{width:17px;height:17px;flex-shrink:0;color:var(--wine)}
